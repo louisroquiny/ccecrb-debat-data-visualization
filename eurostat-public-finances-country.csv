@@ -1,0 +1,139 @@
+﻿key;geo;thema;subthema;prop
+GF0101;eu;Services généraux des administrations publiques;Fonctionnement des organes exécutifs et législatifs, affaires financières et fiscales, affaires étrangères;2.2
+GF0101;be;Services généraux des administrations publiques;Fonctionnement des organes exécutifs et législatifs, affaires financières et fiscales, affaires étrangères;2.5
+GF0102;eu;Services généraux des administrations publiques;Aide économique extérieure;0.3
+GF0102;be;Services généraux des administrations publiques;Aide économique extérieure;0.3
+GF0103;eu;Services généraux des administrations publiques;Services généraux;1.3
+GF0103;be;Services généraux des administrations publiques;Services généraux;1.3
+GF0104;eu;Services généraux des administrations publiques;Recherche fondamentale;0.7
+GF0104;be;Services généraux des administrations publiques;Recherche fondamentale;1.2
+GF0105;eu;Services généraux des administrations publiques;R & D concernant des services généraux des administrations publiques;0.0
+GF0105;be;Services généraux des administrations publiques;R & D concernant des services généraux des administrations publiques;0.0
+GF0106;eu;Services généraux des administrations publiques;Services généraux des administrations publiques n.c.a.;0.1
+GF0106;be;Services généraux des administrations publiques;Services généraux des administrations publiques n.c.a.;0.0
+GF0107;eu;Services généraux des administrations publiques;Opérations concernant la dette publique;1.5
+GF0107;be;Services généraux des administrations publiques;Opérations concernant la dette publique;2.1
+GF0108;eu;Services généraux des administrations publiques;Transferts de caractère général entre administrations publiques;0.0
+GF0108;be;Services généraux des administrations publiques;Transferts de caractère général entre administrations publiques;0.0
+GF0201;eu;Défense;Défense militaire;1.2
+GF0201;be;Défense;Défense militaire;0.9
+GF0202;eu;Défense;Défense civile;0.0
+GF0202;be;Défense;Défense civile;0.0
+GF0203;eu;Défense;Aide militaire à des pays étrangers;0.1
+GF0203;be;Défense;Aide militaire à des pays étrangers;0.0
+GF0204;eu;Défense;R & D concernant la défense;0.0
+GF0204;be;Défense;R & D concernant la défense;0.0
+GF0205;eu;Défense;Défense n.c.a.;0.0
+GF0205;be;Défense;Défense n.c.a.;0.0
+GF0301;eu;Ordre et sécurité publics;Services de police;1.0
+GF0301;be;Ordre et sécurité publics;Services de police;1.1
+GF0302;eu;Ordre et sécurité publics;Services de protection civile;0.2
+GF0302;be;Ordre et sécurité publics;Services de protection civile;0.2
+GF0303;eu;Ordre et sécurité publics;Tribunaux;0.3
+GF0303;be;Ordre et sécurité publics;Tribunaux;0.3
+GF0304;eu;Ordre et sécurité publics;Administration pénitentiaire;0.2
+GF0304;be;Ordre et sécurité publics;Administration pénitentiaire;0.1
+GF0305;eu;Ordre et sécurité publics;R & D concernant l'ordre et la sécurité publics;0.0
+GF0305;be;Ordre et sécurité publics;R & D concernant l'ordre et la sécurité publics;0.0
+GF0306;eu;Ordre et sécurité publics;Ordre et sécurité publics n.c.a.;0.1
+GF0306;be;Ordre et sécurité publics;Ordre et sécurité publics n.c.a.;0.1
+GF0401;eu;Affaires économiques;Tutelle de l'économie générale, des échanges et de l'emploi;1.9
+GF0401;be;Affaires économiques;Tutelle de l'économie générale, des échanges et de l'emploi;4.1
+GF0402;eu;Affaires économiques;Agriculture, sylviculture, pêche et chasse;0.3
+GF0402;be;Affaires économiques;Agriculture, sylviculture, pêche et chasse;0.1
+GF0403;eu;Affaires économiques;Combustibles et énergie;0.4
+GF0403;be;Affaires économiques;Combustibles et énergie;0.1
+GF0404;eu;Affaires économiques;Industries extractives et manufacturières, construction;0.2
+GF0404;be;Affaires économiques;Industries extractives et manufacturières, construction;0.0
+GF0405;eu;Affaires économiques;Transports;2.3
+GF0405;be;Affaires économiques;Transports;3.0
+GF0406;eu;Affaires économiques;Communications;0.0
+GF0406;be;Affaires économiques;Communications;0.1
+GF0407;eu;Affaires économiques;Autres branches d'activité;0.5
+GF0407;be;Affaires économiques;Autres branches d'activité;0.1
+GF0408;eu;Affaires économiques;R & D concernant les affaires économiques;0.4
+GF0408;be;Affaires économiques;R & D concernant les affaires économiques;0.3
+GF0409;eu;Affaires économiques;Affaires économiques n.c.a.;0.1
+GF0409;be;Affaires économiques;Affaires économiques n.c.a.;0.0
+GF0501;eu;Protection de l'environnement;Gestion des déchets;0.4
+GF0501;be;Protection de l'environnement;Gestion des déchets;0.5
+GF0502;eu;Protection de l'environnement;Gestion des eaux usées;0.2
+GF0502;be;Protection de l'environnement;Gestion des eaux usées;0.1
+GF0503;eu;Protection de l'environnement;Lutte contre la pollution;0.1
+GF0503;be;Protection de l'environnement;Lutte contre la pollution;0.7
+GF0504;eu;Protection de l'environnement;Préservation de la diversité biologique et protection de la nature;0.1
+GF0504;be;Protection de l'environnement;Préservation de la diversité biologique et protection de la nature;0.1
+GF0505;eu;Protection de l'environnement;R & D dans le domaine de la protection de l'environnement;0.0
+GF0505;be;Protection de l'environnement;R & D dans le domaine de la protection de l'environnement;0.0
+GF0506;eu;Protection de l'environnement;Protection de l'environnement n.c.a.;0.1
+GF0506;be;Protection de l'environnement;Protection de l'environnement n.c.a.;0.1
+GF0601;eu;Logements et équipements collectifs;Logements;0.2
+GF0601;be;Logements et équipements collectifs;Logements;0.1
+GF0602;eu;Logements et équipements collectifs;Équipements collectifs;0.2
+GF0602;be;Logements et équipements collectifs;Équipements collectifs;0.1
+GF0603;eu;Logements et équipements collectifs;Alimentation en eau;0.1
+GF0603;be;Logements et équipements collectifs;Alimentation en eau;0.0
+GF0604;eu;Logements et équipements collectifs;Éclairage public;0.1
+GF0604;be;Logements et équipements collectifs;Éclairage public;0.1
+GF0605;eu;Logements et équipements collectifs;R & D dans le domaine du logement et des équipements collectifs;0.0
+GF0605;be;Logements et équipements collectifs;R & D dans le domaine du logement et des équipements collectifs;0.0
+GF0606;eu;Logements et équipements collectifs;Logement et équipements collectifs n.c.a.;0.0
+GF0606;be;Logements et équipements collectifs;Logement et équipements collectifs n.c.a.;0.0
+GF0701;eu;Santé;Produits, appareils et matériels médicaux;1.2
+GF0701;be;Santé;Produits, appareils et matériels médicaux;0.8
+GF0702;eu;Santé;Services ambulatoires;2.5
+GF0702;be;Santé;Services ambulatoires;3.1
+GF0703;eu;Santé;Services hospitaliers;3.4
+GF0703;be;Santé;Services hospitaliers;4.5
+GF0704;eu;Santé;Services de santé publique;0.3
+GF0704;be;Santé;Services de santé publique;0.2
+GF0705;eu;Santé;R & D dans le domaine de la santé;0.1
+GF0705;be;Santé;R & D dans le domaine de la santé;0.0
+GF0706;eu;Santé;Santé n.c.a.;0.4
+GF0706;be;Santé;Santé n.c.a.;0.2
+GF0801;eu;Loisirs, culture et culte;Services récréatifs et sportifs;0.4
+GF0801;be;Loisirs, culture et culte;Services récréatifs et sportifs;0.4
+GF0802;eu;Loisirs, culture et culte;Services culturels;0.5
+GF0802;be;Loisirs, culture et culte;Services culturels;0.5
+GF0803;eu;Loisirs, culture et culte;Services de radiodiffusion, de télévision et d'édition;0.2
+GF0803;be;Loisirs, culture et culte;Services de radiodiffusion, de télévision et d'édition;0.2
+GF0804;eu;Loisirs, culture et culte;Culte et autres services communautaires;0.1
+GF0804;be;Loisirs, culture et culte;Culte et autres services communautaires;0.1
+GF0805;eu;Loisirs, culture et culte;R & D dans le domaine des loisirs, de la culture et du culte;0.0
+GF0805;be;Loisirs, culture et culte;R & D dans le domaine des loisirs, de la culture et du culte;0.0
+GF0806;eu;Loisirs, culture et culte;Loisirs, culture et culte n.c.a.;0.0
+GF0806;be;Loisirs, culture et culte;Loisirs, culture et culte n.c.a.;0.1
+GF0901;eu;Enseignement;Enseignement préélémentaire et primaire;1.7
+GF0901;be;Enseignement;Enseignement préélémentaire et primaire;2.1
+GF0902;eu;Enseignement;Enseignement secondaire;1.8
+GF0902;be;Enseignement;Enseignement secondaire;2.5
+GF0903;eu;Enseignement;Enseignement postsecondaire non supérieur;0.0
+GF0903;be;Enseignement;Enseignement postsecondaire non supérieur;0.0
+GF0904;eu;Enseignement;Enseignement supérieur;0.8
+GF0904;be;Enseignement;Enseignement supérieur;0.9
+GF0905;eu;Enseignement;Enseignement non défini par niveau;0.1
+GF0905;be;Enseignement;Enseignement non défini par niveau;0.6
+GF0906;eu;Enseignement;Services annexes à l'enseignement;0.3
+GF0906;be;Enseignement;Services annexes à l'enseignement;0.2
+GF0907;eu;Enseignement;R & D dans le domaine de l'enseignement;0.0
+GF0907;be;Enseignement;R & D dans le domaine de l'enseignement;0.0
+GF0908;eu;Enseignement;Enseignement n.c.a.;0.1
+GF0908;be;Enseignement;Enseignement n.c.a.;0.1
+GF1001;eu;Protection sociale;Maladie et invalidité;3.0
+GF1001;be;Protection sociale;Maladie et invalidité;3.8
+GF1002;eu;Protection sociale;Vieillesse;11.3
+GF1002;be;Protection sociale;Vieillesse;10.2
+GF1003;eu;Protection sociale;Survivants;1.6
+GF1003;be;Protection sociale;Survivants;1.7
+GF1004;eu;Protection sociale;Famille et enfants;2.0
+GF1004;be;Protection sociale;Famille et enfants;2.4
+GF1005;eu;Protection sociale;Chômage;2.2
+GF1005;be;Protection sociale;Chômage;3.1
+GF1006;eu;Protection sociale;Logement;0.3
+GF1006;be;Protection sociale;Logement;0.2
+GF1007;eu;Protection sociale;Exclusion sociale n.c.a.;1.0
+GF1007;be;Protection sociale;Exclusion sociale n.c.a.;1.2
+GF1008;eu;Protection sociale;R & D dans le domaine de la protection sociale;0.0
+GF1008;be;Protection sociale;R & D dans le domaine de la protection sociale;0.0
+GF1009;eu;Protection sociale;Protection sociale n.c.a.;0.3
+GF1009;be;Protection sociale;Protection sociale n.c.a.;0.2
