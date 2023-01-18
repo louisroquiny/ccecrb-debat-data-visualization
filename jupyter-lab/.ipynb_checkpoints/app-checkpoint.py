@@ -9,16 +9,32 @@ from dash import Dash, html, dcc, Input, Output
 import plotly.express as px
 import pandas as pd
 import plotly.graph_objs as go
-import dash_bootstrap_components as dbc
-from dash_bootstrap_templates import load_figure_template
-
 
 # Initialisation de l'application Dash
-app_treemap = Dash(__name__, external_stylesheets=[dbc.themes.FLATLY])
+app_treemap = Dash(__name__)
 app = app_treemap.server
 app_treemap.config.suppress_callback_exceptions = False
 
-load_figure_template('FLATLY')
+# Sources de mes données
+source_fig = html.Div(id='source_fig', children=[
+        html.B('Data sources : Eurostat'),
+        html.P('fig 1 & fig2 : General government expenditure by function (COFOG) [GOV_10A_EXP__custom_4563149]'),
+        html.P('Available online at:'),
+        html.A('https://ec.europa.eu/eurostat/databrowser/bookmark/2f...', href='https://ec.europa.eu/eurostat/databrowser/bookmark/2f7bf2e7-1f91-4311-8780-2147ad8a9f3e?lang=en', style={'display': 'inline-block'}),
+        html.P(),
+        html.A('Download the table', href='https://raw.githubusercontent.com/louisroquiny/treemap-ccecrb-debat/main/gov_10a_exp__custom_4563149.csv'),
+
+        html.P(' fig3: General government expenditure by function (COFOG) [GOV_10A_EXP__custom_4563149]'),
+        html.P('Available online at: '),
+        html.A('https://ec.europa.eu/eurostat/databrowser/bookmark/03...', href='https://ec.europa.eu/eurostat/databrowser/bookmark/0388f2fa-cd24-44e1-934a-d6f94cddd1e2?lang=en', style={'display': 'inline-block'}),
+        html.P(),
+        html.A('Download the table', href='https://raw.githubusercontent.com/louisroquiny/treemap-ccecrb-debat/main/gov_10dd_edpt1__custom_4582036_page_spreadsheet%20(1).csv')
+    ],style={
+        'font-family': 'Calibri',
+        'font-size': '10px', 
+        'color' : 'grey', 
+        'align' : 'right'
+    })
 
 # Chargement des données à partir d'une url
 url = 'https://raw.githubusercontent.com/louisroquiny/treemap-ccecrb-debat/main/gov_10a_exp__custom_4563149.csv'
@@ -108,26 +124,8 @@ app_treemap.layout = html.Div([
         dcc.Graph(
             id='deficit-graph')
     ],style={}),
-    html.Div([
-        dcc.Markdown('''
-### Data sources : Eurostat
-
-General government expenditure by function (COFOG) (GOV_10A_EXP__custom_4563149). 
-Available online at:[https://ec.europa.eu/eurostat/databrowser/bookmark/2f...](https://ec.europa.eu/eurostat/databrowser/bookmark/2f7bf2e7-1f91-4311-8780-2147ad8a9f3e?lang=en)
-
-[Download the table](https://raw.githubusercontent.com/louisroquiny/treemap-ccecrb-debat/main/gov_10a_exp__custom_4563149.csv)
-
-
-General government expenditure by function (COFOG) (GOV_10A_EXP__custom_4563149).
-Available online at: [https://ec.europa.eu/eurostat/databrowser/bookmark/03...](https://ec.europa.eu/eurostat/databrowser/bookmark/0388f2fa-cd24-44e1-934a-d6f94cddd1e2?lang=en)
-
-[Download the table](https://raw.githubusercontent.com/louisroquiny/treemap-ccecrb-debat/main/gov_10dd_edpt1__custom_4582036_page_spreadsheet%20(1).csv)
-    ''') 
-    ], style={
-        'font-family': 'Calibri',
-        'font-size': '10px', 
-        'color' : 'grey', 
-        'align' : 'right'}),
+    
+    source_fig
 ])
 
 # Fonction de mise à jour du graphique en fonction des sélections de l'utilisateur
@@ -210,7 +208,7 @@ def update_graph(selected_countries, selected_year, selected_thema):
             x = "year", 
             y = 'value', 
             color = 'geo', 
-            #template = "simple_white",
+            template = "simple_white",
             labels = {'geo' : themas[0]}
             )
     else : 
@@ -219,7 +217,7 @@ def update_graph(selected_countries, selected_year, selected_thema):
             x = "year", 
             y = 'value', 
             color = 'geo', 
-            #template = "simple_white",
+            template = "simple_white",
             labels = {'geo' : 'country'}
             )
         
@@ -231,7 +229,7 @@ def update_graph(selected_countries, selected_year, selected_thema):
         x = "year", 
         y = 'value', 
         color = 'geo', 
-        #template = "simple_white",
+        template = "simple_white",
         labels = {'geo' : 'country'})
     
     # Ecriture des titres
@@ -253,4 +251,4 @@ def update_graph(selected_countries, selected_year, selected_thema):
     return fig, fig2, fig3
 
 if __name__ == '__main__':
-     app_treemap.run_server(debug=True)
+    app_treemap.run_server(debug=True)
