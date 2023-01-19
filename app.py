@@ -29,110 +29,10 @@ load_figure_template('LITERA')
 
 # Chargement des données à partir d'une url
 url = 'https://raw.githubusercontent.com/louisroquiny/treemap-ccecrb-debat/main/gov_10a_exp__custom_4563149.csv'
-data = pd.read_csv(url, sep = ';')
-
-# Préparation des données en utilisant la fonction melt de pandas
-data = data.melt(id_vars=['geo', 'code', 'thema', 'subthema'], var_name='year', value_name='value')
-
-# Conversion de la colonne year en entier
-data.year = pd.to_numeric(data['year'], downcast='integer')
-
-# Remplacement des valeurs manquantes par 0
-data.value = data.value.replace("#VALEUR!", 0)
-
-# Conversion de la colonne value en entier
-data.value =  pd.to_numeric(data['value'], downcast='integer')
-
-# Obtention des options de pays, d'années et de secteurs pour les menus déroulants
-country_options = data["geo"].unique()
-country_options = sorted(country_options)
-years = data['year'].unique()
-year_options = {str(year): str(year) for year in years}
-thema_options = data.thema.unique()
-thema_options = sorted(thema_options)
-thema_options.insert(0, 'All sectors')
-
-# Deuxième jeu de données : surplus-déficit
-# Chargement des données à partir d'une url
 url2 = 'https://raw.githubusercontent.com/louisroquiny/treemap-ccecrb-debat/main/gov_10dd_edpt1__custom_4582036_page_spreadsheet%20(1).csv'
-deficit = pd.read_csv(url2, sep = ';')
 
-# Préparation des données
-deficit = deficit.melt(id_vars=['geo'], var_name='year', value_name='value')
-
-# Conversion des colonnes year et value en entier
-deficit.year = pd.to_numeric(deficit['year'], downcast='integer')
-deficit.value = deficit.value.str.replace(",", ".")
-deficit.value =  deficit.value.astype(float)
-
-
-# Mise en place de la structure de l'application
-app_treemap.layout = html.Div([
-    html.Div([
-        html.H2('How much do European countries spend on their public finances?')
-    ]),
-    html.Div([
-        html.H3('Budget: 1000 euros')
-    ]),
-    html.Div([
-        html.Label('Select countries:'),
-        dcc.Dropdown(
-            id='select-country',
-            options=[{'label': i, 'value': i} for i in country_options],
-            value='Belgium',
-            multi = True
-        )
-    ],style={'width': '100%'}),
-    html.Div([
-        html.Label('Select sector:'),
-        dcc.Dropdown(
-            id='select-themas',
-            options=[{'label': i, 'value': i} for i in thema_options], 
-            value = 'All sectors',
-            #multi = True, 
-        )
-    ],style={'width': '100%'}),
-    html.Div([
-        html.Label('Select date:'),
-        dcc.Slider(
-            id='select-year',
-            min=min(years),
-            max=max(years),
-            step=None,
-            marks={i: {"label":str(i), "style": {"transform": "rotate(45deg)", "white-space": "nowrap"}} for i in year_options},
-            value=max(years), 
-        )
-    ],style={ 'width': '100%' }),
-    html.Div([
-        dcc.Graph(
-            id='geo-graph'), 
-    ]),
-    html.Div([
-        dcc.Markdown('''
-### Distribution of expenditure. 
-Each country has a budget of 1000 euros, equivalent to 100% of its GDP. Let's see how it allocates its budget between the different spending sectors.  
-
-    ''') 
-    ], style={
-        'font-family': 'Calibri',
-        'font-size': '10px', 
-        'color' : 'grey', 
-        'align' : 'right'}),
-    html.Div([
-        dcc.Graph(
-            id='evolution-graph'), 
-    ],style={}),
-    html.Div([
-        dcc.Markdown('''
-### Evolution of the deficit/surplus ratio by country. 
-    '''),
-    ]),
-    html.Div([
-        dcc.Graph(
-            id='deficit-graph')
-    ],style={}),
-    html.Div([
-        dcc.Markdown('''
+# Sourcing du projet
+data_sources = '''
 #### Data sources : Eurostat
 
 General government expenditure by function (COFOG) (GOV_10A_EXP__custom_4563149). 
@@ -145,12 +45,113 @@ General government expenditure by function (COFOG) (GOV_10A_EXP__custom_4563149)
 Available online at: [https://ec.europa.eu/eurostat/databrowser/bookmark/03...](https://ec.europa.eu/eurostat/databrowser/bookmark/0388f2fa-cd24-44e1-934a-d6f94cddd1e2?lang=en)
 
 [Download the table](https://raw.githubusercontent.com/louisroquiny/treemap-ccecrb-debat/main/gov_10dd_edpt1__custom_4582036_page_spreadsheet%20(1).csv)
-    ''') 
-    ], style={
-        'font-family': 'Calibri',
-        'font-size': '10px', 
-        'color' : 'grey', 
-        'align' : 'right'}),
+    '''
+
+# Chargement des données à partir d'une url
+def load_data(url, sep):
+    data = pd.read_csv(url, sep = sep)
+    return data
+
+data = load_data(url, ';')
+deficit = load_data(url2, ';')
+
+# Préparation des données en utilisant la fonction melt de pandas
+def prepare_data(data, col_to_melt, multiplicator = False):
+    data = data.melt(id_vars=col_to_melt, var_name='year', value_name='value')
+    data.year = pd.to_numeric(data['year'], downcast='integer')
+    data.value = data.value.replace("#VALEUR!", 0)
+    data.value =  data.value.str.replace(",", ".")
+    data.value =  data.value.astype(float)
+    if multiplicator is True:
+        data.value = data.value*10
+    else :
+        pass
+    return data
+
+data = prepare_data(data, ['geo', 'code', 'thema', 'subthema'])
+deficit = prepare_data(deficit, ['geo'], multiplicator = True)
+
+# Obtention des options de pays, d'années et de secteurs pour les menus déroulants
+def get_options(data, column):
+    options = data[column].unique()
+    options = sorted(options)
+    return options
+
+country_options = get_options(data, "geo")
+thema_options = get_options(data, "thema")
+thema_options.insert(0, 'All sectors')
+years = get_options(data, "year")
+year_options = {str(year): str(year) for year in years}
+
+# Generation des div pour les menus déroulants
+def generate_dropdown(id, options, value, label, multi = False):
+    return html.Div([
+        html.Label(label),
+        dcc.Dropdown(
+            id=id,
+            options=[{'label': i, 'value': i} for i in options],
+            value=value, 
+            multi = multi
+        )
+    ])
+
+# Generation des div pour les graphiques
+def generate_graph(id, markdown, style = None):
+    return html.Div(children = [
+        html.Div([dcc.Markdown(markdown)]), 
+        html.Div([dcc.Graph(
+            id = id,
+            style=style)])
+        ])
+
+# Développement du layout de mon app
+app_treemap.layout = html.Div([
+    # Titre
+    html.H1('How do European countries manage their public finances?'),
+    # Sous-titre
+    html.H5('This dashboard allows you to view some public finance indicators. Select one or more countries to compare them. You can also isolate a specific spending sector for a better visualisation. I wish you a good work!'),
+    # Menus déroulants
+    html.Div(style={'margin-top': '5%', 'margin-bottom': '5%', "width" : "100%"}, 
+    children=[
+        generate_dropdown('select-country', country_options, 'Belgium', 'Select countries:', multi = True),
+        generate_dropdown('select-thema', thema_options, 'All sectors', 'Select sector:'),
+        # Date Slider
+        html.Div([
+               html.Label('Select date:'),
+               dcc.Slider(
+                   id='select-year',
+                   min=min(years),
+                   max=max(years),
+                   step=None,
+                   marks={i: {"label":str(i), "style": {"transform": "rotate(45deg)", "white-space": "nowrap"}} for i in year_options},
+                   value=max(years), 
+               )
+       ],style={ 'width': '100%' }),
+    ]),
+    # Graphique 1
+    generate_graph(
+        id = 'geo-graph',
+        markdown = '''
+##### Distribution of expenditure (/1000 of GDP)
+Each country has a budget of 1000 euros, equivalent to 100% of its GDP. Let's see how it allocates its budget between the different spending sectors.  
+    ''', 
+        style = {'height' : 600}),
+    # Graphique 2
+    generate_graph(
+        id = 'evolution-graph',
+        markdown = '''
+##### Evolution of expenditure (/1000 of GDP)
+    '''),
+    # Graphique 3
+    generate_graph(
+        id = 'deficit-graph',
+        markdown = '''
+##### Evolution of the deficit/surplus ratio by country (/1000 of GDP).
+     '''),
+    # Sources du projet
+    html.Div([
+        dcc.Markdown(data_sources) 
+    ])
 ])
 
 # Fonction de mise à jour du graphique en fonction des sélections de l'utilisateur
@@ -161,12 +162,13 @@ Available online at: [https://ec.europa.eu/eurostat/databrowser/bookmark/03...](
      ],
     [Input('select-country', 'value'),
      Input('select-year', 'value'), 
-    Input('select-themas', 'value')
+    Input('select-thema', 'value')
     ]
     )
 
 def update_graph(selected_countries, selected_year, selected_thema):
     
+    # Formatage des callbacks
     if type(selected_countries) == str :
         countries = [selected_countries]
     else : 
@@ -183,32 +185,30 @@ def update_graph(selected_countries, selected_year, selected_thema):
     
     # Filtrer les données en fonction des sélections de l'utilisateur
     filtered_data = data[data["geo"].isin(countries) & data["thema"].isin(themas)]  
-    filtered_data = filtered_data[filtered_data['year'] == selected_year]
+    filtered_data_for_treemap = filtered_data[filtered_data['year'] == selected_year]
     
+    # Création du Treemap
+    def create_treemap(data, maxdepth = None) :
+        fig = px.treemap(
+            data, 
+            path=['geo', 'thema', 'subthema'], 
+            values='value',  
+            maxdepth=maxdepth, 
+            color = 'thema'
+            )
+        return fig
     if len(themas) == 1 :
         # Générer le graphique en utilisant les données filtrées
-        fig = px.treemap(
-            filtered_data, 
-            path=['geo', 'thema', 'subthema'], 
-            values='value',  
-            #maxdepth=2, 
-            color = 'subthema', 
-        )
+        fig = create_treemap(filtered_data_for_treemap)
     else : 
         # Générer le graphique en utilisant les données filtrées
-        fig = px.treemap(
-            filtered_data, 
-            path=['geo', 'thema', 'subthema'], 
-            values='value',  
-            maxdepth=2, 
-            color = 'thema', 
-        )
+        fig = create_treemap(filtered_data_for_treemap, maxdepth = 2)
     
     # Mise en forme de la bulle d'info au survol
     fig.data[0].hovertemplate = (
       '<b>%{label}</b>'
       '<br>'
-      '<b>%{value} euros</b>  from the budget of <b>1000 euros</b> are spent'
+      '<b>%{value}</b> out of <b>1000 euros</b> are spent'
       '<br>'
        )
     
@@ -218,59 +218,36 @@ def update_graph(selected_countries, selected_year, selected_thema):
         root_color="lightgrey"
     )
     
-    
-    # Filtrer les données en fonction des pays et des thèmes sélectionnés
-    filtered_data2 = data[data["geo"].isin(countries) & data["thema"].isin(themas)]
+
     # Grouper les données par année et pays
-    grouped_data = filtered_data2.groupby(['geo', 'year'])['value'].sum()
+    grouped_data = filtered_data.groupby(['geo', 'year'])['value'].sum()
     grouped_data = grouped_data.reset_index()
     
+    def create_pxline(data, labels) :
+        fig = px.line(
+            data, 
+            x = "year", 
+            y = 'value', 
+            color = 'geo', 
+            labels = labels
+            )
+        return fig
+    
     if len(themas) == 1 :
+        # Ajout d'une colonne pour le secteur de dépense
         grouped_data["thema"] = themas[0]
-        fig2 = px.line(
-            grouped_data, 
-            x = "year", 
-            y = 'value', 
-            color = 'geo', 
-            #template = "simple_white",
-            labels = {'geo' : themas[0]}
-            )
+        fig2 = create_pxline(grouped_data, labels = {'geo' : themas[0]})
     else : 
-        fig2 = px.line(
-            grouped_data, 
-            x = "year", 
-            y = 'value', 
-            color = 'geo', 
-            #template = "simple_white",
-            labels = {'geo' : 'country'}
-            )
+        fig2 = create_pxline(grouped_data, labels = {'geo' : 'country'})
         
     # Création de la troisième figure
     # Tri des données
     filtered_deficit = deficit[deficit["geo"].isin(countries)]
-    fig3 = px.line(
-        filtered_deficit, 
-        x = "year", 
-        y = 'value', 
-        color = 'geo', 
-        #template = "simple_white",
-        labels = {'geo' : 'country'})
-    
-    # Ecriture des titres
-    fig.update_layout(
-    title=dict(text="Repartition of depenses", x=0.5, font=dict(family='Calibri',size=10))
-    )
-    fig2.update_layout(
-    title=dict(text="Evolutions of depenses", x=0.5, font=dict(family='Calibri',size=10))
-    )
-    fig3.update_layout(
-    title=dict(text="Evolution of country deficit", x=0.5, font=dict(family='Calibri',size=10))
-    )
+    fig3 = create_pxline(filtered_deficit, labels = {'geo' : 'country'})
     
     # Adaptation des traces
     for figure in [fig2, fig3]:
         figure.update_traces(line=dict(shape='spline', width = 5))
-
     
     return fig, fig2, fig3
 
