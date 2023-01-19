@@ -12,13 +12,20 @@ import plotly.graph_objs as go
 import dash_bootstrap_components as dbc
 from dash_bootstrap_templates import load_figure_template
 
+"""
+Bootstrap theme : 
+    FLATLY
+    LITERA
+    VAPOR
+"""
+
 
 # Initialisation de l'application Dash
-app_treemap = Dash(__name__, external_stylesheets=[dbc.themes.FLATLY])
+app_treemap = Dash(__name__, external_stylesheets=[dbc.themes.LITERA])
 app = app_treemap.server
 app_treemap.config.suppress_callback_exceptions = False
 
-load_figure_template('FLATLY')
+load_figure_template('LITERA')
 
 # Chargement des données à partir d'une url
 url = 'https://raw.githubusercontent.com/louisroquiny/treemap-ccecrb-debat/main/gov_10a_exp__custom_4563149.csv'
@@ -68,23 +75,23 @@ app_treemap.layout = html.Div([
         html.H3('Budget: 1000 euros')
     ]),
     html.Div([
-        html.Label('Select one or more countries:'),
+        html.Label('Select countries:'),
         dcc.Dropdown(
             id='select-country',
             options=[{'label': i, 'value': i} for i in country_options],
             value='Belgium',
             multi = True
         )
-    ],style={'width': '40%','display': 'inline-block'}),
+    ],style={'width': '100%'}),
     html.Div([
-        html.Label('Select one sector:'),
+        html.Label('Select sector:'),
         dcc.Dropdown(
             id='select-themas',
             options=[{'label': i, 'value': i} for i in thema_options], 
             value = 'All sectors',
             #multi = True, 
         )
-    ],style={'width': '30%','display': 'inline-block'}),
+    ],style={'width': '100%'}),
     html.Div([
         html.Label('Select date:'),
         dcc.Slider(
@@ -95,22 +102,38 @@ app_treemap.layout = html.Div([
             marks={i: {"label":str(i), "style": {"transform": "rotate(45deg)", "white-space": "nowrap"}} for i in year_options},
             value=max(years), 
         )
-    ],style={ 'width': '100%','display': 'inline-block', }),
+    ],style={ 'width': '100%' }),
     html.Div([
         dcc.Graph(
             id='geo-graph'), 
     ]),
     html.Div([
+        dcc.Markdown('''
+### Distribution of expenditure. 
+Each country has a budget of 1000 euros, equivalent to 100% of its GDP. Let's see how it allocates its budget between the different spending sectors.  
+
+    ''') 
+    ], style={
+        'font-family': 'Calibri',
+        'font-size': '10px', 
+        'color' : 'grey', 
+        'align' : 'right'}),
+    html.Div([
         dcc.Graph(
             id='evolution-graph'), 
     ],style={}),
+    html.Div([
+        dcc.Markdown('''
+### Evolution of the deficit/surplus ratio by country. 
+    '''),
+    ]),
     html.Div([
         dcc.Graph(
             id='deficit-graph')
     ],style={}),
     html.Div([
         dcc.Markdown('''
-### Data sources : Eurostat
+#### Data sources : Eurostat
 
 General government expenditure by function (COFOG) (GOV_10A_EXP__custom_4563149). 
 Available online at:[https://ec.europa.eu/eurostat/databrowser/bookmark/2f...](https://ec.europa.eu/eurostat/databrowser/bookmark/2f7bf2e7-1f91-4311-8780-2147ad8a9f3e?lang=en)
@@ -144,7 +167,6 @@ Available online at: [https://ec.europa.eu/eurostat/databrowser/bookmark/03...](
 
 def update_graph(selected_countries, selected_year, selected_thema):
     
-
     if type(selected_countries) == str :
         countries = [selected_countries]
     else : 
@@ -247,7 +269,7 @@ def update_graph(selected_countries, selected_year, selected_thema):
     
     # Adaptation des traces
     for figure in [fig2, fig3]:
-        figure.update_traces(line=dict(shape='spline'))
+        figure.update_traces(line=dict(shape='spline', width = 5))
 
     
     return fig, fig2, fig3
