@@ -7,6 +7,8 @@ Created on Mon Dec 12 14:07:04 2022
 import dash
 from dash import Dash, html, dcc, Input, Output
 import plotly.express as px
+from plotly.subplots import make_subplots
+import plotly.colors as pl_colors
 import pandas as pd
 import plotly.graph_objs as go
 import dash_bootstrap_components as dbc
@@ -28,8 +30,8 @@ app_treemap.config.suppress_callback_exceptions = False
 load_figure_template('LITERA')
 
 # Chargement des données à partir d'une url
-url = 'https://raw.githubusercontent.com/louisroquiny/treemap-ccecrb-debat/main/gov_10a_exp__custom_4563149.csv'
-url2 = 'https://raw.githubusercontent.com/louisroquiny/treemap-ccecrb-debat/main/gov_10dd_edpt1__custom_4582036_page_spreadsheet%20(1).csv'
+url = 'https://raw.githubusercontent.com/louisroquiny/treemap-ccecrb-debat/main/gov_10a_exp.csv'
+url2 = 'https://raw.githubusercontent.com/louisroquiny/treemap-ccecrb-debat/main/gov_10dd_edpt1.csv'
 
 # Sourcing du projet
 data_sources = '''
@@ -38,13 +40,13 @@ data_sources = '''
 General government expenditure by function (COFOG) (GOV_10A_EXP__custom_4563149). 
 Available online at:[https://ec.europa.eu/eurostat/databrowser/bookmark/2f...](https://ec.europa.eu/eurostat/databrowser/bookmark/2f7bf2e7-1f91-4311-8780-2147ad8a9f3e?lang=en)
 
-[Download the table](https://raw.githubusercontent.com/louisroquiny/treemap-ccecrb-debat/main/gov_10a_exp__custom_4563149.csv)
+[Download the table](https://raw.githubusercontent.com/louisroquiny/treemap-ccecrb-debat/main/gov_10a_exp.csv)
 
 
-General government expenditure by function (COFOG) (GOV_10A_EXP__custom_4563149).
+Government deficit/surplus, debt and associated data [GOV_10DD_EDPT1__custom_4582036].
 Available online at: [https://ec.europa.eu/eurostat/databrowser/bookmark/03...](https://ec.europa.eu/eurostat/databrowser/bookmark/0388f2fa-cd24-44e1-934a-d6f94cddd1e2?lang=en)
 
-[Download the table](https://raw.githubusercontent.com/louisroquiny/treemap-ccecrb-debat/main/gov_10dd_edpt1__custom_4582036_page_spreadsheet%20(1).csv)
+[Download the table](https://raw.githubusercontent.com/louisroquiny/treemap-ccecrb-debat/main/gov_10dd_edpt1.csv)
     '''
 
 # Chargement des données à partir d'une url
@@ -59,6 +61,8 @@ deficit = load_data(url2, ';')
 def prepare_data(data, col_to_melt, multiplicator = False):
     data = data.melt(id_vars=col_to_melt, var_name='year', value_name='value')
     data.year = pd.to_numeric(data['year'], downcast='integer')
+    data.geo = data.geo.replace('European Union - 27 countries (from 2020)', 'Europe')
+    data.geo = data.geo.replace('Germany (until 1990 former territory of the FRG)', 'Germany')
     data.value = data.value.replace("#VALEUR!", 0)
     data.value =  data.value.str.replace(",", ".")
     data.value =  data.value.astype(float)
@@ -69,7 +73,7 @@ def prepare_data(data, col_to_melt, multiplicator = False):
     return data
 
 data = prepare_data(data, ['geo', 'code', 'thema', 'subthema'])
-deficit = prepare_data(deficit, ['geo'], multiplicator = True)
+deficit = prepare_data(deficit, ['geo', 'labels'], multiplicator = True)
 
 # Obtention des options de pays, d'années et de secteurs pour les menus déroulants
 def get_options(data, column):
@@ -96,13 +100,13 @@ def generate_dropdown(id, options, value, label, multi = False):
     ])
 
 # Generation des div pour les graphiques
-def generate_graph(id, markdown, style = None):
+def generate_graph(id, markdown, style = None, style_graph = None):
     return html.Div(children = [
         html.Div([dcc.Markdown(markdown)]), 
         html.Div([dcc.Graph(
             id = id,
-            style=style)])
-        ])
+            style=style_graph)])
+        ], style = style)
 
 # Développement du layout de mon app
 app_treemap.layout = html.Div([
@@ -113,7 +117,7 @@ app_treemap.layout = html.Div([
     # Menus déroulants
     html.Div(style={'margin-top': '5%', 'margin-bottom': '5%', "width" : "100%"}, 
     children=[
-        generate_dropdown('select-country', country_options, 'Belgium', 'Select countries:', multi = True),
+        generate_dropdown('select-country', country_options, ['Belgium', 'France', 'Netherlands', 'Germany'], 'Select countries:', multi = True),
         generate_dropdown('select-thema', thema_options, 'All sectors', 'Select sector:'),
         # Date Slider
         html.Div([
@@ -135,18 +139,25 @@ app_treemap.layout = html.Div([
 ##### Distribution of expenditure (/1000 of GDP)
 Each country has a budget of 1000 euros, equivalent to 100% of its GDP. Let's see how it allocates its budget between the different spending sectors.  
     ''', 
-        style = {'height' : 600}),
+        style_graph = {'height' : 600}),
     # Graphique 2
     generate_graph(
         id = 'evolution-graph',
         markdown = '''
 ##### Evolution of expenditure (/1000 of GDP)
-    '''),
+    ''',
+        style = {'margin-left' : '5%','width' : '45%', 'height' : '50%', 'display' : 'inline-block'}),
     # Graphique 3
     generate_graph(
         id = 'deficit-graph',
         markdown = '''
 ##### Evolution of the deficit/surplus ratio by country (/1000 of GDP).
+     ''', 
+     style = {'margin-right' : '5%','width' : '45%', 'height' : '50%', 'display' : 'inline-block'}),
+    generate_graph(
+        id = 'debt-graph',
+        markdown = '''
+##### Evolution of the government consolidated gross debt (/1000 of GDP).
      '''),
     # Sources du projet
     html.Div([
@@ -158,7 +169,8 @@ Each country has a budget of 1000 euros, equivalent to 100% of its GDP. Let's se
 @app_treemap.callback(
     [Output('geo-graph', 'figure'),
      Output('evolution-graph', 'figure'), 
-     Output('deficit-graph', 'figure')
+     Output('deficit-graph', 'figure'), 
+     Output("debt-graph", 'figure')
      ],
     [Input('select-country', 'value'),
      Input('select-year', 'value'), 
@@ -172,7 +184,7 @@ def update_graph(selected_countries, selected_year, selected_thema):
     if type(selected_countries) == str :
         countries = [selected_countries]
     else : 
-        countries = selected_countries
+        countries = sorted(selected_countries)
     
     if selected_thema == "All sectors" :
         themas = sorted(data.thema.unique())
@@ -187,6 +199,10 @@ def update_graph(selected_countries, selected_year, selected_thema):
     filtered_data = data[data["geo"].isin(countries) & data["thema"].isin(themas)]  
     filtered_data_for_treemap = filtered_data[filtered_data['year'] == selected_year]
     
+    # Create a dictionary to store the color for each country
+    colors = {}
+    palette = pl_colors.qualitative.Plotly
+    
     # Création du Treemap
     def create_treemap(data, maxdepth = None) :
         fig = px.treemap(
@@ -194,7 +210,8 @@ def update_graph(selected_countries, selected_year, selected_thema):
             path=['geo', 'thema', 'subthema'], 
             values='value',  
             maxdepth=maxdepth, 
-            color = 'thema'
+            color = 'thema',
+            color_discrete_sequence=palette
             )
         return fig
     if len(themas) == 1 :
@@ -223,14 +240,79 @@ def update_graph(selected_countries, selected_year, selected_thema):
     grouped_data = filtered_data.groupby(['geo', 'year'])['value'].sum()
     grouped_data = grouped_data.reset_index()
     
-    def create_pxline(data, labels) :
-        fig = px.line(
-            data, 
-            x = "year", 
-            y = 'value', 
-            color = 'geo', 
-            labels = labels
-            )
+    # Iterate over all countries
+    for i, country in enumerate(countries):
+        # Generate a random color for current country
+        colors[country] = palette[i]
+    
+    def create_pxline(data, labels):
+        data = data.sort_values(['year', 'geo'])
+        data['color'] = data['geo'].map(colors)
+        fig = px.line(data, x = "year", y = 'value', color = 'geo', labels = labels)
+        for i, trace in enumerate(fig.data):
+           trace.line.color = palette[i]
+        return fig
+    
+    def create_pxscatter(data, labels, threshold_up, threshold_down):
+        
+        # Create subplots with rows and columns based on the number of countries
+        fig = make_subplots(rows=1, cols=len(countries), shared_yaxes=True)
+        
+        fig.add_shape( # add a horizontal "target" line
+            type="line", line_color="black", line_width=1, opacity=1, line_dash="dash",
+            x0=0, x1=1, xref="paper", y0=threshold_up, y1=threshold_up, yref="y"
+        )
+        fig.add_annotation(text="GDP exceeded", align="right", x=1, xref="paper", y=threshold_up + 50, yref="y", showarrow=False)
+        
+        fig.add_shape( # add a horizontal "target" line
+            type="line", line_color="black", line_width=1, opacity=1, line_dash="dash",
+            x0=0, x1=1, xref="paper", y0=threshold_down, y1=threshold_down, yref="y"
+        )
+        fig.add_annotation(text="Target", align="right", x=1, xref="paper", y=threshold_down + 50, yref="y", showarrow=False)
+        
+        # Iterate over all countries
+        for i, country in enumerate(countries):
+            # Filter data for current country
+            country_data = data[data['geo'] == country]
+        
+            # Full line for current country
+            fig.add_trace(
+                go.Scattergl(
+                    x=country_data.year, y=country_data.value, 
+                    #line={'dash' : 'solid', 'color': colors[country], 'width':4, 'shape' : 'vh'},
+                    marker = {'color': colors[country], 'size':8},
+                    name=country, 
+                    mode = 'markers',
+                    opacity = 0.4
+                ), 
+                row=1, col=i+1
+                )
+        
+            # Above threshold_up for current country
+            fig.add_trace(
+                go.Scattergl(
+                    x=country_data.year, y=country_data.value.where(country_data.value > threshold_up), 
+                    #line={'dash' : 'solid', 'color': colors[country], 'width':4, 'shape' : 'vh'}, 
+                    marker = {'color': colors[country], 'size':8},
+                    #name=country, 
+                    showlegend = False, 
+                    mode = 'markers',
+                    ), 
+                row=1, col=i+1
+                )
+            
+            # below threshold_down for current country
+            fig.add_trace(
+                go.Scattergl(
+                    x=country_data.year, y=country_data.value.where(country_data.value <= threshold_down), 
+                    #line={'dash' : 'solid', 'color': colors[country], 'width':4, 'shape' : 'vh'}, 
+                    marker = {'color': colors[country], 'size':8},
+                    #name=country, 
+                    showlegend = False, 
+                    mode = 'markers',
+                    ), 
+                row=1, col=i+1
+                )
         return fig
     
     if len(themas) == 1 :
@@ -242,14 +324,20 @@ def update_graph(selected_countries, selected_year, selected_thema):
         
     # Création de la troisième figure
     # Tri des données
-    filtered_deficit = deficit[deficit["geo"].isin(countries)]
+    filtered_deficit = deficit[(deficit["geo"].isin(countries)) & (deficit.labels == "Net lending (+) /net borrowing (-)")]
     fig3 = create_pxline(filtered_deficit, labels = {'geo' : 'country'})
+    
+    # Création de la quatrième figure
+    # Tri des données
+    filtered_debt = deficit[(deficit["geo"].isin(countries)) & (deficit.labels == "Government consolidated gross debt")]
+    fig4 = create_pxscatter(filtered_debt, labels = {'geo' : 'country'}, threshold_up = 1000, threshold_down = 600)
     
     # Adaptation des traces
     for figure in [fig2, fig3]:
-        figure.update_traces(line=dict(shape='spline', width = 5))
+        figure.update_traces(line=dict(shape='spline', width = 4))
+        figure.update_layout(xaxis_title="", yaxis_title="")
     
-    return fig, fig2, fig3
+    return fig, fig2, fig3, fig4
 
 if __name__ == '__main__':
      app_treemap.run_server(debug=True)
