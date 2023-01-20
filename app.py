@@ -100,7 +100,7 @@ def generate_dropdown(id, options, value, label, multi = False):
     ])
 
 # Generation des div pour les graphiques
-def generate_graph(id, markdown, style = None, style_graph = None):
+def generate_graph(id, markdown = None, style = None, style_graph = None):
     return html.Div(children = [
         html.Div([dcc.Markdown(markdown)]), 
         html.Div([dcc.Graph(
@@ -143,25 +143,27 @@ Each country has a budget of 1000 euros, equivalent to 100% of its GDP. Let's se
     # Graphique 2
     generate_graph(
         id = 'evolution-graph',
-        markdown = '''
-##### Evolution of expenditure (/1000 of GDP)
-    ''',
-        style = {'margin-left' : '5%','width' : '45%', 'height' : '50%', 'display' : 'inline-block'}),
+        style = {'width' : '50%', 'height' : '50%', 'display' : 'inline-block'}),
     # Graphique 3
     generate_graph(
-        id = 'deficit-graph',
-        markdown = '''
-##### Evolution of the deficit/surplus ratio by country (/1000 of GDP).
-     ''', 
-     style = {'margin-right' : '5%','width' : '45%', 'height' : '50%', 'display' : 'inline-block'}),
+        id = 'decomposition-graph',
+        style = {'width' : '50%', 'height' : '50%', 'display' : 'inline-block'}
+        ),
+    # séparateur
+    html.Hr(style={'width': '75%', 'margin-left': 'auto', 'margin-right': 'auto'}),
+    # Graphique 4
     generate_graph(
-        id = 'debt-graph',
-        markdown = '''
-##### Evolution of the government consolidated gross debt (/1000 of GDP).
-     '''),
+        id = 'deficit-graph'),
+    # séparateur
+    html.Hr(style={'width': '75%', 'margin-left': 'auto', 'margin-right': 'auto'}),
+    # Graphique 4
+    generate_graph(
+        id = 'debt-graph'),
     # Sources du projet
     html.Div([
-        dcc.Markdown(data_sources) 
+        html.Div(style={'margin-top': '80px', 'margin-bottom': '10px'}),
+        html.Hr(),
+        dcc.Markdown(data_sources)
     ])
 ])
 
@@ -169,6 +171,7 @@ Each country has a budget of 1000 euros, equivalent to 100% of its GDP. Let's se
 @app_treemap.callback(
     [Output('geo-graph', 'figure'),
      Output('evolution-graph', 'figure'), 
+     Output('decomposition-graph', 'figure'),
      Output('deficit-graph', 'figure'), 
      Output("debt-graph", 'figure')
      ],
@@ -204,22 +207,22 @@ def update_graph(selected_countries, selected_year, selected_thema):
     palette = pl_colors.qualitative.Plotly
     
     # Création du Treemap
-    def create_treemap(data, maxdepth = None) :
+    def create_treemap(data, color, maxdepth = None) :
         fig = px.treemap(
             data, 
             path=['geo', 'thema', 'subthema'], 
             values='value',  
-            maxdepth=maxdepth, 
-            color = 'thema',
+            color = color,
+            maxdepth = maxdepth, 
             color_discrete_sequence=palette
             )
         return fig
     if len(themas) == 1 :
         # Générer le graphique en utilisant les données filtrées
-        fig = create_treemap(filtered_data_for_treemap)
+        fig = create_treemap(filtered_data_for_treemap, color = 'subthema')
     else : 
         # Générer le graphique en utilisant les données filtrées
-        fig = create_treemap(filtered_data_for_treemap, maxdepth = 2)
+        fig = create_treemap(filtered_data_for_treemap, color = 'thema', maxdepth = 2)
     
     # Mise en forme de la bulle d'info au survol
     fig.data[0].hovertemplate = (
@@ -253,22 +256,23 @@ def update_graph(selected_countries, selected_year, selected_thema):
            trace.line.color = palette[i]
         return fig
     
-    def create_pxscatter(data, labels, threshold_up, threshold_down):
+    def create_pxscatter(data, labels, threshold_up = None, threshold_down = None, text_up = None, text_down = None, dist = None):
         
         # Create subplots with rows and columns based on the number of countries
         fig = make_subplots(rows=1, cols=len(countries), shared_yaxes=True)
+        if threshold_up :
+            fig.add_shape( # add a horizontal "target" line
+                type="line", line_color="black", line_width=1, opacity=1, line_dash="dash",
+                x0=0, x1=1, xref="paper", y0=threshold_up, y1=threshold_up, yref="y"
+            )
+            fig.add_annotation(text=text_up, align="right", x=1, xref="paper", y=threshold_up + dist, yref="y", showarrow=False)
         
-        fig.add_shape( # add a horizontal "target" line
-            type="line", line_color="black", line_width=1, opacity=1, line_dash="dash",
-            x0=0, x1=1, xref="paper", y0=threshold_up, y1=threshold_up, yref="y"
-        )
-        fig.add_annotation(text="GDP exceeded", align="right", x=1, xref="paper", y=threshold_up + 50, yref="y", showarrow=False)
-        
-        fig.add_shape( # add a horizontal "target" line
-            type="line", line_color="black", line_width=1, opacity=1, line_dash="dash",
-            x0=0, x1=1, xref="paper", y0=threshold_down, y1=threshold_down, yref="y"
-        )
-        fig.add_annotation(text="Target", align="right", x=1, xref="paper", y=threshold_down + 50, yref="y", showarrow=False)
+        if threshold_down :
+            fig.add_shape( # add a horizontal "target" line
+                type="line", line_color="black", line_width=1, opacity=1, line_dash="dash",
+                x0=0, x1=1, xref="paper", y0=threshold_down, y1=threshold_down, yref="y"
+            )
+            fig.add_annotation(text=text_down, align="right", x=1, xref="paper", y=threshold_down + dist, yref="y", showarrow=False)
         
         # Iterate over all countries
         for i, country in enumerate(countries):
@@ -322,22 +326,44 @@ def update_graph(selected_countries, selected_year, selected_thema):
     else : 
         fig2 = create_pxline(grouped_data, labels = {'geo' : 'country'})
         
+    # if len(themas) == 1 :
+    #     # Préparez vos données en regroupant les sous-thèmes par thème et pays
+    #     data_grouped = filtered_data_for_treemap.groupby(['geo', 'theme', 'subtheme']).sum().reset_index(drop = True)
+    #     fig5 = px.histogram(data_grouped, x='subtheme', y='sum', color='theme', facet='geo', nbins=20)
+    # else : 
+    data_grouped = filtered_data_for_treemap.groupby(['geo'])['value'].sum()
+    data_grouped = pd.DataFrame(data_grouped)
+    data_grouped['color'] = data_grouped.index.map(colors)
+    fig5 = px.histogram(data_grouped, x = data_grouped.index, y = 'value', color = 'color', color_discrete_sequence = palette)
+    fig5.update_layout(showlegend=False, xaxis_title="", yaxis_title="", bargap=0.8)
+       
     # Création de la troisième figure
     # Tri des données
     filtered_deficit = deficit[(deficit["geo"].isin(countries)) & (deficit.labels == "Net lending (+) /net borrowing (-)")]
-    fig3 = create_pxline(filtered_deficit, labels = {'geo' : 'country'})
+    #fig3 = create_pxline(filtered_deficit, labels = {'geo' : 'country'})
+    fig3 = create_pxscatter(filtered_deficit, labels = {'geo' : 'country'}, threshold_up = -30, text_up = "Target : -30", dist = 10)
     
     # Création de la quatrième figure
     # Tri des données
     filtered_debt = deficit[(deficit["geo"].isin(countries)) & (deficit.labels == "Government consolidated gross debt")]
-    fig4 = create_pxscatter(filtered_debt, labels = {'geo' : 'country'}, threshold_up = 1000, threshold_down = 600)
+    fig4 = create_pxscatter(filtered_debt, labels = {'geo' : 'country'}, threshold_up = 1000, threshold_down = 600, text_up = "GDP exceeded", text_down = 'Target : 600', dist = 50)
     
     # Adaptation des traces
-    for figure in [fig2, fig3]:
+    for figure in [fig2]:
         figure.update_traces(line=dict(shape='spline', width = 4))
         figure.update_layout(xaxis_title="", yaxis_title="")
+        
+    def add_title(fig, title):
+        fig.update_layout(
+            title_text=title,
+            title_font=dict(size=14, family='Calibri'),
+        )
+
+    add_title(fig2, title = 'Evolution of expenditure (/1000 of GDP)')
+    add_title(fig3, title = 'Evolution of the deficit/surplus ratio by country (/1000 of GDP)')
+    add_title(fig4, title = 'Evolution of the government consolidated gross debt (/1000 of GDP)')
     
-    return fig, fig2, fig3, fig4
+    return fig, fig2, fig5, fig3, fig4
 
 if __name__ == '__main__':
      app_treemap.run_server(debug=True)
