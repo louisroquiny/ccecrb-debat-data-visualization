@@ -316,7 +316,7 @@ def update_graph(selected_countries, selected_year, selected_thema):
                 row=1, col=i+1
                 )
         return fig
-    
+    # Graphique 2
     if len(themas) == 1 :
         # Ajout d'une colonne pour le secteur de dépense
         grouped_data["thema"] = themas[0]
@@ -324,11 +324,12 @@ def update_graph(selected_countries, selected_year, selected_thema):
     else : 
         fig2 = create_pxline(grouped_data, labels = {'geo' : 'country'})
     
+    # Graphique 5
     if len(themas) == 1 :
         # Préparez vos données en regroupant les sous-thèmes par thème et pays
         data_grouped = filtered_data_for_treemap.groupby(['thema','geo', 'subthema'])['value'].sum().reset_index()
         data_grouped_sorted = data_grouped.sort_values(['geo', 'value'])
-        data_grouped_sorted['percentage'] = data_grouped_sorted.groupby('thema')['value'].transform(lambda x: x / x.sum())
+        data_grouped_sorted['percentage'] = data_grouped_sorted.groupby('thema')['value'].transform(lambda x: round(x / x.sum(), 2))
         fig5 = px.histogram(data_grouped_sorted, x='geo', y='percentage', color = 'subthema', color_discrete_sequence = palette, labels = {'subthema': 'Subsector'})
         fig5.update_layout(xaxis_title="", yaxis_title="", bargap=0.8,  yaxis_tickformat = '%')
         fig5.update_traces(texttemplate='%{y}%', textposition='outside')
@@ -363,7 +364,10 @@ def update_graph(selected_countries, selected_year, selected_thema):
 
     add_title(fig2, title = 'Evolution of expenditure (/1000 of GDP)')
     add_title(fig3, title = 'Evolution of the deficit/surplus ratio by country (/1000 of GDP)')
-    add_title(fig5, title = 'Repartition expenditure by subsector (% of sector)')
+    if len(themas) == 1 : 
+        add_title(fig5, title = 'Repartition of expenditure by subsector (% of sector)')
+    else : 
+        add_title(fig5, title = 'Total of expenditure by country (/1000 of GDP)')
     add_title(fig4, title = 'Evolution of the government consolidated gross debt (/1000 of GDP)')
     
     return fig, fig2, fig5, fig3, fig4
