@@ -154,8 +154,6 @@ Each country has a budget of 1000 euros, equivalent to 100% of its GDP. Let's se
     # Graphique 4
     generate_graph(
         id = 'deficit-graph'),
-    # séparateur
-    html.Hr(style={'width': '75%', 'margin-left': 'auto', 'margin-right': 'auto'}),
     # Graphique 4
     generate_graph(
         id = 'debt-graph'),
@@ -325,28 +323,32 @@ def update_graph(selected_countries, selected_year, selected_thema):
         fig2 = create_pxline(grouped_data, labels = {'geo' : themas[0]})
     else : 
         fig2 = create_pxline(grouped_data, labels = {'geo' : 'country'})
-        
-    # if len(themas) == 1 :
-    #     # Préparez vos données en regroupant les sous-thèmes par thème et pays
-    #     data_grouped = filtered_data_for_treemap.groupby(['geo', 'theme', 'subtheme']).sum().reset_index(drop = True)
-    #     fig5 = px.histogram(data_grouped, x='subtheme', y='sum', color='theme', facet='geo', nbins=20)
-    # else : 
-    data_grouped = filtered_data_for_treemap.groupby(['geo'])['value'].sum()
-    data_grouped = pd.DataFrame(data_grouped)
-    data_grouped['color'] = data_grouped.index.map(colors)
-    fig5 = px.histogram(data_grouped, x = data_grouped.index, y = 'value', color = 'color', color_discrete_sequence = palette)
-    fig5.update_layout(showlegend=False, xaxis_title="", yaxis_title="", bargap=0.8)
+    
+    if len(themas) == 1 :
+        # Préparez vos données en regroupant les sous-thèmes par thème et pays
+        data_grouped = filtered_data_for_treemap.groupby(['thema','geo', 'subthema'])['value'].sum().reset_index()
+        data_grouped_sorted = data_grouped.sort_values(['geo', 'value'])
+        data_grouped_sorted['percentage'] = data_grouped_sorted.groupby('thema')['value'].transform(lambda x: x / x.sum())
+        fig5 = px.histogram(data_grouped_sorted, x='geo', y='percentage', color = 'subthema', color_discrete_sequence = palette, labels = {'subthema': 'Subsector'})
+        fig5.update_layout(xaxis_title="", yaxis_title="", bargap=0.8,  yaxis_tickformat = '%')
+        fig5.update_traces(texttemplate='%{y}%', textposition='outside')
+    else : 
+        data_grouped = filtered_data_for_treemap.groupby(['geo'])['value'].sum().reset_index()
+        data_grouped_sorted = data_grouped.sort_values(['geo', 'value'])
+        fig5 = px.histogram(data_grouped_sorted, x = 'geo', y = 'value', color = 'geo', color_discrete_sequence = palette)
+        fig5.update_layout(showlegend=False, xaxis_title="", yaxis_title="", bargap=0.8)
+        fig5.update_traces(texttemplate='%{y:.2s}', textposition='outside')
        
     # Création de la troisième figure
     # Tri des données
     filtered_deficit = deficit[(deficit["geo"].isin(countries)) & (deficit.labels == "Net lending (+) /net borrowing (-)")]
     #fig3 = create_pxline(filtered_deficit, labels = {'geo' : 'country'})
-    fig3 = create_pxscatter(filtered_deficit, labels = {'geo' : 'country'}, threshold_up = -30, text_up = "Target : -30", dist = 10)
+    fig3 = create_pxscatter(filtered_deficit, labels = {'geo' : 'Country'}, threshold_up = -30, text_up = "Target : -30", dist = 10)
     
     # Création de la quatrième figure
     # Tri des données
     filtered_debt = deficit[(deficit["geo"].isin(countries)) & (deficit.labels == "Government consolidated gross debt")]
-    fig4 = create_pxscatter(filtered_debt, labels = {'geo' : 'country'}, threshold_up = 1000, threshold_down = 600, text_up = "GDP exceeded", text_down = 'Target : 600', dist = 50)
+    fig4 = create_pxscatter(filtered_debt, labels = {'geo' : 'Country'}, threshold_up = 1000, threshold_down = 600, text_up = "GDP exceeded", text_down = 'Target : 600', dist = 50)
     
     # Adaptation des traces
     for figure in [fig2]:
@@ -361,6 +363,7 @@ def update_graph(selected_countries, selected_year, selected_thema):
 
     add_title(fig2, title = 'Evolution of expenditure (/1000 of GDP)')
     add_title(fig3, title = 'Evolution of the deficit/surplus ratio by country (/1000 of GDP)')
+    add_title(fig5, title = 'Repartition expenditure by subsector (% of sector)')
     add_title(fig4, title = 'Evolution of the government consolidated gross debt (/1000 of GDP)')
     
     return fig, fig2, fig5, fig3, fig4
