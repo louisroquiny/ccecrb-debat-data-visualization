@@ -105,7 +105,8 @@ def generate_graph(id, markdown = None, style = None, style_graph = None):
         html.Div([dcc.Markdown(markdown)]), 
         html.Div([dcc.Graph(
             id = id,
-            style=style_graph)])
+            style=style_graph,
+            config={'displayModeBar': False})])
         ], style = style)
 
 # Développement du layout de mon app
@@ -161,7 +162,7 @@ Each country has a budget of 1000 euros, equivalent to 100% of its GDP. Let's se
     html.Div([
         html.Div(style={'margin-top': '80px', 'margin-bottom': '10px'}),
         html.Hr(),
-        dcc.Markdown(data_sources)
+        dcc.Markdown(data_sources, link_target="_blank")
     ])
 ])
 
@@ -202,25 +203,37 @@ def update_graph(selected_countries, selected_year, selected_thema):
     
     # Create a dictionary to store the color for each country
     colors = {}
-    palette = pl_colors.qualitative.Plotly
+    colors_subthema = {}
+    palette = pl_colors.qualitative.Bold
+    
+    # Iterate over all countries
+    for i, country in enumerate(countries):
+        # Generate a random color for current country
+        colors[country] = palette[i]
+        
+    if len (themas) == 1 :
+        for i, subthema in enumerate(filtered_data_for_treemap.subthema.unique()):
+            # Generate a random color for current country
+            colors_subthema[subthema] = palette[i]    
     
     # Création du Treemap
-    def create_treemap(data, color, maxdepth = None) :
+    def create_treemap(data, color, maxdepth = None, palette = None, palette_map = None) :
         fig = px.treemap(
             data, 
             path=['geo', 'thema', 'subthema'], 
             values='value',  
             color = color,
-            maxdepth = maxdepth, 
-            color_discrete_sequence=palette
+            maxdepth = maxdepth,
+            color_discrete_sequence = palette, 
+            color_discrete_map = palette_map
             )
         return fig
     if len(themas) == 1 :
         # Générer le graphique en utilisant les données filtrées
-        fig = create_treemap(filtered_data_for_treemap, color = 'subthema')
+        fig = create_treemap(filtered_data_for_treemap, color = 'subthema', palette_map = colors_subthema)
     else : 
         # Générer le graphique en utilisant les données filtrées
-        fig = create_treemap(filtered_data_for_treemap, color = 'thema', maxdepth = 2)
+        fig = create_treemap(filtered_data_for_treemap, color = 'thema',maxdepth = 2, palette = palette)
     
     # Mise en forme de la bulle d'info au survol
     fig.data[0].hovertemplate = (
@@ -240,11 +253,6 @@ def update_graph(selected_countries, selected_year, selected_thema):
     # Grouper les données par année et pays
     grouped_data = filtered_data.groupby(['geo', 'year'])['value'].sum()
     grouped_data = grouped_data.reset_index()
-    
-    # Iterate over all countries
-    for i, country in enumerate(countries):
-        # Generate a random color for current country
-        colors[country] = palette[i]
     
     def create_pxline(data, labels):
         data = data.sort_values(['year', 'geo'])
@@ -328,10 +336,11 @@ def update_graph(selected_countries, selected_year, selected_thema):
     if len(themas) == 1 :
         # Préparez vos données en regroupant les sous-thèmes par thème et pays
         data_grouped = filtered_data_for_treemap.groupby(['thema','geo', 'subthema'])['value'].sum().reset_index()
+        data_grouped["colors_subthema"] = data_grouped.subthema.map(colors_subthema)
         data_grouped_sorted = data_grouped.sort_values(['geo', 'value'])
-        data_grouped_sorted['percentage'] = data_grouped_sorted.groupby('thema')['value'].transform(lambda x: round(x / x.sum(), 2))
-        fig5 = px.histogram(data_grouped_sorted, x='geo', y='percentage', color = 'subthema', color_discrete_sequence = palette, labels = {'subthema': 'Subsector'})
-        fig5.update_layout(xaxis_title="", yaxis_title="", bargap=0.8,  yaxis_tickformat = '%')
+        data_grouped_sorted['percentage'] = data_grouped_sorted.value.transform(lambda x: round(x / x.sum(),2)*100)
+        fig5 = px.histogram(data_grouped_sorted, x='geo', y='percentage', color = 'subthema', color_discrete_map = colors_subthema, labels = {'subthema': 'Subsector'})
+        fig5.update_layout(xaxis_title="", yaxis_title="", bargap=0.8)
         fig5.update_traces(texttemplate='%{y}%', textposition='outside')
     else : 
         data_grouped = filtered_data_for_treemap.groupby(['geo'])['value'].sum().reset_index()
