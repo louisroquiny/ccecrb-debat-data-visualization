@@ -1,0 +1,442 @@
+[
+	{
+		"id": "http://zotero.org/users/5637287/items/NCBJCF2K",
+		"type": "book",
+		"event-place": "LU",
+		"language": "eng",
+		"publisher": "Publications Office",
+		"publisher-place": "LU",
+		"source": "DOI.org (CSL JSON)",
+		"title": "Fiscal sustainability report 2021. Volume 1.",
+		"URL": "https://data.europa.eu/doi/10.2765/682828",
+		"author": [
+			{
+				"literal": "European Commission. Directorate General for Economic and Financial Affairs."
+			}
+		],
+		"accessed": {
+			"date-parts": [
+				[
+					"2022",
+					9,
+					16
+				]
+			]
+		},
+		"issued": {
+			"date-parts": [
+				[
+					"2022"
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/users/5637287/items/RW44N9MY",
+		"type": "book",
+		"event-place": "LU",
+		"language": "eng",
+		"publisher": "Publications Office",
+		"publisher-place": "LU",
+		"source": "DOI.org (CSL JSON)",
+		"title": "Debt sustainability monitor 2020.",
+		"URL": "https://data.europa.eu/doi/10.2765/862465",
+		"author": [
+			{
+				"literal": "European Commission. Directorate General for Economic and Financial Affairs."
+			}
+		],
+		"accessed": {
+			"date-parts": [
+				[
+					"2022",
+					9,
+					16
+				]
+			]
+		},
+		"issued": {
+			"date-parts": [
+				[
+					"2021"
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/users/5637287/items/26MSKKY8",
+		"type": "report",
+		"event-place": "Brussels",
+		"page": "21",
+		"publisher-place": "Brussels",
+		"title": "Online public consultation on the review of the EU economic governance framework. Summary of responses - Final Report",
+		"URL": "https://ec.europa.eu/info/sites/default/files/economy-finance/swd_2022_104_2_en.pdf",
+		"author": [
+			{
+				"literal": "European Commission"
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"2022",
+					3,
+					28
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/users/5637287/items/7V3XHV6Q",
+		"type": "article-journal",
+		"language": "nl",
+		"page": "30",
+		"source": "Zotero",
+		"title": "Economisch beleid in tijden van corona: een kwestie van de juiste uitgaven te doen",
+		"URL": "http://hdl.handle.net/1854/LU-8740416",
+		"author": [
+			{
+				"family": "Baert",
+				"given": "Stijn"
+			},
+			{
+				"family": "Cockx",
+				"given": "Bart"
+			}
+		]
+	},
+	{
+		"id": "http://zotero.org/users/5637287/items/PAYP23LS",
+		"type": "article-journal",
+		"container-title": "Revue économique",
+		"journalAbbreviation": "Revue économique",
+		"title": "Les finances publiques des administrations fédérales et celles des communautés et des régions sont-elles soutenables en Belgique ?",
+		"author": [
+			{
+				"literal": "BANQUE NATIONALE DE BELGIQUE"
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"2022",
+					11
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/users/5637287/items/PQVIZ2AT",
+		"type": "article-journal",
+		"page": "81",
+		"title": "Advies over de Vlaamse begroting 2023",
+		"author": [
+			{
+				"literal": "SERV"
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"2023",
+					1
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/users/5637287/items/LB9568WD",
+		"type": "article-journal",
+		"title": "RAPPORT; BFW-OVERDRACHTEN NAAR DE GEWESTEN EN GEMEENSCHAPPEN IN DE KOMENDE DECENNIA",
+		"author": [
+			{
+				"literal": "SERV"
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"2023",
+					1
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/users/5637287/items/ZLQSKUT9",
+		"type": "paper-conference",
+		"event-title": "exposé à l’Institut belge des finances publiques",
+		"publisher": "Bureau fédéral du plan",
+		"title": "Le retour de l’effet boule de neige",
+		"author": [
+			{
+				"literal": "BOGAERT H."
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"2010",
+					6,
+					4
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/users/5637287/items/WTIT24N3",
+		"type": "article-journal",
+		"note": "publisher: Bruxelles",
+		"page": "79 ER –",
+		"title": "Perspectives économiques régionales 2022-2027",
+		"author": [
+			{
+				"literal": "BUREAU FÉDÉRAL DU PLAN (BFP)"
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"2022",
+					7
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/users/5637287/items/GTK89HCK",
+		"type": "article-journal",
+		"page": "15",
+		"title": "Fiche thématique Semestre européen : La viabilité des finances publiques – 2017",
+		"author": [
+			{
+				"literal": "COMMISSION EUROPÉENNE (CE)"
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"2016",
+					11,
+					16
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/users/5637287/items/PY9JDET9",
+		"type": "article-journal",
+		"container-title": "Commission Staff Working Document",
+		"journalAbbreviation": "Commission Staff Working Document",
+		"page": "140",
+		"title": "Accroître les ambitions de l’Europe en matière de climat pour 2030 : Investir dans un avenir climatiquement neutre, dans l’intérêt de nos concitoyens",
+		"author": [
+			{
+				"literal": "COMMISSION EUROPÉENNE (CE)"
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"2020"
+				]
+			],
+			"season": "SWD( ) 176 final"
+		}
+	},
+	{
+		"id": "http://zotero.org/users/5637287/items/LSQPAKFC",
+		"type": "article-journal",
+		"container-title": "Institutional paper 148",
+		"journalAbbreviation": "Institutional paper 148",
+		"page": "398",
+		"title": "The 2021 Ageing Report: Economic and Budgetary Projections for the EU Member States",
+		"author": [
+			{
+				"literal": "COMMISSION EUROPÉENNE (CE)"
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"2021",
+					5
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/users/5637287/items/M3KVPRT4",
+		"type": "article-journal",
+		"container-title": "Institutional Paper 171",
+		"journalAbbreviation": "Institutional Paper 171",
+		"page": "237",
+		"title": "Fiscal Sustainability Report 2021 – Volume 1",
+		"author": [
+			{
+				"literal": "COMMISSION EUROPÉENNE (CE)"
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"2022",
+					4
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/users/5637287/items/QTPMFTHN",
+		"type": "article-journal",
+		"note": "publisher: Bruxelles",
+		"page": "47",
+		"title": "Communication de la Commission au Parlement européen, au Conseil et à la Banque centrale européenne sur les projets de plans budgétaires : évaluation globale",
+		"author": [
+			{
+				"literal": "COMMISSION EUROPÉENNE (CE)"
+			}
+		]
+	},
+	{
+		"id": "http://zotero.org/users/5637287/items/CM5XQ734",
+		"type": "article-journal",
+		"note": "publisher: Bruxelles",
+		"page": "113",
+		"title": "Annual Report: 2021",
+		"author": [
+			{
+				"literal": "COMITÉ BUDGÉTAIRE EUROPÉEN (CBE)"
+			}
+		]
+	},
+	{
+		"id": "http://zotero.org/users/5637287/items/MV6IKIST",
+		"type": "article-journal",
+		"container-title": "VoxEU.org",
+		"journalAbbreviation": "VoxEU.org",
+		"title": "How to reconcile increased green public investment needs with fiscal consolidation",
+		"author": [
+			{
+				"family": "DARVAS",
+				"given": "ZSOLT et GUNTRAM WOLFF"
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"2022",
+					3,
+					7
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/users/5637287/items/JB53VR9G",
+		"type": "article-journal",
+		"container-title": "Discussion Paper 168",
+		"journalAbbreviation": "Discussion Paper 168",
+		"note": "publisher: Luxemburg",
+		"page": "34",
+		"title": "The Fiscal Impact of Extreme Weather and Climate Events: Evidence for EU Countries",
+		"author": [
+			{
+				"family": "GAGLIARDI",
+				"given": "N.",
+				"suffix": "P. ARÉVALO et S. PAMIES (EC)"
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"2022",
+					7
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/users/5637287/items/SW3KRTTD",
+		"type": "article-journal",
+		"container-title": "in NATIONAL BANK OF BELGIUM",
+		"journalAbbreviation": "in NATIONAL BANK OF BELGIUM",
+		"note": "publisher: Bruxelles",
+		"page": "106-130",
+		"title": "What kind of public expenditure is high in Belgium? A comparison with neighbouring countries",
+		"author": [
+			{
+				"family": "GODEFROID",
+				"given": "H.",
+				"suffix": "P. STINGLHAMBER et S. VAN PARYS"
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"2021",
+					9
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/users/5637287/items/6NFL6J86",
+		"type": "article-journal",
+		"note": "publisher: Washington DC",
+		"title": "Staff Guidance Note for public debt sustainability analysis in market access countries",
+		"author": [
+			{
+				"literal": "IMF"
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"2013",
+					5
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/users/5637287/items/EMVW7FIZ",
+		"type": "article-journal",
+		"container-title": "Bruges European Economic Research Papers",
+		"journalAbbreviation": "Bruges European Economic Research Papers",
+		"page": "28",
+		"title": "The (un)sustainability of public debt: the elusive reality of an intuitive concept",
+		"author": [
+			{
+				"family": "LARCH",
+				"given": "MARTIN"
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"2022"
+				]
+			],
+			"season": "41"
+		}
+	},
+	{
+		"id": "http://zotero.org/users/5637287/items/54SHZAHJ",
+		"type": "article-journal",
+		"note": "publisher: 23 CCE 2023-0017 CO 1000",
+		"title": "Toelichtingen bij de begroting 2023 – Meerjarenraming 2022-2027",
+		"author": [
+			{
+				"literal": "VLAAMS PARLEMENT"
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"2023"
+				]
+			]
+		}
+	}
+]
