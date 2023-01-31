@@ -9,6 +9,7 @@ import pandas as pd
 import numpy as np
 import eurostat
 from github import Github
+import io
 
 
 
@@ -127,12 +128,14 @@ for s in sector :
 
 map_my_dataframe(expenditure, metadata)
 
-expenditure.to_csv('C:\\Users\loro.CCECRB\Documents\GitHub\expenditure.csv', sep = ';')
+# Save new file in cache
+file_content = expenditure.to_csv(sep = ';')
+# new_file = io.StringIO(file_content)
 
-# # Upload to my github repository
-# access_token = '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'
-# g = Github(access_token)
-# repo = g.get_repo()
-# contents = repo.get_contents("/data/expenditure.csv")
-# repo.update_file(contents.path, "updated expenditure data file", "more tests")
+# Upload to my github repository
+access_token = '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'
+g = Github(access_token)
+repo = g.get_user().get_repo("treemap-ccecrb-debat")
+contents = repo.get_contents('data/expenditure.csv')
+repo.update_file(contents.path, "updated expenditure data file", contents.sha, file_content)
 
