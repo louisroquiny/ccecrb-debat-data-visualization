@@ -113,13 +113,12 @@ sector = []
 for s in expenditure_melted.COFOG99.unique():
     if len(s) == 4 : 
         sector.append(s) 
-        
+
+# Nettoyage
 expenditure = expenditure_melted[
-    ~expenditure_melted.COFOG99.isin(sector)
+    (~expenditure_melted.COFOG99.isin(sector))&(expenditure_melted.COFOG99 != 'TOTAL')
     ]
-expenditure = expenditure_melted[
-    expenditure_melted.COFOG99 != 'TOTAL'
-    ]
+# expenditure = expenditure[expenditure.COFOG99 != 'TOTAL']
 
 for s in sector : 
     filt = expenditure.COFOG99.str.contains(s)
@@ -128,7 +127,7 @@ for s in sector :
 
 map_my_dataframe(expenditure, metadata)
 
-expenditure.to_csv('C:\\Users\loro.CCECRB\Documents\GitHub\treemap-ccecrb-debat\data\expenditure.csv')
+expenditure.to_csv('C:\\Users\loro.CCECRB\Documents\GitHub\expenditure.csv', sep = ';')
 
 # # Upload to my github repository
 # access_token = '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'
