@@ -30,7 +30,7 @@ app_treemap.config.suppress_callback_exceptions = False
 load_figure_template('LITERA')
 
 # Chargement des données à partir d'une url
-expenditure_url = 'https://raw.githubusercontent.com/louisroquiny/treemap-ccecrb-debat/main/gov_10a_exp.csv'
+expenditure_url = 'https://raw.githubusercontent.com/louisroquiny/treemap-ccecrb-debat/main/data/expenditure.csv'
 deficit_debt_url = 'https://raw.githubusercontent.com/louisroquiny/treemap-ccecrb-debat/main/gov_10dd_edpt1.csv'
 
 # Sourcing du projet
@@ -40,7 +40,7 @@ data_sources = '''
 General government expenditure by function (COFOG) [GOV_10A_EXP__custom_4770037]. 
 Available online at:[https://ec.europa.eu/eurostat/databrowser/bookmark/728cdcda-e024-4c32-8d33-d7d4759a8ead?lang=en)
 
-[Download the table](https://raw.githubusercontent.com/louisroquiny/treemap-ccecrb-debat/main/gov_10a_exp.csv)
+[Download the table](https://raw.githubusercontent.com/louisroquiny/treemap-ccecrb-debat/main/data/expenditure.csv)
 
 
 Government deficit/surplus, debt and associated data [GOV_10DD_EDPT1__custom_4582036].
