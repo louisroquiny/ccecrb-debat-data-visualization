@@ -37,8 +37,8 @@ deficit_debt_url = 'https://raw.githubusercontent.com/louisroquiny/treemap-ccecr
 data_sources = '''
 #### Data sources : Eurostat
 
-General government expenditure by function (COFOG) (GOV_10A_EXP__custom_4563149). 
-Available online at:[https://ec.europa.eu/eurostat/databrowser/bookmark/2f...](https://ec.europa.eu/eurostat/databrowser/bookmark/2f7bf2e7-1f91-4311-8780-2147ad8a9f3e?lang=en)
+General government expenditure by function (COFOG) [GOV_10A_EXP__custom_4770037]. 
+Available online at:[https://ec.europa.eu/eurostat/databrowser/bookmark/728cdcda-e024-4c32-8d33-d7d4759a8ead?lang=en)
 
 [Download the table](https://raw.githubusercontent.com/louisroquiny/treemap-ccecrb-debat/main/gov_10a_exp.csv)
 
