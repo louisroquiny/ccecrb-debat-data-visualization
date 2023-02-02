@@ -31,7 +31,7 @@ load_figure_template('LITERA')
 
 # Chargement des données à partir d'une url
 expenditure_url = 'https://raw.githubusercontent.com/louisroquiny/treemap-ccecrb-debat/main/data/expenditure.csv'
-deficit_debt_url = 'https://raw.githubusercontent.com/louisroquiny/treemap-ccecrb-debat/main/gov_10dd_edpt1.csv'
+deficit_debt_url = 'https://raw.githubusercontent.com/louisroquiny/treemap-ccecrb-debat/main/data/deficit_debt.csv'
 
 # Sourcing du projet
 data_sources = '''
@@ -43,10 +43,10 @@ Available online at:[https://ec.europa.eu/eurostat/databrowser/bookmark/728cdcda
 [Download the table](https://raw.githubusercontent.com/louisroquiny/treemap-ccecrb-debat/main/data/expenditure.csv)
 
 
-Government deficit/surplus, debt and associated data [GOV_10DD_EDPT1__custom_4582036].
-Available online at: [https://ec.europa.eu/eurostat/databrowser/bookmark/03...](https://ec.europa.eu/eurostat/databrowser/bookmark/0388f2fa-cd24-44e1-934a-d6f94cddd1e2?lang=en)
+Government deficit/surplus, debt and associated data [GOV_10DD_EDPT1__custom_4811714].
+Available online at: [https://ec.europa.eu/eurostat/databrowser/bookmark/2f225175-f29b-4495-bbc1-fbef4c7f773e?lang=en)
 
-[Download the table](https://raw.githubusercontent.com/louisroquiny/treemap-ccecrb-debat/main/gov_10dd_edpt1.csv)
+[Download the table](https://raw.githubusercontent.com/louisroquiny/treemap-ccecrb-debat/main/data/deficit_debt.csv)
     '''
 
 # Chargement des données à partir d'une url

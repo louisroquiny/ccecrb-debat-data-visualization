@@ -47,7 +47,7 @@ for s in expenditure.cofog99.unique():
 # Nettoyage
 expenditure = expenditure[['unit', 'sector', 'cofog99','geo', 'TIME_PERIOD', 'OBS_VALUE']]
 expenditure = expenditure[~expenditure.cofog99.isin(sector)]
-deficit_debt = deficit_debt[['unit', 'sector', 'na_item','geo', 'TIME_PERIOD', 'OBS_VALUE']]
+deficit_debt = deficit_debt[['unit', 'na_item','geo', 'TIME_PERIOD', 'OBS_VALUE']]
 
 for s in sector : 
     filt = expenditure.cofog99.str.contains(s)
