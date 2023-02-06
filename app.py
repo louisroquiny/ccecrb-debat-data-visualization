@@ -21,8 +21,10 @@ Bootstrap theme :
     VAPOR
 """
 
-
+# =============================================================================
 # Initialisation de l'application Dash
+# =============================================================================
+
 app_treemap = Dash(__name__, external_stylesheets=[dbc.themes.LITERA])
 app = app_treemap.server
 app_treemap.config.suppress_callback_exceptions = False
@@ -54,26 +56,28 @@ def load_data(url, sep):
     data = pd.read_csv(url, sep = sep)
     return data
 
-data = load_data(expenditure_url, ';')
+expenditure = load_data(expenditure_url, ';')
 deficit = load_data(deficit_debt_url, ';')
 
 # Préparation des données en utilisant la fonction melt de pandas
-def prepare_data(data, col_to_melt, multiplicator = False):
-    data = data.melt(id_vars=col_to_melt, var_name='year', value_name='value')
-    data.year = pd.to_numeric(data['year'], downcast='integer')
-    data.geo = data.geo.replace('European Union - 27 countries (from 2020)', 'Europe')
-    data.geo = data.geo.replace('Germany (until 1990 former territory of the FRG)', 'Germany')
-    data.value = data.value.replace("#VALEUR!", 0)
-    data.value =  data.value.str.replace(",", ".")
-    data.value =  data.value.astype(float)
-    if multiplicator is True:
-        data.value = data.value*10
-    else :
-        pass
+def prepare_data(data, cols):
+    data.columns = cols
+    data.geo = data.geo.replace(
+        'European Union - 27 countries (from 2020)', 'Europe')
+    data.geo = data.geo.replace(
+        'Germany (until 1990 former territory of the FRG)', 'Germany')
+    # data.value = data.value.replace("#VALEUR!", 0)
     return data
 
-data = prepare_data(data, ['geo', 'code', 'thema', 'subthema'])
-deficit = prepare_data(deficit, ['geo', 'labels'], multiplicator = True)
+expenditure = prepare_data(
+    expenditure, ['unit', 'sector', 'subsector', 'geo', 'year', 'value'])
+deficit = prepare_data(
+    deficit, ['unit', 'labels', 'geo', 'year', 'value'])
+
+mil = deficit[deficit.unit == 'Million euro']['value']
+pc = deficit[deficit.unit == 'Percentage of gross domestic product (GDP)']['value']
+pib = deficit[deficit.unit == 'Million euro'][['geo', 'value']]
+pib.value = (mil*100)/pc
 
 # Obtention des options de pays, d'années et de secteurs pour les menus déroulants
 def get_options(data, column):
@@ -81,10 +85,10 @@ def get_options(data, column):
     options = sorted(options)
     return options
 
-country_options = get_options(data, "geo")
-thema_options = get_options(data, "thema")
-thema_options.insert(0, 'All sectors')
-years = get_options(data, "year")
+country_options = get_options(expenditure, "geo")
+sector_options = get_options(expenditure, "sector")
+sector_options.insert(0, 'All sectors')
+years = get_options(expenditure, "year")
 year_options = {str(year): str(year) for year in years}
 
 # Generation des div pour les menus déroulants
@@ -119,7 +123,7 @@ app_treemap.layout = html.Div([
     html.Div(style={'margin-top': '5%', 'margin-bottom': '5%', "width" : "100%"}, 
     children=[
         generate_dropdown('select-country', country_options, ['Belgium', 'France', 'Netherlands', 'Germany'], 'Select countries:', multi = True),
-        generate_dropdown('select-thema', thema_options, 'All sectors', 'Select sector:'),
+        generate_dropdown('select-sector', sector_options, 'All sectors', 'Select sector:'),
         # Date Slider
         html.Div([
                html.Label('Select date:'),
@@ -166,7 +170,10 @@ Each country has a budget of 1000 euros, equivalent to 100% of its GDP. Let's se
     ])
 ])
 
+# =============================================================================
 # Fonction de mise à jour du graphique en fonction des sélections de l'utilisateur
+# =============================================================================
+
 @app_treemap.callback(
     [Output('treemap-graph', 'figure'),
      Output('evolution-graph', 'figure'), 
@@ -176,11 +183,34 @@ Each country has a budget of 1000 euros, equivalent to 100% of its GDP. Let's se
      ],
     [Input('select-country', 'value'),
      Input('select-year', 'value'), 
-    Input('select-thema', 'value')
+    Input('select-sector', 'value')
     ]
     )
 
-def update_graph(selected_countries, selected_year, selected_thema):
+def update_graph(selected_countries, selected_year, selected_sector):
+           
+# =============================================================================
+# Formatage des callbacks
+# =============================================================================
+    
+    ## Liste de un ou plusieurs pays
+    if type(selected_countries) == str :
+        countries = list(selected_countries)
+    else : 
+        countries = sorted(selected_countries)
+    ## Liste de thématiques
+    if selected_sector == "All sectors" :
+        sectors = sorted(expenditure.sector.unique())
+    elif type(selected_sector) == str :
+        sectors = [selected_sector]
+    elif selected_sector is None:
+        sectors = sorted(expenditure.sector.unique())
+    else : 
+        sectors = selected_sector
+    
+# =============================================================================
+# Define color palette
+# =============================================================================
     
     # Create a dictionary to store the color for each country
     def fix_colors(mylist, palette) :
@@ -191,11 +221,19 @@ def update_graph(selected_countries, selected_year, selected_thema):
             colors[item] = palette[i]
         return colors
     
+    palette = pl_colors.qualitative.Bold 
+    colors = fix_colors(countries, palette)
+    colors_sector = fix_colors(sectors, palette)
+    
+# =============================================================================
+# TREEMAP-GRAPH
+# =============================================================================
+    
     # Treemap function
     def create_treemap(data, color, maxdepth = None, palette = None, palette_map = None) :
         fig = px.treemap(
             data, 
-            path=['geo', 'thema', 'subthema'], 
+            path=['geo', 'sector', 'subsector'], 
             values='value',  
             color = color,
             maxdepth = maxdepth,
@@ -204,6 +242,43 @@ def update_graph(selected_countries, selected_year, selected_thema):
             )
         return fig
     
+    # Formatage des données
+    filtered_data_for_treemap = expenditure[
+        expenditure.geo.isin(countries) 
+        & expenditure.sector.isin(sectors) 
+        & (expenditure.year == selected_year)
+        & (expenditure.unit == 'Percentage of gross domestic product (GDP)')
+        ]
+    filtered_data_for_treemap.drop('unit', axis = 1, inplace = True)
+    filtered_data_for_treemap.value = filtered_data_for_treemap.value*10
+    
+    # Création du treemap
+    if len(sectors) == 1 :
+        # Générer le graphique en utilisant les données filtrées
+        colors_subsector = fix_colors(filtered_data_for_treemap.subsector.unique(), palette)
+        treemap_graph = create_treemap(filtered_data_for_treemap, color = 'subsector', palette_map = colors_subsector)
+    else : 
+        # Générer le graphique en utilisant les données filtrées
+        treemap_graph = create_treemap(filtered_data_for_treemap, color = 'sector',maxdepth = 2, palette_map = colors_sector)
+    
+    # Mise en forme de la bulle d'info au survol
+    treemap_graph.data[0].hovertemplate = (
+      '<b>%{label}</b>'
+      '<br>'
+      '<b>%{value}</b> out of <b>1000 euros</b> are spent'
+      '<br>'
+        )
+    
+    # Mise en forme de la légende
+    treemap_graph.update_traces(
+        textinfo = "label+value",
+        root_color="lightgrey"
+        )
+    
+# =============================================================================
+# line-chart
+# =============================================================================
+
     # Line chart function
     def create_pxline(data, labels):
         data = data.sort_values(['year', 'geo'])
@@ -211,8 +286,112 @@ def update_graph(selected_countries, selected_year, selected_thema):
         fig = px.line(data, x = "year", y = 'value', color = 'geo', labels = labels)
         for i, trace in enumerate(fig.data):
            trace.line.color = palette[i]
+        return fig   
+    
+    # Grouper les données par année et pays
+    filtered_data_for_line = expenditure[
+        expenditure["geo"].isin(countries) 
+        & expenditure["sector"].isin(sectors)
+        ]
+    filtered_data_for_line = filtered_data_for_line [
+        filtered_data_for_line.unit == 'Percentage of gross domestic product (GDP)']
+    filtered_data_for_line.value =  filtered_data_for_line.value / 100
+    
+    grouped_data_for_line = filtered_data_for_line.groupby(['geo', 'year'])['value'].sum()
+    grouped_data_for_line = grouped_data_for_line.reset_index()
+    
+    # Création du graphique
+    if len(sectors) == 1 :
+        # Ajout d'une colonne pour le secteur de dépense
+        grouped_data_for_line["sector"] = sectors[0]
+        evolution_graph = create_pxline(grouped_data_for_line, labels = {'geo' : sectors[0]})
+    else : 
+        evolution_graph = create_pxline(grouped_data_for_line, labels = {'geo' : 'country'})
+        
+    # Adaptation des traces
+    for figure in [evolution_graph]:
+        figure.update_traces(line=dict(shape='spline', width = 4))
+        figure.update_layout(xaxis_title="", yaxis_title="")
+        figure.layout.yaxis.tickformat = 'p'
+    
+# =============================================================================
+# PIB-chart
+# =============================================================================
+    
+    # Area line chart function
+    def create_pxarea(data, labels, threshold_up = None, threshold_down = None, text_up = None, text_down = None, dist = None):
+        
+        # Create subplots with rows and columns based on the number of countries
+        fig = px.area(
+            data,
+            x='year', 
+            y= 'value', 
+            color = 'geo',
+            facet_col= 'geo',
+            #facet_col_wrap=4,
+            color_discrete_map = colors, 
+            labels = {'geo' : 'country'}
+            )
+        for i in range(len(countries)) : 
+            fig.update_xaxes(title_text='', col= i+1)
+            fig.layout.annotations[i]["text"] = ''
+                           
+        if threshold_up :
+            fig.add_shape( # add a horizontal "target" line
+                type="line", line_color="black", line_width=1, opacity=1, line_dash="dash",
+                x0=0, x1=1, xref="paper", y0=threshold_up, y1=threshold_up, yref="y"
+            )
+            fig.add_annotation(text=text_up, align="right", x=1, xref="paper", y=threshold_up + dist, yref="y", showarrow=False)
+        
+        if threshold_down :
+            fig.add_shape( # add a horizontal "target" line
+                type="line", line_color="black", line_width=1, opacity=1, line_dash="dash",
+                x0=0, x1=1, xref="paper", y0=threshold_down, y1=threshold_down, yref="y"
+            )
+            fig.add_annotation(text=text_down, align="right", x=1, xref="paper", y=threshold_down + dist, yref="y", showarrow=False)
+        
         return fig
     
+    # Création du graphique
+    if len(sectors) == 1 :
+        # Préparez vos données en regroupant les sous-thèmes par thème et pays
+        data_grouped = filtered_data_for_treemap.groupby(['sector','geo', 'subsector'])['value'].sum().reset_index()
+        data_grouped["colors_subsector"] = data_grouped.subsector.map(colors_subsector)
+        data_grouped_sorted = data_grouped.sort_values(['geo', 'value'])
+        data_grouped_sorted['percentage'] = data_grouped_sorted.value.transform(lambda x: round(x / x.sum(),2)*100)
+        decomposition_graph = px.histogram(
+            data_grouped_sorted, 
+            x='geo', 
+            y='percentage', 
+            color = 'subsector', 
+            color_discrete_map = colors_subsector, 
+            labels = {'subsector': 'Subsector'})
+        decomposition_graph.update_layout(xaxis_title="", yaxis_title="", bargap=0.8)
+        decomposition_graph.update_traces(texttemplate='%{y}%', textposition='outside')
+    else : 
+        filtered_data_for_area = expenditure[
+            expenditure.geo.isin(countries) 
+            & expenditure.sector.isin(sectors) 
+            & (expenditure.year == selected_year)
+            & (expenditure.unit == 'Million euro')
+            ]
+        data_grouped = filtered_data_for_area.groupby(['geo'])['value'].sum().reset_index()
+        data_grouped_sorted = data_grouped.sort_values(['geo', 'value'])
+        decomposition_graph = px.histogram(
+            data_grouped_sorted, 
+            x = 'geo', 
+            y = 'value', 
+            color = 'geo', 
+            color_discrete_sequence = palette)
+        decomposition_graph.update_layout(showlegend=False, xaxis_title="", yaxis_title="", bargap=0.8)
+        decomposition_graph.update_traces(texttemplate='%{y:.2s}', textposition='outside')
+        decomposition_graph.add_trace()
+        
+       
+# =============================================================================
+# deficit-surplus-chart 
+# =============================================================================
+   
     # Scatter chart function
     def create_pxscatter(data, labels, threshold_up = None, threshold_down = None, text_up = None, text_down = None, dist = None):
         
@@ -276,172 +455,55 @@ def update_graph(selected_countries, selected_year, selected_thema):
                 row=1, col=i+1
                 )
         return fig
+
+    #tri des données
+    filtered_deficit = deficit[
+        (deficit["geo"].isin(countries)) 
+        & (deficit.labels == "Net lending (+) /net borrowing (-)")
+        & (deficit.unit == 'Percentage of gross domestic product (GDP)')
+        ]
+    filtered_deficit.value = filtered_deficit.value / 100
+    deficit_chart = create_pxarea(filtered_deficit, labels = {'geo' : 'Country'}, threshold_up = -0.03, text_up = "Target : -3%", dist = -0.01)
+    deficit_chart.update_traces(line=dict(width = 4))
+    deficit_chart.layout.yaxis.tickformat = 'p'
+
     
-    # Area line chart function
-    def create_pxarea(data, labels, threshold_up = None, threshold_down = None, text_up = None, text_down = None, dist = None):
-        
-        # Create subplots with rows and columns based on the number of countries
-        fig = px.area(
-            data,
-            x='year', 
-            y= 'value', 
-            color = 'geo',
-            facet_col= 'geo',
-            #facet_col_wrap=4,
-            color_discrete_map = colors, 
-            labels = {'geo' : 'country'}
-            )
-        for i in range(len(countries)) : 
-            fig.update_xaxes(title_text='', col= i+1)
-            fig.layout.annotations[i]["text"] = ''
-                           
-        if threshold_up :
-            fig.add_shape( # add a horizontal "target" line
-                type="line", line_color="black", line_width=1, opacity=1, line_dash="dash",
-                x0=0, x1=1, xref="paper", y0=threshold_up, y1=threshold_up, yref="y"
-            )
-            fig.add_annotation(text=text_up, align="right", x=1, xref="paper", y=threshold_up + dist, yref="y", showarrow=False)
-        
-        if threshold_down :
-            fig.add_shape( # add a horizontal "target" line
-                type="line", line_color="black", line_width=1, opacity=1, line_dash="dash",
-                x0=0, x1=1, xref="paper", y0=threshold_down, y1=threshold_down, yref="y"
-            )
-            fig.add_annotation(text=text_down, align="right", x=1, xref="paper", y=threshold_down + dist, yref="y", showarrow=False)
-        
-        return fig
-    
+# =============================================================================
+# debt-chart
+# =============================================================================
+    # Tri des données
+    filtered_debt = deficit[
+        (deficit["geo"].isin(countries)) 
+        & (deficit.labels == "Government consolidated gross debt")
+        & (deficit.unit == 'Percentage of gross domestic product (GDP)')
+        ]
+    filtered_debt.value = filtered_debt.value / 100
+    debt_chart = create_pxscatter(filtered_debt, labels = {'geo' : 'Country'}, threshold_up = 1, threshold_down = 0.60, text_up = "GDP exceeded", text_down = 'Target : 60%', dist = 0.05)
+    debt_chart.layout.yaxis.tickformat = 'p'
+
+# =============================================================================
+# title
+# =============================================================================
     # Title function
     def add_title(fig, title):
         fig.update_layout(
             title_text=title,
-            title_font=dict(size=16, family='Calibri'),
-        )
-    
-        
-    # Formatage des callbacks
-    
-    ## Liste de un ou plusieurs pays
-    if type(selected_countries) == str :
-        countries = list(selected_countries)
-    else : 
-        countries = sorted(selected_countries)
-    
-    ## Liste de thématiques
-    if selected_thema == "All sectors" :
-        themas = sorted(data.thema.unique())
-    elif type(selected_thema) == str :
-        themas = [selected_thema]
-    elif selected_thema is None:
-        themas = sorted(data.thema.unique())
-    else : 
-        themas = selected_thema
-    
-    # Filtrer les données en fonction des sélections de l'utilisateur
-    filtered_data = data[data["geo"].isin(countries) & data["thema"].isin(themas)]  
-    filtered_data_for_treemap = filtered_data[filtered_data['year'] == selected_year]
-    
-    # Define color palette
-    palette = pl_colors.qualitative.Bold 
-      
-    colors = fix_colors(countries, palette)
-    colors_thema = fix_colors(themas, palette)
-    
-    if len (themas) == 1 :
-        colors_subthema = fix_colors(filtered_data_for_treemap.subthema.unique(), palette) 
-    
-    if len(themas) == 1 :
-        # Générer le graphique en utilisant les données filtrées
-        fig = create_treemap(filtered_data_for_treemap, color = 'subthema', palette_map = colors_subthema)
-    else : 
-        # Générer le graphique en utilisant les données filtrées
-        fig = create_treemap(filtered_data_for_treemap, color = 'thema',maxdepth = 2, palette_map = colors_thema)
-    
-    # Mise en forme de la bulle d'info au survol
-    fig.data[0].hovertemplate = (
-      '<b>%{label}</b>'
-      '<br>'
-      '<b>%{value}</b> out of <b>1000 euros</b> are spent'
-      '<br>'
-       )
-    
-    # Mise en forme de la légende
-    fig.update_traces(
-        textinfo = "label+value",
-        root_color="lightgrey"
-        )
-    
+            title_font=dict(size=16, family='Calibri')
+            )    
 
-    # Grouper les données par année et pays
-    grouped_data = filtered_data.groupby(['geo', 'year'])['value'].sum()
-    grouped_data = grouped_data.reset_index()
-    
-    # Graphique 2
-    if len(themas) == 1 :
-        # Ajout d'une colonne pour le secteur de dépense
-        grouped_data["thema"] = themas[0]
-        fig2 = create_pxline(grouped_data, labels = {'geo' : themas[0]})
+    add_title(evolution_graph, title = 'Evolution of expenditure (%GDP)')
+    add_title(deficit_chart, title = 'Evolution of the deficit/surplus ratio by country (%GDP)')
+    if len(sectors) == 1 : 
+        add_title(decomposition_graph, title = 'Repartition of expenditure by subsector (% of sector)')
     else : 
-        fig2 = create_pxline(grouped_data, labels = {'geo' : 'country'})
+        add_title(decomposition_graph, title = 'Total of expenditure by country for {} (Million euro)'.format(selected_year))
+    add_title(debt_chart, title = 'Evolution of the government consolidated gross debt (%GDP)')
     
-    # Graphique 5
-    if len(themas) == 1 :
-        # Préparez vos données en regroupant les sous-thèmes par thème et pays
-        data_grouped = filtered_data_for_treemap.groupby(['thema','geo', 'subthema'])['value'].sum().reset_index()
-        data_grouped["colors_subthema"] = data_grouped.subthema.map(colors_subthema)
-        data_grouped_sorted = data_grouped.sort_values(['geo', 'value'])
-        data_grouped_sorted['percentage'] = data_grouped_sorted.value.transform(lambda x: round(x / x.sum(),2)*100)
-        fig5 = px.histogram(
-            data_grouped_sorted, 
-            x='geo', 
-            y='percentage', 
-            color = 'subthema', 
-            color_discrete_map = colors_subthema, 
-            labels = {'subthema': 'Subsector'})
-        fig5.update_layout(xaxis_title="", yaxis_title="", bargap=0.8)
-        fig5.update_traces(texttemplate='%{y}%', textposition='outside')
-    else : 
-        data_grouped = filtered_data_for_treemap.groupby(['geo'])['value'].sum().reset_index()
-        data_grouped_sorted = data_grouped.sort_values(['geo', 'value'])
-        fig5 = px.histogram(
-            data_grouped_sorted, 
-            x = 'geo', 
-            y = 'value', 
-            color = 'geo', 
-            color_discrete_sequence = palette)
-        fig5.update_layout(showlegend=False, xaxis_title="", yaxis_title="", bargap=0.8)
-        fig5.update_traces(texttemplate='%{y:.2s}', textposition='outside')
-       
-    # Création de la troisième figure
-    # Tri des données
-    filtered_deficit = deficit[(deficit["geo"].isin(countries)) & (deficit.labels == "Net lending (+) /net borrowing (-)")]
-    #fig3 = create_pxline(filtered_deficit, labels = {'geo' : 'country'})
-    #fig3 = create_pxscatter(filtered_deficit, labels = {'geo' : 'Country'}, threshold_up = -30, text_up = "Target : -30", dist = 10)
-    fig3 = create_pxarea(filtered_deficit, labels = {'geo' : 'Country'}, threshold_up = -30, text_up = "Target : -30", dist = -10)
-    fig3.update_traces(line=dict(width = 4))
-    #fig3.update_layout(xaxis_title="", yaxis_title="")
-
+# =============================================================================
+# return
+# =============================================================================
     
-    # Création de la quatrième figure
-    # Tri des données
-    filtered_debt = deficit[(deficit["geo"].isin(countries)) & (deficit.labels == "Government consolidated gross debt")]
-    fig4 = create_pxscatter(filtered_debt, labels = {'geo' : 'Country'}, threshold_up = 1000, threshold_down = 600, text_up = "GDP exceeded", text_down = 'Target : 600', dist = 50)
-    
-    # Adaptation des traces
-    for figure in [fig2]:
-        figure.update_traces(line=dict(shape='spline', width = 4))
-        figure.update_layout(xaxis_title="", yaxis_title="")
-        
-
-    add_title(fig2, title = 'Evolution of expenditure (/1000 of GDP)')
-    add_title(fig3, title = 'Evolution of the deficit/surplus ratio by country (/1000 of GDP)')
-    if len(themas) == 1 : 
-        add_title(fig5, title = 'Repartition of expenditure by subsector (% of sector)')
-    else : 
-        add_title(fig5, title = 'Total of expenditure by country (/1000 of GDP)')
-    add_title(fig4, title = 'Evolution of the government consolidated gross debt (/1000 of GDP)')
-    
-    return fig, fig2, fig5, fig3, fig4
+    return treemap_graph, evolution_graph, decomposition_graph, deficit_chart, debt_chart
 
 if __name__ == '__main__':
      app_treemap.run_server(debug=True)
