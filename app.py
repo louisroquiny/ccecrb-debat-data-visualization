@@ -34,6 +34,12 @@ load_figure_template('LITERA')
 # Chargement des données à partir d'une url
 expenditure_url = 'https://raw.githubusercontent.com/louisroquiny/treemap-ccecrb-debat/main/data/expenditure.csv'
 deficit_debt_url = 'https://raw.githubusercontent.com/louisroquiny/treemap-ccecrb-debat/main/data/deficit_debt.csv'
+gdp_url = 'https://raw.githubusercontent.com/louisroquiny/treemap-ccecrb-debat/main/data/gdp.csv'
+
+# expenditure_url = 'C:/Users/loro.CCECRB/Documents/GitHub/treemap-ccecrb-debat/data/expenditure.csv'
+# deficit_debt_url = 'C:/Users/loro.CCECRB/Documents/GitHub/treemap-ccecrb-debat/data/deficit_debt.csv'
+# gdp_url = 'C:/Users/loro.CCECRB/Documents/GitHub/treemap-ccecrb-debat/data/gdp.csv'
+
 
 # Sourcing du projet
 data_sources = '''
@@ -58,6 +64,7 @@ def load_data(url, sep):
 
 expenditure = load_data(expenditure_url, ';')
 deficit = load_data(deficit_debt_url, ';')
+gdp = load_data(gdp_url, ',')
 
 # Préparation des données en utilisant la fonction melt de pandas
 def prepare_data(data, cols):
@@ -73,11 +80,9 @@ expenditure = prepare_data(
     expenditure, ['unit', 'sector', 'subsector', 'geo', 'year', 'value'])
 deficit = prepare_data(
     deficit, ['unit', 'labels', 'geo', 'year', 'value'])
-
-mil = deficit[deficit.unit == 'Million euro']['value']
-pc = deficit[deficit.unit == 'Percentage of gross domestic product (GDP)']['value']
-pib = deficit[deficit.unit == 'Million euro'][['geo', 'value']]
-pib.value = (mil*100)/pc
+gdp = prepare_data(
+    gdp, ['geo', 'year', 'value'])
+gdp.value = gdp.value*1000
 
 # Obtention des options de pays, d'années et de secteurs pour les menus déroulants
 def get_options(data, column):
@@ -311,13 +316,107 @@ def update_graph(selected_countries, selected_year, selected_sector):
     # Adaptation des traces
     for figure in [evolution_graph]:
         figure.update_traces(line=dict(shape='spline', width = 4))
-        figure.update_layout(xaxis_title="", yaxis_title="")
+        figure.update_layout(xaxis_title="", yaxis_title="", hovermode = 'x')
         figure.layout.yaxis.tickformat = 'p'
     
 # =============================================================================
 # PIB-chart
 # =============================================================================
+         
+    # Création du graphique
+    if len(sectors) == 1 :
+        # Préparez vos données en regroupant les sous-thèmes par thème et pays
+        dataframe_to_group = expenditure[expenditure.unit == 'Million euro']
+        
+        filtered_data_for_area = dataframe_to_group[
+            dataframe_to_group.geo.isin(countries) 
+            & (dataframe_to_group.year == selected_year)
+            & (dataframe_to_group.sector ==  sectors[0])
+            ]
     
+        data_grouped = filtered_data_for_area.groupby(['sector','geo', 'subsector'])['value'].sum().reset_index()
+        
+        # data_grouped["colors_subsector"] = data_grouped.subsector.map(colors_subsector)
+        data_grouped_sorted = data_grouped.sort_values(['geo', 'value'])
+        # data_grouped_sorted['percentage'] = data_grouped_sorted.value.transform(lambda x: round(x / x.sum(),2)*100)
+        
+        decomposition_graph = px.histogram(
+            data_grouped_sorted, 
+            x='geo', 
+            y='value', 
+            color = 'subsector', 
+            text_auto = True,
+            color_discrete_map = colors_subsector, 
+            labels = {'subsector': 'subsector'})
+        
+        decomposition_graph.update_layout(xaxis_title="", yaxis_title="", bargap=0.5)
+        decomposition_graph.update_traces(textposition='inside', hovertemplate = "%{y} euros")
+   
+    else : 
+        dataframe_to_group = expenditure[expenditure.unit == 'Million euro']
+        expenditure_grouped = dataframe_to_group.groupby(['geo','year'])['value'].sum().reset_index()
+        filtered_for_area_merged = pd.merge(expenditure_grouped, gdp,  how='left', left_on=['geo','year'], right_on = ['geo','year'], suffixes = ('_expenditure', '_gdp'))
+        
+        pc = expenditure[
+            expenditure.geo.isin(countries)
+            & (expenditure.year == selected_year)
+            & (expenditure.unit == 'Percentage of gross domestic product (GDP)')
+            ]
+        pc.drop(['unit', 'year', 'sector', 'subsector'], axis = 1, inplace = True)
+        pc = pc.groupby('geo')['value'].sum().reset_index()
+        pc_dict = pc.set_index('geo')['value'].to_dict()
+        
+        filtered_for_area_melt = filtered_for_area_merged.melt(id_vars = ['geo', 'year'], var_name = 'label', value_name = 'value')
+        
+        filtered_data_for_area = filtered_for_area_melt[
+            filtered_for_area_melt.geo.isin(countries) 
+            & (filtered_for_area_melt.year == selected_year)
+            ]
+        data_grouped_sorted = filtered_data_for_area.sort_values(['geo', 'value'])
+        data_grouped_sorted.label = data_grouped_sorted.label.map({'value_gdp' : 'GDP', 'value_expenditure' : 'Expenditure'})
+        
+        decomposition_graph = px.bar(
+            data_grouped_sorted, 
+            x = 'geo', 
+            y = 'value',
+            color = 'geo', 
+            pattern_shape = 'label',
+            pattern_shape_map={"GDP" : "", "Expenditure" : ""},
+            barmode = 'overlay',
+            hover_name = 'label',
+            # orientation = 'h', 
+            text = 'label',
+            # text_auto= True,
+            color_discrete_sequence = palette, 
+            )
+        
+        decomposition_graph.update_layout(
+            showlegend=False, 
+            xaxis_title="", 
+            yaxis_title="",
+            hovermode='closest',
+            uniformtext_minsize = 8, 
+            uniformtext_mode='hide'
+            )
+
+        for trace in decomposition_graph.data:
+            geo = trace.x[0]
+            value = trace.y[0]
+            label = trace.name
+            trace.hovertemplate = f"{value:0,.0f} euros"
+            pc_value = pc_dict.get(geo, 0) # Récupération de la valeur de pc pour chaque geo
+            # trace.hovertemplate = f"{value} euros"
+            if "Expenditure" in label : 
+                trace.hovertemplate = f"{value:0,.0f} euros<br>{pc_value}% GDP" # Mise à jour des labels
+
+        decomposition_graph.update_layout(showlegend=False, xaxis_title="", yaxis_title="", bargap=0.5)
+        
+       
+# =============================================================================
+# deficit-surplus-chart 
+# =============================================================================
+   
+   
     # Area line chart function
     def create_pxarea(data, labels, threshold_up = None, threshold_down = None, text_up = None, text_down = None, dist = None):
         
@@ -351,47 +450,23 @@ def update_graph(selected_countries, selected_year, selected_sector):
             fig.add_annotation(text=text_down, align="right", x=1, xref="paper", y=threshold_down + dist, yref="y", showarrow=False)
         
         return fig
+
+    #tri des données
+    filtered_deficit = deficit[
+        (deficit["geo"].isin(countries)) 
+        & (deficit.labels == "Net lending (+) /net borrowing (-)")
+        & (deficit.unit == 'Percentage of gross domestic product (GDP)')
+        ]
+    filtered_deficit.value = filtered_deficit.value / 100
+    deficit_chart = create_pxarea(filtered_deficit, labels = {'geo' : 'Country'}, threshold_up = -0.03, text_up = "Target : -3%", dist = -0.01)
+    deficit_chart.update_traces(line=dict(width = 4))
+    deficit_chart.layout.yaxis.tickformat = 'p'
+
+
     
-    # Création du graphique
-    if len(sectors) == 1 :
-        # Préparez vos données en regroupant les sous-thèmes par thème et pays
-        data_grouped = filtered_data_for_treemap.groupby(['sector','geo', 'subsector'])['value'].sum().reset_index()
-        data_grouped["colors_subsector"] = data_grouped.subsector.map(colors_subsector)
-        data_grouped_sorted = data_grouped.sort_values(['geo', 'value'])
-        data_grouped_sorted['percentage'] = data_grouped_sorted.value.transform(lambda x: round(x / x.sum(),2)*100)
-        decomposition_graph = px.histogram(
-            data_grouped_sorted, 
-            x='geo', 
-            y='percentage', 
-            color = 'subsector', 
-            color_discrete_map = colors_subsector, 
-            labels = {'subsector': 'Subsector'})
-        decomposition_graph.update_layout(xaxis_title="", yaxis_title="", bargap=0.8)
-        decomposition_graph.update_traces(texttemplate='%{y}%', textposition='outside')
-    else : 
-        filtered_data_for_area = expenditure[
-            expenditure.geo.isin(countries) 
-            & expenditure.sector.isin(sectors) 
-            & (expenditure.year == selected_year)
-            & (expenditure.unit == 'Million euro')
-            ]
-        data_grouped = filtered_data_for_area.groupby(['geo'])['value'].sum().reset_index()
-        data_grouped_sorted = data_grouped.sort_values(['geo', 'value'])
-        decomposition_graph = px.histogram(
-            data_grouped_sorted, 
-            x = 'geo', 
-            y = 'value', 
-            color = 'geo', 
-            color_discrete_sequence = palette)
-        decomposition_graph.update_layout(showlegend=False, xaxis_title="", yaxis_title="", bargap=0.8)
-        decomposition_graph.update_traces(texttemplate='%{y:.2s}', textposition='outside')
-        decomposition_graph.add_trace()
-        
-       
 # =============================================================================
-# deficit-surplus-chart 
+# debt-chart
 # =============================================================================
-   
     # Scatter chart function
     def create_pxscatter(data, labels, threshold_up = None, threshold_down = None, text_up = None, text_down = None, dist = None):
         
@@ -455,22 +530,7 @@ def update_graph(selected_countries, selected_year, selected_sector):
                 row=1, col=i+1
                 )
         return fig
-
-    #tri des données
-    filtered_deficit = deficit[
-        (deficit["geo"].isin(countries)) 
-        & (deficit.labels == "Net lending (+) /net borrowing (-)")
-        & (deficit.unit == 'Percentage of gross domestic product (GDP)')
-        ]
-    filtered_deficit.value = filtered_deficit.value / 100
-    deficit_chart = create_pxarea(filtered_deficit, labels = {'geo' : 'Country'}, threshold_up = -0.03, text_up = "Target : -3%", dist = -0.01)
-    deficit_chart.update_traces(line=dict(width = 4))
-    deficit_chart.layout.yaxis.tickformat = 'p'
-
     
-# =============================================================================
-# debt-chart
-# =============================================================================
     # Tri des données
     filtered_debt = deficit[
         (deficit["geo"].isin(countries)) 
@@ -480,6 +540,7 @@ def update_graph(selected_countries, selected_year, selected_sector):
     filtered_debt.value = filtered_debt.value / 100
     debt_chart = create_pxscatter(filtered_debt, labels = {'geo' : 'Country'}, threshold_up = 1, threshold_down = 0.60, text_up = "GDP exceeded", text_down = 'Target : 60%', dist = 0.05)
     debt_chart.layout.yaxis.tickformat = 'p'
+
 
 # =============================================================================
 # title
@@ -494,9 +555,9 @@ def update_graph(selected_countries, selected_year, selected_sector):
     add_title(evolution_graph, title = 'Evolution of expenditure (%GDP)')
     add_title(deficit_chart, title = 'Evolution of the deficit/surplus ratio by country (%GDP)')
     if len(sectors) == 1 : 
-        add_title(decomposition_graph, title = 'Repartition of expenditure by subsector (% of sector)')
+        add_title(decomposition_graph, title = 'Repartition of expenditure by subsector for {} (milions of euros)'.format(selected_year))
     else : 
-        add_title(decomposition_graph, title = 'Total of expenditure by country for {} (Million euro)'.format(selected_year))
+        add_title(decomposition_graph, title = 'Total of expenditure by country for {} (milions of euros)'.format(selected_year))
     add_title(debt_chart, title = 'Evolution of the government consolidated gross debt (%GDP)')
     
 # =============================================================================

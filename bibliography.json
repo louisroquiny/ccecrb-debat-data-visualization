@@ -438,5 +438,61 @@
 				]
 			]
 		}
+	},
+	{
+		"id": "http://zotero.org/users/5637287/items/U34J2ZAT",
+		"type": "article-journal",
+		"abstract": "European sovereigns are among the least vulnerable and better prepared countries globally when it comes to climate change. Nevertheless, they are still exposed to adverse eﬀects that can create a potentially destabilising climate-debt loop, given the already high debt levels. However, the risks from climate change to ﬁscal stability do not seem to be receiving the same attention as climate risks for ﬁnancial stability. In this paper I discuss the exposure of EU countries to climate change and present the channels through which climate change poses risks to sovereign debt. After highlighting the signiﬁcance of the problem, the paper provides guidance on what data we need to streamline climate change risks into sovereign debt analysis, and asks what the data can tell us and what they can not. It also argues for linking integrated assessment models of the climate-economy nexus into debt sustainability analysis, and asks how much trust we may place in climate-economic models when it comes to public ﬁnance. Illustrative examples using two prominent integrated assessment models provide insights on the climate risks to sovereign debt. The analysis has policy implications for the institutions mandated with ﬁscal stability.",
+		"language": "en",
+		"source": "Zotero",
+		"title": "Understanding the climate risks to sovereign debt: From data to models",
+		"URL": "https://commission.europa.eu/system/files/2022-04/understanding_climate_risks_to_debt.pdf",
+		"author": [
+			{
+				"family": "Zenios",
+				"given": "Stavros A"
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"2022",
+					2,
+					5
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/users/5637287/items/JQK7DU7D",
+		"type": "report",
+		"genre": "Bruges European Economic Research Papers",
+		"language": "en",
+		"number": "39",
+		"title": "Scarring effects of major economic downturns: the role of fiscal policy and government investment",
+		"URL": "https://commission.europa.eu/system/files/2022-06/economic_growth_after_major_economic_downturns_the_role_of_fiscal_policy_and_government_investment-paper.pdf",
+		"author": [
+			{
+				"family": "LARCH",
+				"given": "MARTIN"
+			},
+			{
+				"family": "CLAEYS",
+				"given": "PETER"
+			},
+			{
+				"family": "VAN DER WIELEN",
+				"given": "WOUTER"
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"2022",
+					5,
+					18
+				]
+			]
+		}
 	}
 ]
