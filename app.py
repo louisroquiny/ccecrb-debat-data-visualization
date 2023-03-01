@@ -32,14 +32,15 @@ app_treemap.config.suppress_callback_exceptions = False
 load_figure_template('LITERA')
 
 # Chargement des données à partir d'une url
-expenditure_url = 'https://raw.githubusercontent.com/louisroquiny/treemap-ccecrb-debat/main/data/expenditure.csv'
-deficit_debt_url = 'https://raw.githubusercontent.com/louisroquiny/treemap-ccecrb-debat/main/data/deficit_debt.csv'
-gdp_url = 'https://raw.githubusercontent.com/louisroquiny/treemap-ccecrb-debat/main/data/gdp.csv'
+git = 'https://raw.githubusercontent.com/louisroquiny/treemap-ccecrb-debat/main/data/'
+expenditure_url = git + 'expenditure.csv'
+deficit_debt_url = git + 'deficit_debt.csv'
+gdp_url = git + 'gdp.csv'
+revenue_url = git + 'revenue.csv'
 
 # expenditure_url = 'C:/Users/loro.CCECRB/Documents/GitHub/treemap-ccecrb-debat/data/expenditure.csv'
 # deficit_debt_url = 'C:/Users/loro.CCECRB/Documents/GitHub/treemap-ccecrb-debat/data/deficit_debt.csv'
 # gdp_url = 'C:/Users/loro.CCECRB/Documents/GitHub/treemap-ccecrb-debat/data/gdp.csv'
-
 
 # Sourcing du projet
 data_sources = '''
@@ -65,6 +66,7 @@ def load_data(url, sep):
 expenditure = load_data(expenditure_url, ';')
 deficit = load_data(deficit_debt_url, ';')
 gdp = load_data(gdp_url, ',')
+revenue = load_data(revenue_url, ';')
 
 # Préparation des données en utilisant la fonction melt de pandas
 def prepare_data(data, cols):
@@ -83,6 +85,9 @@ deficit = prepare_data(
 gdp = prepare_data(
     gdp, ['geo', 'year', 'value'])
 gdp.value = gdp.value*1000
+revenue = prepare_data(revenue, ['unit', 'labels', 'geo', 'year', 'value'])
+revenue.value = revenue.value/100
+
 
 # Obtention des options de pays, d'années et de secteurs pour les menus déroulants
 def get_options(data, column):
@@ -150,21 +155,24 @@ app_treemap.layout = html.Div([
 Each country has a budget of 1000 euros, equivalent to 100% of its GDP. Let's see how it allocates its budget between the different spending sectors.  
     ''', 
         style_graph = {'height' : 600}),
-    # Graphique 2
+    # Graphique
     generate_graph(
         id = 'evolution-graph',
         style = {'width' : '50%', 'height' : '50%', 'display' : 'inline-block'}),
-    # Graphique 3
+    # Graphique
     generate_graph(
         id = 'decomposition-graph',
         style = {'width' : '50%', 'height' : '50%', 'display' : 'inline-block'}
         ),
     # séparateur
     html.Hr(style={'width': '75%', 'margin-left': 'auto', 'margin-right': 'auto'}),
-    # Graphique 4
+    # Graphique
+    generate_graph(
+        id = 'revenue-graph'),
+    # Graphique
     generate_graph(
         id = 'deficit-graph'),
-    # Graphique 4
+    # Graphique
     generate_graph(
         id = 'debt-graph'),
     # Sources du projet
@@ -183,6 +191,7 @@ Each country has a budget of 1000 euros, equivalent to 100% of its GDP. Let's se
     [Output('treemap-graph', 'figure'),
      Output('evolution-graph', 'figure'), 
      Output('decomposition-graph', 'figure'),
+     Output('revenue-graph', 'figure'),
      Output('deficit-graph', 'figure'), 
      Output("debt-graph", 'figure')
      ],
@@ -318,6 +327,9 @@ def update_graph(selected_countries, selected_year, selected_sector):
         figure.update_traces(line=dict(shape='spline', width = 4))
         figure.update_layout(xaxis_title="", yaxis_title="", hovermode = 'x')
         figure.layout.yaxis.tickformat = 'p'
+        
+    for trace in evolution_graph.data:
+        trace.hovertemplate = '%{y:.2%}'
     
 # =============================================================================
 # PIB-chart
@@ -403,15 +415,63 @@ def update_graph(selected_countries, selected_year, selected_sector):
             geo = trace.x[0]
             value = trace.y[0]
             label = trace.name
-            trace.hovertemplate = f"{value:0,.0f} euros"
-            pc_value = pc_dict.get(geo, 0) # Récupération de la valeur de pc pour chaque geo
+            trace.hovertemplate = f"{value:,} euros".replace(",", " ")
+            pc_value = round(pc_dict.get(geo, 0), 3) # Récupération de la valeur de pc pour chaque geo
             # trace.hovertemplate = f"{value} euros"
             if "Expenditure" in label : 
-                trace.hovertemplate = f"{value:0,.0f} euros<br>{pc_value}% GDP" # Mise à jour des labels
+                trace.hovertemplate = f"{value:,} euros<br>{pc_value}% GDP".replace(",", " ") # Mise à jour des labels
 
         decomposition_graph.update_layout(showlegend=False, xaxis_title="", yaxis_title="", bargap=0.5)
         
-       
+
+# =============================================================================
+# revenue-chart 
+# =============================================================================        
+
+    revenue_filtered = revenue[
+        (revenue["geo"].isin(countries)) 
+        & (revenue['labels'].isin(['Total general government revenue', 'Total general government expenditure']))
+        & (revenue.unit == 'Percentage of gross domestic product (GDP)')
+        ].sort_values(['geo', 'year'])
+    
+    label_mapping = {
+        'Total general government revenue' : 'revenue', 
+        'Total general government expenditure' : 'expenditure'
+        }
+    
+    revenue_filtered.labels = revenue_filtered.labels.map(label_mapping)
+
+    revenue_chart = px.line(
+        revenue_filtered,
+        x = 'year', 
+        y = 'value', 
+        color = 'geo', 
+        line_dash = 'labels',
+        facet_col = 'geo', 
+        color_discrete_map = colors, 
+        labels = {'geo' : 'country'}, 
+        # line_shape = 'spline', 
+        line_dash_map = {
+            'revenue' : 'solid' , 
+            'expenditure' : 'dot'
+            }
+        )
+    for i in range(len(countries)) : 
+        revenue_chart.update_xaxes(title_text='', col= i+1)
+        revenue_chart.layout.annotations[i]["text"] = ''
+    
+    revenue_chart.layout.yaxis.tickformat = 'p'
+    revenue_chart.update_layout(xaxis_title="", yaxis_title="", hovermode = 'x')
+    revenue_chart.update_traces(line=dict(width = 4))
+    
+    for trace in revenue_chart.data:
+        split = trace.name.split(', ')
+        geo = split[0]
+        label = split[1]
+        trace.name = f'{geo}<br>{label}'
+        trace.hovertemplate = '%{y:.2%}'
+            
+
 # =============================================================================
 # deficit-surplus-chart 
 # =============================================================================
@@ -456,7 +516,7 @@ def update_graph(selected_countries, selected_year, selected_sector):
         (deficit["geo"].isin(countries)) 
         & (deficit.labels == "Net lending (+) /net borrowing (-)")
         & (deficit.unit == 'Percentage of gross domestic product (GDP)')
-        ]
+        ].sort_values('geo')
     filtered_deficit.value = filtered_deficit.value / 100
     deficit_chart = create_pxarea(filtered_deficit, labels = {'geo' : 'Country'}, threshold_up = -0.03, text_up = "Target : -3%", dist = -0.01)
     deficit_chart.update_traces(line=dict(width = 4))
@@ -487,7 +547,7 @@ def update_graph(selected_countries, selected_year, selected_sector):
             fig.add_annotation(text=text_down, align="right", x=1, xref="paper", y=threshold_down + dist, yref="y", showarrow=False)
         
         # Iterate over all countries
-        for i, country in enumerate(countries):
+        for i, country in enumerate(sorted(countries)):
             # Filter data for current country
             country_data = data[data['geo'] == country]
         
@@ -553,6 +613,7 @@ def update_graph(selected_countries, selected_year, selected_sector):
             )    
 
     add_title(evolution_graph, title = 'Evolution of expenditure (%GDP)')
+    add_title(revenue_chart, title = 'Evolution of revenue and expenditure (%GDP)')
     add_title(deficit_chart, title = 'Evolution of the deficit/surplus ratio by country (%GDP)')
     if len(sectors) == 1 : 
         add_title(decomposition_graph, title = 'Repartition of expenditure by subsector for {} (milions of euros)'.format(selected_year))
@@ -564,7 +625,7 @@ def update_graph(selected_countries, selected_year, selected_sector):
 # return
 # =============================================================================
     
-    return treemap_graph, evolution_graph, decomposition_graph, deficit_chart, debt_chart
+    return treemap_graph, evolution_graph, decomposition_graph,revenue_chart, deficit_chart, debt_chart
 
 if __name__ == '__main__':
      app_treemap.run_server(debug=True)
