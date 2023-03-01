@@ -551,5 +551,25 @@
 				]
 			]
 		}
+	},
+	{
+		"id": "http://zotero.org/users/5637287/items/PLNZYNSI",
+		"type": "document",
+		"title": "Economische vooruitzichten 2023-2028 van februari 2023",
+		"URL": "https://www.plan.be/uploaded/documents/202302231209220.FOR_MIDTERM2328_12798_N.pdf",
+		"author": [
+			{
+				"literal": "Federaal Planbureau"
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"2023",
+					2,
+					23
+				]
+			]
+		}
 	}
 ]
