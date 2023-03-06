@@ -571,5 +571,44 @@
 				]
 			]
 		}
+	},
+	{
+		"id": "http://zotero.org/users/5637287/items/4TGBQIJR",
+		"type": "document",
+		"title": "EU Economic Governance Proposal Reform: Issues and Insights from EU IFIs",
+		"URL": "https://www.euifis.eu/getpublication/Network-of-EU-IFIs-Response-to-EC-Communication-Final.pdf",
+		"author": [
+			{
+				"literal": "The Network of EU Independent Fiscal Institutions"
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"2023",
+					3,
+					2
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/users/5637287/items/GFZ5LCS3",
+		"type": "document",
+		"title": "EUROPEAN FISCAL MONITOR",
+		"URL": "https://www.euifis.eu/getpublication/EFM FEBRUARY 2023.compressed.pdf",
+		"author": [
+			{
+				"literal": "Network of EU Independent Fiscal Institutions"
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"2023",
+					2
+				]
+			]
+		}
 	}
 ]
