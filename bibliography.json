@@ -103,7 +103,16 @@
 				"family": "Cockx",
 				"given": "Bart"
 			}
-		]
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"2020",
+					4,
+					17
+				]
+			]
+		}
 	},
 	{
 		"id": "http://zotero.org/users/5637287/items/PAYP23LS",
@@ -240,8 +249,7 @@
 				[
 					"2020"
 				]
-			],
-			"season": "SWD( ) 176 final"
+			]
 		}
 	},
 	{
@@ -296,7 +304,14 @@
 			{
 				"literal": "COMMISSION EUROPÉENNE (CE)"
 			}
-		]
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"2021"
+				]
+			]
+		}
 	},
 	{
 		"id": "http://zotero.org/users/5637287/items/CM5XQ734",
@@ -308,7 +323,14 @@
 			{
 				"literal": "COMITÉ BUDGÉTAIRE EUROPÉEN (CBE)"
 			}
-		]
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"2021"
+				]
+			]
+		}
 	},
 	{
 		"id": "http://zotero.org/users/5637287/items/MV6IKIST",
@@ -374,8 +396,7 @@
 		"issued": {
 			"date-parts": [
 				[
-					"2021",
-					9
+					"2021"
 				]
 			]
 		}
