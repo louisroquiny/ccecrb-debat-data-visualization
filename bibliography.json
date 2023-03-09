@@ -120,6 +120,7 @@
 		"container-title": "Revue économique",
 		"journalAbbreviation": "Revue économique",
 		"title": "Les finances publiques des administrations fédérales et celles des communautés et des régions sont-elles soutenables en Belgique ?",
+		"URL": "https://www.nbb.be/fr/articles/les-finances-publiques-des-administrations-federales-et-celles-des-communautes-et-des",
 		"author": [
 			{
 				"literal": "BANQUE NATIONALE DE BELGIQUE"
@@ -139,6 +140,7 @@
 		"type": "article-journal",
 		"page": "81",
 		"title": "Advies over de Vlaamse begroting 2023",
+		"URL": "https://www.serv.be/serv/publicatie/advies-vlaamse-begroting-2023",
 		"author": [
 			{
 				"literal": "SERV"
@@ -156,7 +158,8 @@
 	{
 		"id": "http://zotero.org/users/5637287/items/LB9568WD",
 		"type": "article-journal",
-		"title": "RAPPORT; BFW-OVERDRACHTEN NAAR DE GEWESTEN EN GEMEENSCHAPPEN IN DE KOMENDE DECENNIA",
+		"title": "Rapport BFW-overdrachten naar gewesten en gemeenschappen in de komende decennia",
+		"URL": "https://www.serv.be/serv/publicatie/rapport-bfw-overdrachten-gewesten-en-gemeenschappen-komende-decennia",
 		"author": [
 			{
 				"literal": "SERV"
@@ -166,7 +169,8 @@
 			"date-parts": [
 				[
 					"2023",
-					1
+					1,
+					19
 				]
 			]
 		}
@@ -177,6 +181,7 @@
 		"event-title": "exposé à l’Institut belge des finances publiques",
 		"publisher": "Bureau fédéral du plan",
 		"title": "Le retour de l’effet boule de neige",
+		"URL": "https://www.plan.be/uploaded/documents/201012081327360.sp100604_01.pdf",
 		"author": [
 			{
 				"literal": "BOGAERT H."
@@ -198,6 +203,7 @@
 		"note": "publisher: Bruxelles",
 		"page": "79 ER –",
 		"title": "Perspectives économiques régionales 2022-2027",
+		"URL": "https://www.plan.be/publications/publication-2267-fr-perspectives_economiques_regionales_2022_2027",
 		"author": [
 			{
 				"literal": "BUREAU FÉDÉRAL DU PLAN (BFP)"
@@ -217,6 +223,7 @@
 		"type": "article-journal",
 		"page": "15",
 		"title": "Fiche thématique Semestre européen : La viabilité des finances publiques – 2017",
+		"URL": "https://commission.europa.eu/system/files/2021-01/european-semester_thematic-factsheet_public-finance-sustainability_fr.pdf",
 		"author": [
 			{
 				"literal": "COMMISSION EUROPÉENNE (CE)"
@@ -239,6 +246,7 @@
 		"journalAbbreviation": "Commission Staff Working Document",
 		"page": "140",
 		"title": "Accroître les ambitions de l’Europe en matière de climat pour 2030 : Investir dans un avenir climatiquement neutre, dans l’intérêt de nos concitoyens",
+		"URL": "https://webapi2016.eesc.europa.eu/v1/documents/EESC-2020-04180-00-00-AC-TRA-FR.docx/content",
 		"author": [
 			{
 				"literal": "COMMISSION EUROPÉENNE (CE)"
@@ -259,6 +267,7 @@
 		"journalAbbreviation": "Institutional paper 148",
 		"page": "398",
 		"title": "The 2021 Ageing Report: Economic and Budgetary Projections for the EU Member States",
+		"URL": "https://economy-finance.ec.europa.eu/publications/2021-ageing-report-economic-and-budgetary-projections-eu-member-states-2019-2070_en",
 		"author": [
 			{
 				"literal": "COMMISSION EUROPÉENNE (CE)"
@@ -274,32 +283,12 @@
 		}
 	},
 	{
-		"id": "http://zotero.org/users/5637287/items/M3KVPRT4",
-		"type": "article-journal",
-		"container-title": "Institutional Paper 171",
-		"journalAbbreviation": "Institutional Paper 171",
-		"page": "237",
-		"title": "Fiscal Sustainability Report 2021 – Volume 1",
-		"author": [
-			{
-				"literal": "COMMISSION EUROPÉENNE (CE)"
-			}
-		],
-		"issued": {
-			"date-parts": [
-				[
-					"2022",
-					4
-				]
-			]
-		}
-	},
-	{
 		"id": "http://zotero.org/users/5637287/items/QTPMFTHN",
 		"type": "article-journal",
 		"note": "publisher: Bruxelles",
 		"page": "47",
 		"title": "Communication de la Commission au Parlement européen, au Conseil et à la Banque centrale européenne sur les projets de plans budgétaires : évaluation globale",
+		"URL": "https://eur-lex.europa.eu/legal-content/FR/TXT/PDF/?uri=CELEX:52021DC0900&from=EN",
 		"author": [
 			{
 				"literal": "COMMISSION EUROPÉENNE (CE)"
@@ -319,6 +308,7 @@
 		"note": "publisher: Bruxelles",
 		"page": "113",
 		"title": "Annual Report: 2021",
+		"URL": "https://www.ecb.europa.eu/pub/pdf/annrep/ecb.ar2021~14d7439b2d.en.pdf",
 		"author": [
 			{
 				"literal": "COMITÉ BUDGÉTAIRE EUROPÉEN (CBE)"
@@ -338,6 +328,7 @@
 		"container-title": "VoxEU.org",
 		"journalAbbreviation": "VoxEU.org",
 		"title": "How to reconcile increased green public investment needs with fiscal consolidation",
+		"URL": "https://cepr.org/voxeu/columns/how-reconcile-increased-green-public-investment-needs-fiscal-consolidation",
 		"author": [
 			{
 				"family": "DARVAS",
@@ -362,6 +353,7 @@
 		"note": "publisher: Luxemburg",
 		"page": "34",
 		"title": "The Fiscal Impact of Extreme Weather and Climate Events: Evidence for EU Countries",
+		"URL": "https://economy-finance.ec.europa.eu/publications/fiscal-impact-extreme-weather-and-climate-events-evidence-eu-countries_en",
 		"author": [
 			{
 				"family": "GAGLIARDI",
@@ -386,6 +378,7 @@
 		"note": "publisher: Bruxelles",
 		"page": "106-130",
 		"title": "What kind of public expenditure is high in Belgium? A comparison with neighbouring countries",
+		"URL": "https://www.nbb.be/en/articles/what-kind-public-expenditure-high-belgium-comparison-neighbouring-countries-0",
 		"author": [
 			{
 				"family": "GODEFROID",
@@ -406,6 +399,7 @@
 		"type": "article-journal",
 		"note": "publisher: Washington DC",
 		"title": "Staff Guidance Note for public debt sustainability analysis in market access countries",
+		"URL": "https://www.imf.org/external/np/pp/eng/2013/050913.pdf",
 		"author": [
 			{
 				"literal": "IMF"
@@ -427,6 +421,7 @@
 		"journalAbbreviation": "Bruges European Economic Research Papers",
 		"page": "28",
 		"title": "The (un)sustainability of public debt: the elusive reality of an intuitive concept",
+		"URL": "https://www.coleurope.eu/sites/default/files/research-paper/BEERpaper_41%20Larch%205%20April.pdf",
 		"author": [
 			{
 				"family": "LARCH",
@@ -447,6 +442,7 @@
 		"type": "article-journal",
 		"note": "publisher: 23 CCE 2023-0017 CO 1000",
 		"title": "Toelichtingen bij de begroting 2023 – Meerjarenraming 2022-2027",
+		"URL": "https://fin.vlaanderen.be/meerjarenraming-2022-2027-toegelicht/",
 		"author": [
 			{
 				"literal": "VLAAMS PARLEMENT"

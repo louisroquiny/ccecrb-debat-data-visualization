@@ -42,7 +42,7 @@ biblio.drop(columns_to_drop, axis = 1, inplace = True)
 
 
 # biblio = biblio.astype(str)
-biblio_to_display = biblio[['title', 'author','type', 'issued','URL']].sort_values('issued')
+biblio_to_display = biblio[['title', 'author','type', 'issued','URL']].sort_values('issued', ascending = False)
 
 app_biblio = Dash(__name__, external_stylesheets=[dbc.themes.LITERA])
 app = app_biblio.server
