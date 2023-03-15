@@ -627,5 +627,433 @@
 				]
 			]
 		}
+	},
+	{
+		"id": "http://zotero.org/users/5637287/items/6RSYNXFK",
+		"type": "book",
+		"event-place": "LU",
+		"language": "eng",
+		"publisher": "Publications Office",
+		"publisher-place": "LU",
+		"source": "DOI.org (CSL JSON)",
+		"title": "The fiscal impact of extreme weather and climate events: evidence for EU countries.",
+		"title-short": "The fiscal impact of extreme weather and climate events",
+		"URL": "https://data.europa.eu/doi/10.2765/867213",
+		"author": [
+			{
+				"literal": "European Commission. Directorate General for Economic and Financial Affairs."
+			}
+		],
+		"accessed": {
+			"date-parts": [
+				[
+					"2023",
+					3,
+					9
+				]
+			]
+		},
+		"issued": {
+			"date-parts": [
+				[
+					"2022"
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/users/5637287/items/4I95KE4L",
+		"type": "article-journal",
+		"language": "en",
+		"source": "Zotero",
+		"title": "A green fiscal pact: climate PolicyContribution Issue n˚18/21  | September 202",
+		"URL": "https://www.bruegel.org/policy-brief/green-fiscal-pact-climate-investment-times-budget-consolidation",
+		"author": [
+			{
+				"family": "Darvas",
+				"given": "Zsolt"
+			},
+			{
+				"family": "Wolff",
+				"given": "Guntram"
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"2021"
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/users/5637287/items/NB35H3N8",
+		"type": "article-journal",
+		"abstract": "Abstract\n            This paper discusses how the technical foundations of the EU’s fiscal rules constrain the fiscal space in EU countries in the context of the COVID-19 pandemic. We review the evidence on how estimates of potential output, which are at the heart of essential control indicators in EU fiscal surveillance, were revised in the ten years running up to the COVID-19 pandemic, and how these revisions affected the fiscal stance of EU countries. We provide first evidence for downward revisions in the European Commission’s potential output estimates against the background of the COVID-19 shock across the EU27 countries, and we assess the potential consequences in terms of fiscal space. According to our results, one additional percentage point in predicted losses of actual output is associated with a loss in potential output of about 0.6 percentage points. Given the importance of model-based estimates in the EU’s fiscal rules, avoiding pro-cyclical fiscal tightening will require that policymakers’ hands are not tied by overly pessimistic views on the development of potential output.",
+		"container-title": "Intereconomics",
+		"DOI": "10.1007/s10272-020-0895-z",
+		"ISSN": "0020-5346, 1613-964X",
+		"issue": "3",
+		"journalAbbreviation": "Intereconomics",
+		"language": "en",
+		"page": "167-174",
+		"source": "DOI.org (Crossref)",
+		"title": "Potential Output, EU Fiscal Surveillance and the COVID-19 Shock",
+		"URL": "https://link.springer.com/10.1007/s10272-020-0895-z",
+		"volume": "55",
+		"author": [
+			{
+				"family": "Heimberger",
+				"given": "Philipp"
+			}
+		],
+		"accessed": {
+			"date-parts": [
+				[
+					"2023",
+					3,
+					9
+				]
+			]
+		},
+		"issued": {
+			"date-parts": [
+				[
+					"2020",
+					5
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/users/5637287/items/RZKSZZGP",
+		"type": "article-journal",
+		"container-title": "Notes du conseil d’analyse économique",
+		"DOI": "10.3917/ncae.063.0001",
+		"ISSN": "2273-8525",
+		"issue": "9",
+		"page": "1-12",
+		"source": "DOI.org (Crossref)",
+		"title": "Pour une refonte du cadre budgétaire européen:",
+		"title-short": "Pour une refonte du cadre budgétaire européen",
+		"URL": "https://www.cairn.info/revue-notes-du-conseil-d-analyse-economique-2020-9-page-1.htm?ref=doi",
+		"volume": "n° 63",
+		"author": [
+			{
+				"family": "Martin",
+				"given": "Philippe"
+			},
+			{
+				"family": "Pisani-Ferry",
+				"given": "Jean"
+			},
+			{
+				"family": "Ragot",
+				"given": "Xavier"
+			}
+		],
+		"accessed": {
+			"date-parts": [
+				[
+					"2023",
+					3,
+					9
+				]
+			]
+		},
+		"issued": {
+			"date-parts": [
+				[
+					"2021",
+					6,
+					5
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/users/5637287/items/56GMPPU9",
+		"type": "document",
+		"title": "Joint paper by Spain and The Netherlands on priority issues in 2022 on the EU’s economic and financial policy agenda",
+		"URL": "https://www.government.nl/binaries/government/documenten/publications/2022/04/04/joint-paper-eurogroup-es-nl/joint-paper-eurogroup-es-nl.pdf",
+		"author": [
+			{
+				"literal": "Nederlandse & Spaanse overheid"
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"2022",
+					4
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/users/5637287/items/CC7KXVPR",
+		"type": "book",
+		"collection-number": "Apr. 2022",
+		"collection-title": "Fiscal monitor",
+		"event-place": "Washington, DC",
+		"ISBN": "978-1-5135-9878-9",
+		"language": "en",
+		"number-of-pages": "106",
+		"publisher-place": "Washington, DC",
+		"source": "K10plus ISBN",
+		"title": "Fiscal policy from pandemic to war",
+		"URL": "https://www.imf.org/en/Publications/FM/Issues/2022/04/12/fiscal-monitor-april-2022",
+		"editor": [
+			{
+				"family": "Internationaler Währungsfonds",
+				"given": ""
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"2022"
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/users/5637287/items/KX9NIV56",
+		"type": "book",
+		"edition": "First edition",
+		"event-place": "Oxford, United Kingdom",
+		"ISBN": "978-0-19-284693-8",
+		"language": "en",
+		"note": "DOI: 10.1093/oso/9780192846938.001.0001",
+		"number-of-pages": "865",
+		"publisher": "Oxford University Press",
+		"publisher-place": "Oxford, United Kingdom",
+		"source": "K10plus ISBN",
+		"title": "How to achieve inclusive growth",
+		"URL": "https://www.imf.org/en/Publications/fandd/issues/2022/03",
+		"editor": [
+			{
+				"family": "Cerra",
+				"given": "Valerie"
+			},
+			{
+				"family": "Eichengreen",
+				"given": "Barry"
+			},
+			{
+				"family": "ElGanainy",
+				"given": "Asmaa Adel"
+			},
+			{
+				"family": "Schindler",
+				"given": "Martin"
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"2022"
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/users/5637287/items/YQ9Q472P",
+		"type": "article-journal",
+		"container-title": "Departmental Papers",
+		"DOI": "10.5089/9798400209888.087",
+		"ISSN": "2616-5333",
+		"issue": "014",
+		"language": "en",
+		"page": "1",
+		"source": "DOI.org (Crossref)",
+		"title": "Reforming the EU Fiscal Framework",
+		"URL": "https://elibrary.imf.org/openurl?genre=journal&issn=2616-5333&volume=2022&issue=014",
+		"volume": "2022",
+		"author": [
+			{
+				"family": "Balakrishnan",
+				"given": "Ravi"
+			},
+			{
+				"family": "Medas",
+				"given": "Paulo"
+			},
+			{
+				"family": "Barkbu",
+				"given": "Bergljot"
+			},
+			{
+				"family": "Weber",
+				"given": "Sebastian"
+			},
+			{
+				"family": "Lam",
+				"given": "Waikei"
+			},
+			{
+				"family": "Shahmoradi",
+				"given": "Asghar"
+			},
+			{
+				"family": "Arnold",
+				"given": "Nathaniel"
+			},
+			{
+				"family": "Rabier",
+				"given": "Louise"
+			},
+			{
+				"family": "Lagerborg",
+				"given": "Andresa"
+			},
+			{
+				"family": "Roehler",
+				"given": "Christiane"
+			},
+			{
+				"family": "Spector",
+				"given": "Mariano"
+			},
+			{
+				"family": "Otten",
+				"given": "Julia"
+			},
+			{
+				"family": "Davoodi",
+				"given": "Hamid"
+			},
+			{
+				"family": "Zettelmeyer",
+				"given": "Jeromin"
+			}
+		],
+		"accessed": {
+			"date-parts": [
+				[
+					"2023",
+					3,
+					9
+				]
+			]
+		},
+		"issued": {
+			"date-parts": [
+				[
+					"2022",
+					9
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/users/5637287/items/7XQS7PNW",
+		"type": "document",
+		"title": "Protection sociale : le choc du vieillissement est-il (in)soutenable ?",
+		"URL": "https://www.strategie.gouv.fr/publications/protection-sociale-choc-vieillissement-insoutenable",
+		"author": [
+			{
+				"family": "Cusset",
+				"given": "Pierre-Yves"
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"2022",
+					7
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/users/5637287/items/9CUS477R",
+		"type": "report",
+		"genre": "OECD Economic Policy Papers",
+		"language": "en",
+		"note": "collection-title: OECD Economic Policy Papers\nvolume: 29\nDOI: 10.1787/a112307e-en",
+		"number": "29",
+		"source": "DOI.org (Crossref)",
+		"title": "The long game: Fiscal outlooks to 2060 underline need for structural reform",
+		"title-short": "The long game",
+		"URL": "https://www.oecd-ilibrary.org/economics/the-long-game-fiscal-outlooks-to-2060-underline-need-for-structural-reform_a112307e-en",
+		"author": [
+			{
+				"literal": "OECD"
+			}
+		],
+		"accessed": {
+			"date-parts": [
+				[
+					"2023",
+					3,
+					9
+				]
+			]
+		},
+		"issued": {
+			"date-parts": [
+				[
+					"2021",
+					10,
+					19
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/users/5637287/items/4I4TI3A9",
+		"type": "report",
+		"genre": "OECD Working Papers on Fiscal Federalism",
+		"language": "en",
+		"note": "collection-title: OECD Working Papers on Fiscal Federalism\nvolume: 39\nDOI: 10.1787/2b0f063e-en",
+		"number": "39",
+		"source": "DOI.org (Crossref)",
+		"title": "Funding the future: The impact of population ageing on revenues across levels of government",
+		"title-short": "Funding the future",
+		"URL": "https://www.oecd-ilibrary.org/taxation/funding-the-future_2b0f063e-en",
+		"author": [
+			{
+				"literal": "OECD"
+			}
+		],
+		"accessed": {
+			"date-parts": [
+				[
+					"2023",
+					3,
+					9
+				]
+			]
+		},
+		"issued": {
+			"date-parts": [
+				[
+					"2022",
+					8,
+					30
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/users/5637287/items/LXQL8A8U",
+		"type": "document",
+		"title": "Communication de la commission au conseil. Orientations en matière de politique budgétaire pour 2024",
+		"URL": "https://data.consilium.europa.eu/doc/document/ST-7022-2023-INIT/fr/pdf",
+		"author": [
+			{
+				"literal": "Commission européenne"
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"2023",
+					3,
+					8
+				]
+			]
+		}
 	}
 ]
