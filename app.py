@@ -521,6 +521,9 @@ def update_graph(selected_countries, selected_year, selected_sector):
     deficit_chart = create_pxarea(filtered_deficit, labels = {'geo' : 'Country'}, threshold_up = -0.03, text_up = "Target : -3%", dist = -0.01)
     deficit_chart.update_traces(line=dict(width = 4))
     deficit_chart.layout.yaxis.tickformat = 'p'
+    deficit_chart.update_layout(hovermode = 'x')
+    for trace in deficit_chart.data:
+        trace.hovertemplate = '%{y:.2%}'
 
 
     
@@ -591,17 +594,54 @@ def update_graph(selected_countries, selected_year, selected_sector):
                 )
         return fig
     
+    # Bar chart function
+    def create_pxbar(data, labels, threshold_up = None, threshold_down = None, text_up = None, text_down = None, dist = None):
+        
+        # Create subplots with rows and columns based on the number of countries
+        fig = px.bar(
+            data,
+            x='year', 
+            y= 'value', 
+            color = 'geo',
+            facet_col= 'geo',
+            #facet_col_wrap=4,
+            color_discrete_map = colors, 
+            labels = {'geo' : 'country'}
+            )
+        for i in range(len(countries)) : 
+            fig.update_xaxes(title_text='', col= i+1)
+            fig.layout.annotations[i]["text"] = ''
+                           
+        if threshold_up :
+            fig.add_shape( # add a horizontal "target" line
+                type="line", line_color="black", line_width=1, opacity=1, line_dash="dash",
+                x0=0, x1=1, xref="paper", y0=threshold_up, y1=threshold_up, yref="y"
+            )
+            fig.add_annotation(text=text_up, align="right", x=1, xref="paper", y=threshold_up + dist, yref="y", showarrow=False)
+        
+        if threshold_down :
+            fig.add_shape( # add a horizontal "target" line
+                type="line", line_color="black", line_width=1, opacity=1, line_dash="dash",
+                x0=0, x1=1, xref="paper", y0=threshold_down, y1=threshold_down, yref="y"
+            )
+            fig.add_annotation(text=text_down, align="right", x=1, xref="paper", y=threshold_down + dist, yref="y", showarrow=False)
+        
+        return fig
+    
     # Tri des données
     filtered_debt = deficit[
         (deficit["geo"].isin(countries)) 
         & (deficit.labels == "Government consolidated gross debt")
         & (deficit.unit == 'Percentage of gross domestic product (GDP)')
-        ]
+        ].sort_values('geo')
     filtered_debt.value = filtered_debt.value / 100
-    debt_chart = create_pxscatter(filtered_debt, labels = {'geo' : 'Country'}, threshold_up = 1, threshold_down = 0.60, text_up = "GDP exceeded", text_down = 'Target : 60%', dist = 0.05)
+    # debt_chart = create_pxscatter(filtered_debt, labels = {'geo' : 'Country'}, threshold_up = 1, threshold_down = 0.60, text_up = "GDP exceeded", text_down = 'Target : 60%', dist = 0.05)
+    # debt_chart.layout.yaxis.tickformat = 'p'
+    debt_chart = create_pxbar(filtered_debt, labels = {'geo' : 'Country'}, threshold_up = 1, threshold_down = 0.60, text_up = "GDP exceeded", text_down = 'Target : 60%', dist = 0.05)
     debt_chart.layout.yaxis.tickformat = 'p'
-
-
+    debt_chart.update_layout(hovermode = 'x')
+    for trace in debt_chart.data:
+        trace.hovertemplate = '%{y:.2%}'
 # =============================================================================
 # title
 # =============================================================================
@@ -611,7 +651,7 @@ def update_graph(selected_countries, selected_year, selected_sector):
             title_text=title,
             title_font=dict(size=16, family='Calibri')
             )    
-
+    add_title(treemap_graph, title = 'Distribution of expenditure for {}'.format(selected_year))
     add_title(evolution_graph, title = 'Evolution of expenditure (%GDP)')
     add_title(revenue_chart, title = 'Evolution of revenue and expenditure (%GDP)')
     add_title(deficit_chart, title = 'Evolution of the deficit/surplus ratio by country (%GDP)')
