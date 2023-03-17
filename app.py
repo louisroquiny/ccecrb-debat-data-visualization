@@ -65,7 +65,7 @@ def load_data(url, sep):
 
 expenditure = load_data(expenditure_url, ';')
 deficit = load_data(deficit_debt_url, ';')
-gdp = load_data(gdp_url, ',')
+gdp = load_data(gdp_url, ';')
 revenue = load_data(revenue_url, ';')
 
 # Préparation des données en utilisant la fonction melt de pandas
@@ -84,7 +84,7 @@ deficit = prepare_data(
     deficit, ['unit', 'labels', 'geo', 'year', 'value'])
 gdp = prepare_data(
     gdp, ['geo', 'year', 'value'])
-gdp.value = gdp.value*1000
+# gdp.value = gdp.value*1000
 revenue = prepare_data(revenue, ['unit', 'labels', 'geo', 'year', 'value'])
 revenue.value = revenue.value/100
 
