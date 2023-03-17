@@ -1,609 +1,814 @@
-geo,year,value
-European Union,2020,13461.1
-Belgium,2020,459.8
-Bulgaria,2020,61.6
-Czechia,2020,215.8
-Denmark,2020,311.8
-Germany,2020,3405.4
-Estonia,2020,27.5
-Ireland,2020,372.8
-Greece,2020,165.4
-Spain,2020,1118.0
-France,2020,2310.5
-Croatia,2020,50.4
-Italy,2020,1660.6
-Cyprus,2020,21.9
-Latvia,2020,30.3
-Lithuania,2020,49.8
-Luxembourg,2020,64.8
-Hungary,2020,137.8
-Malta,2020,13.1
-Netherlands,2020,796.5
-Austria,2020,381.0
-Poland,2020,526.1
-Portugal,2020,200.5
-Romania,2020,220.5
-Slovenia,2020,47.0
-Slovakia,2020,93.4
-Finland,2020,238.0
-Sweden,2020,480.6
-European Union,2019,14018.5
-Belgium,2019,478.6
-Bulgaria,2019,61.6
-Czechia,2019,225.6
-Denmark,2019,309.5
-Germany,2019,3473.3
-Estonia,2019,27.8
-Ireland,2019,356.7
-Greece,2019,183.4
-Spain,2019,1245.5
-France,2019,2437.6
-Croatia,2019,55.6
-Italy,2019,1796.6
-Cyprus,2019,23.2
-Latvia,2019,30.7
-Lithuania,2019,48.9
-Luxembourg,2019,62.4
-Hungary,2019,146.5
-Malta,2019,14.0
-Netherlands,2019,813.1
-Austria,2019,397.2
-Poland,2019,532.5
-Portugal,2019,214.4
-Romania,2019,224.2
-Slovenia,2019,48.5
-Slovakia,2019,94.4
-Finland,2019,239.9
-Sweden,2019,476.9
-European Union,2018,13533.3
-Belgium,2018,460.1
-Bulgaria,2018,56.2
-Czechia,2018,211.0
-Denmark,2018,302.3
-Germany,2018,3365.4
-Estonia,2018,25.9
-Ireland,2018,326.6
-Greece,2018,179.6
-Spain,2018,1203.9
-France,2018,2363.3
-Croatia,2018,52.7
-Italy,2018,1771.4
-Cyprus,2018,21.7
-Latvia,2018,29.2
-Lithuania,2018,45.5
-Luxembourg,2018,60.1
-Hungary,2018,136.1
-Malta,2018,13.0
-Netherlands,2018,774.0
-Austria,2018,385.3
-Poland,2018,499.0
-Portugal,2018,205.2
-Romania,2018,206.1
-Slovenia,2018,45.9
-Slovakia,2018,89.9
-Finland,2018,233.5
-Sweden,2018,470.7
-European Union,2017,13074.8
-Belgium,2017,445.1
-Bulgaria,2017,52.5
-Czechia,2017,194.1
-Denmark,2017,294.8
-Germany,2017,3267.2
-Estonia,2017,23.8
-Ireland,2017,297.8
-Greece,2017,176.9
-Spain,2017,1162.5
-France,2017,2297.2
-Croatia,2017,50.0
-Italy,2017,1736.6
-Cyprus,2017,20.3
-Latvia,2017,27.0
-Lithuania,2017,42.3
-Luxembourg,2017,58.2
-Hungary,2017,127.0
-Malta,2017,11.9
-Netherlands,2017,738.1
-Austria,2017,369.4
-Poland,2017,465.8
-Portugal,2017,195.9
-Romania,2017,186.4
-Slovenia,2017,43.0
-Slovakia,2017,84.7
-Finland,2017,226.3
-Sweden,2017,480.0
-European Union,2016,12548.7
-Belgium,2016,430.1
-Bulgaria,2016,48.8
-Czechia,2016,177.4
-Denmark,2016,283.1
-Germany,2016,3134.7
-Estonia,2016,21.7
-Ireland,2016,270.2
-Greece,2016,174.5
-Spain,2016,1114.4
-France,2016,2234.1
-Croatia,2016,47.3
-Italy,2016,1695.8
-Cyprus,2016,19.0
-Latvia,2016,25.4
-Lithuania,2016,38.9
-Luxembourg,2016,56.2
-Hungary,2016,116.3
-Malta,2016,10.5
-Netherlands,2016,708.3
-Austria,2016,357.6
-Poland,2016,424.7
-Portugal,2016,186.5
-Romania,2016,167.5
-Slovenia,2016,40.4
-Slovakia,2016,81.3
-Finland,2016,217.5
-Sweden,2016,466.3
-European Union,2015,12215.1
-Belgium,2015,416.7
-Bulgaria,2015,45.8
-Czechia,2015,169.6
-Denmark,2015,273.0
-Germany,2015,3026.2
-Estonia,2015,20.6
-Ireland,2015,263.0
-Greece,2015,176.4
-Spain,2015,1078.1
-France,2015,2198.4
-Croatia,2015,45.3
-Italy,2015,1655.4
-Cyprus,2015,17.9
-Latvia,2015,24.6
-Lithuania,2015,37.3
-Luxembourg,2015,54.1
-Hungary,2015,112.8
-Malta,2015,10.0
-Netherlands,2015,690.0
-Austria,2015,344.3
-Poland,2015,429.8
-Portugal,2015,179.7
-Romania,2015,160.3
-Slovenia,2015,38.9
-Slovakia,2015,80.1
-Finland,2015,211.4
-Sweden,2015,455.5
-European Union,2014,11782.1
-Belgium,2014,403.0
-Bulgaria,2014,43.0
-Czechia,2014,157.8
-Denmark,2014,265.8
-Germany,2014,2927.4
-Estonia,2014,20.0
-Ireland,2014,195.1
-Greece,2014,177.2
-Spain,2014,1032.6
-France,2014,2149.8
-Croatia,2014,44.0
-Italy,2014,1627.4
-Cyprus,2014,17.5
-Latvia,2014,23.6
-Lithuania,2014,36.6
-Luxembourg,2014,51.8
-Hungary,2014,106.3
-Malta,2014,8.8
-Netherlands,2014,671.6
-Austria,2014,333.1
-Poland,2014,406.4
-Portugal,2014,173.1
-Romania,2014,150.5
-Slovenia,2014,37.6
-Slovakia,2014,76.4
-Finland,2014,206.9
-Sweden,2014,438.8
-European Union,2013,11516.2
-Belgium,2013,392.9
-Bulgaria,2013,42.1
-Czechia,2013,159.5
-Denmark,2013,258.7
-Germany,2013,2811.3
-Estonia,2013,18.9
-Ireland,2013,179.5
-Greece,2013,179.9
-Spain,2013,1020.7
-France,2013,2117.2
-Croatia,2013,44.4
-Italy,2013,1612.8
-Cyprus,2013,18.0
-Latvia,2013,22.8
-Lithuania,2013,35.0
-Luxembourg,2013,49.1
-Hungary,2013,102.2
-Malta,2013,7.9
-Netherlands,2013,660.5
-Austria,2013,323.9
-Poland,2013,388.4
-Portugal,2013,170.5
-Romania,2013,142.9
-Slovenia,2013,36.5
-Slovakia,2013,74.5
-Finland,2013,204.3
-Sweden,2013,441.8
-European Union,2012,11396.5
-Belgium,2012,386.2
-Bulgaria,2012,42.3
-Czechia,2012,162.6
-Denmark,2012,254.6
-Germany,2012,2745.3
-Estonia,2012,17.9
-Ireland,2012,175.6
-Greece,2012,188.4
-Spain,2012,1031.1
-France,2012,2088.8
-Croatia,2012,44.6
-Italy,2012,1624.4
-Cyprus,2012,19.5
-Latvia,2012,22.1
-Lithuania,2012,33.4
-Luxembourg,2012,46.5
-Hungary,2012,100.2
-Malta,2012,7.4
-Netherlands,2012,653.0
-Austria,2012,318.7
-Poland,2012,385.4
-Portugal,2012,168.3
-Romania,2012,139.3
-Slovenia,2012,36.3
-Slovakia,2012,73.6
-Finland,2012,201.0
-Sweden,2012,430.0
-European Union,2011,11328.3
-Belgium,2011,376.0
-Bulgaria,2011,41.5
-Czechia,2011,165.2
-Denmark,2011,247.9
-Germany,2011,2693.6
-Estonia,2011,16.7
-Ireland,2011,171.7
-Greece,2011,203.3
-Spain,2011,1063.8
-France,2011,2058.4
-Croatia,2011,45.5
-Italy,2011,1648.8
-Cyprus,2011,19.9
-Latvia,2011,19.7
-Lithuania,2011,31.3
-Luxembourg,2011,44.3
-Hungary,2011,102.2
-Malta,2011,6.9
-Netherlands,2011,650.4
-Austria,2011,310.1
-Poland,2011,377.0
-Portugal,2011,176.1
-Romania,2011,138.5
-Slovenia,2011,37.1
-Slovakia,2011,71.8
-Finland,2011,198.0
-Sweden,2011,412.8
-European Union,2010,10982.6
-Belgium,2010,363.1
-Bulgaria,2010,38.3
-Czechia,2010,157.9
-Denmark,2010,243.2
-Germany,2010,2564.4
-Estonia,2010,14.7
-Ireland,2010,167.4
-Greece,2010,224.1
-Spain,2010,1072.7
-France,2010,1995.3
-Croatia,2010,45.8
-Italy,2010,1611.3
-Cyprus,2010,19.5
-Latvia,2010,17.9
-Lithuania,2010,28.0
-Luxembourg,2010,42.4
-Hungary,2010,99.8
-Malta,2010,6.8
-Netherlands,2010,639.2
-Austria,2010,295.9
-Poland,2010,359.1
-Portugal,2010,179.6
-Romania,2010,128.3
-Slovenia,2010,36.4
-Slovakia,2010,68.8
-Finland,2010,188.1
-Sweden,2010,374.7
-European Union,2009,10592.0
-Belgium,2009,346.5
-Bulgaria,2009,37.4
-Czechia,2009,149.6
-Denmark,2009,231.3
-Germany,2009,2445.7
-Estonia,2009,14.1
-Ireland,2009,169.5
-Greece,2009,237.5
-Spain,2009,1069.3
-France,2009,1936.4
-Croatia,2009,45.6
-Italy,2009,1577.3
-Cyprus,2009,18.7
-Latvia,2009,18.9
-Lithuania,2009,26.9
-Luxembourg,2009,39.1
-Hungary,2009,94.6
-Malta,2009,6.3
-Netherlands,2009,624.8
-Austria,2009,288.0
-Poland,2009,317.0
-Portugal,2009,175.4
-Romania,2009,125.2
-Slovenia,2009,36.3
-Slovakia,2009,64.1
-Finland,2009,181.7
-Sweden,2009,314.6
-European Union,2008,11089.8
-Belgium,2008,351.7
-Bulgaria,2008,37.2
-Czechia,2008,162.1
-Denmark,2008,241.6
-Germany,2008,2546.5
-Estonia,2008,16.6
-Ireland,2008,187.3
-Greece,2008,242.0
-Spain,2008,1109.5
-France,2008,1992.4
-Croatia,2008,48.5
-Italy,2008,1637.7
-Cyprus,2008,19.0
-Latvia,2008,24.5
-Lithuania,2008,32.7
-Luxembourg,2008,40.0
-Hungary,2008,108.3
-Malta,2008,6.2
-Netherlands,2008,647.2
-Austria,2008,293.8
-Poland,2008,366.0
-Portugal,2008,179.1
-Romania,2008,146.6
-Slovenia,2008,37.9
-Slovakia,2008,66.1
-Finland,2008,194.3
-Sweden,2008,354.9
-European Union,2007,10743.0
-Belgium,2007,343.6
-Bulgaria,2007,32.5
-Czechia,2007,139.0
-Denmark,2007,233.4
-Germany,2007,2499.6
-Estonia,2007,16.4
-Ireland,2007,197.1
-Greece,2007,232.7
-Spain,2007,1075.5
-France,2007,1941.4
-Croatia,2007,44.3
-Italy,2007,1614.8
-Cyprus,2007,17.6
-Latvia,2007,22.8
-Lithuania,2007,29.0
-Luxembourg,2007,37.6
-Hungary,2007,102.4
-Malta,2007,5.8
-Netherlands,2007,619.2
-Austria,2007,284.0
-Poland,2007,313.8
-Portugal,2007,175.5
-Romania,2007,127.6
-Slovenia,2007,35.1
-Slovakia,2007,56.3
-Finland,2007,187.1
-Sweden,2007,358.9
-European Union,2006,10116.4
-Belgium,2006,325.2
-Bulgaria,2006,27.4
-Czechia,2006,124.6
-Denmark,2006,225.5
-Germany,2006,2385.1
-Estonia,2006,13.6
-Ireland,2006,184.9
-Greece,2006,217.9
-Spain,2006,1003.8
-France,2006,1848.2
-Croatia,2006,40.6
-Italy,2006,1552.7
-Cyprus,2006,16.3
-Latvia,2006,17.4
-Lithuania,2006,24.1
-Luxembourg,2006,34.2
-Hungary,2006,92.1
-Malta,2006,5.4
-Netherlands,2006,584.5
-Austria,2006,267.8
-Poland,2006,274.5
-Portugal,2006,166.3
-Romania,2006,97.2
-Slovenia,2006,31.5
-Slovakia,2006,45.6
-Finland,2006,172.9
-Sweden,2006,337.3
-European Union,2005,9564.5
-Belgium,2005,310.0
-Bulgaria,2005,24.0
-Czechia,2005,110.3
-Denmark,2005,212.8
-Germany,2005,2288.3
-Estonia,2005,11.3
-Ireland,2005,170.3
-Greece,2005,199.2
-Spain,2005,927.4
-France,2005,1765.9
-Croatia,2005,36.8
-Italy,2005,1493.6
-Cyprus,2005,15.0
-Latvia,2005,13.8
-Lithuania,2005,21.0
-Luxembourg,2005,30.3
-Hungary,2005,91.1
-Malta,2005,5.2
-Netherlands,2005,550.9
-Austria,2005,254.1
-Poland,2005,246.2
-Portugal,2005,158.6
-Romania,2005,79.2
-Slovenia,2005,29.1
-Slovakia,2005,39.4
-Finland,2005,164.7
-Sweden,2005,315.8
-European Union,2004,9171.4
-Belgium,2004,296.8
-Bulgaria,2004,21.1
-Czechia,2004,96.6
-Denmark,2004,202.4
-Germany,2004,2262.5
-Estonia,2004,9.8
-Ireland,2004,156.3
-Greece,2004,193.7
-Spain,2004,859.4
-France,2004,1704.0
-Croatia,2004,33.8
-Italy,2004,1452.3
-Cyprus,2004,13.9
-Latvia,2004,11.7
-Lithuania,2004,18.2
-Luxembourg,2004,28.2
-Hungary,2004,83.9
-Malta,2004,4.9
-Netherlands,2004,529.3
-Austria,2004,242.3
-Poland,2004,206.1
-Portugal,2004,152.2
-Romania,2004,60.4
-Slovenia,2004,27.7
-Slovakia,2004,34.8
-Finland,2004,158.8
-Sweden,2004,310.2
-European Union,2003,8770.8
-Belgium,2003,281.2
-Bulgaria,2003,18.8
-Czechia,2003,88.7
-Denmark,2003,193.4
-Germany,2003,2211.6
-Estonia,2003,8.7
-Ireland,2003,145.6
-Greece,2003,178.9
-Spain,2003,802.3
-France,2003,1630.7
-Croatia,2003,31.0
-Italy,2003,1394.7
-Cyprus,2003,12.9
-Latvia,2003,10.5
-Lithuania,2003,16.7
-Luxembourg,2003,26.2
-Hungary,2003,75.4
-Malta,2003,4.8
-Netherlands,2003,512.8
-Austria,2003,231.9
-Poland,2003,192.6
-Portugal,2003,146.1
-Romania,2003,51.1
-Slovenia,2003,26.2
-Slovakia,2003,30.1
-Finland,2003,151.7
-Sweden,2003,296.3
-European Union,2002,8541.7
-Belgium,2002,273.3
-Bulgaria,2002,17.5
-Czechia,2002,87.4
-Denmark,2002,189.8
-Germany,2002,2198.1
-Estonia,2002,7.8
-Ireland,2002,136.0
-Greece,2002,163.5
-Spain,2002,749.6
-France,2002,1587.8
-Croatia,2002,28.8
-Italy,2002,1350.3
-Cyprus,2002,12.1
-Latvia,2002,10.2
-Lithuania,2002,15.2
-Luxembourg,2002,25.0
-Hungary,2002,71.8
-Malta,2002,4.7
-Netherlands,2002,501.1
-Austria,2002,226.7
-Poland,2002,210.6
-Portugal,2002,142.6
-Romania,2002,48.7
-Slovenia,2002,25.0
-Slovakia,2002,26.3
-Finland,2002,148.5
-Sweden,2002,283.6
-European Union,2001,8244.6
-Belgium,2001,264.3
-Bulgaria,2001,15.9
-Czechia,2001,75.7
-Denmark,2001,184.0
-Germany,2001,2172.5
-Estonia,2001,7.0
-Ireland,2001,122.1
-Greece,2001,152.2
-Spain,2001,701.0
-France,2001,1538.2
-Croatia,2001,25.9
-Italy,2001,1304.1
-Cyprus,2001,11.6
-Latvia,2001,9.4
-Lithuania,2001,13.7
-Luxembourg,2001,23.9
-Hungary,2001,60.0
-Malta,2001,4.6
-Netherlands,2001,481.9
-Austria,2001,220.5
-Poland,2001,212.8
-Portugal,2001,135.8
-Romania,2001,45.1
-Slovenia,2001,23.2
-Slovakia,2001,23.9
-Finland,2001,144.6
-Sweden,2001,270.5
-Iceland,2024,29.9
-Norway,2024,531.8
-Iceland,2023,28.2
-Norway,2023,505.0
-Iceland,2022,26.4
-Norway,2022,479.5
-Iceland,2021,21.7
-Norway,2021,407.6
-Iceland,2020,19.0
-Norway,2020,318.1
-Iceland,2019,22.2
-Norway,2019,361.7
-Iceland,2018,22.2
-Norway,2018,370.3
-Iceland,2017,21.9
-Norway,2017,353.3
-Iceland,2016,18.8
-Norway,2016,333.5
-Iceland,2015,15.8
-Norway,2015,347.6
-Iceland,2014,13.5
-Norway,2014,375.9
-Iceland,2013,12.1
-Norway,2013,393.4
-Iceland,2012,11.5
-Norway,2012,396.5
-Iceland,2011,10.9
-Norway,2011,358.3
-Iceland,2010,10.4
-Norway,2010,323.8
-Iceland,2009,9.4
-Norway,2009,278.2
-Iceland,2008,11.1
-Norway,2008,317.0
-Iceland,2007,15.8
-Norway,2007,293.2
-Iceland,2006,14.0
-Norway,2006,275.4
-Iceland,2005,13.6
-Norway,2005,248.5
-Iceland,2004,11.1
-Norway,2004,213.0
-Iceland,2003,10.1
-Norway,2003,202.5
-Iceland,2002,9.9
-Norway,2002,207.9
-Iceland,2001,9.2
-Norway,2001,194.4
+geo;TIME_PERIOD;OBS_VALUE
+Albania;2001;4385.8
+Albania;2002;4612.4
+Albania;2003;4928.6
+Albania;2004;5777.8
+Albania;2005;6475.3
+Albania;2006;7090.8
+Albania;2007;7809.8
+Albania;2008;8800.3
+Albania;2009;8662.2
+Albania;2010;8996.6
+Albania;2011;9268.3
+Albania;2012;9585.8
+Albania;2013;9625.4
+Albania;2014;9968.6
+Albania;2015;10264.1
+Albania;2016;10719.9
+Albania;2017;11559.0
+Albania;2018;12828.1
+Albania;2019;13754.2
+Albania;2020;13283.3
+Albania;2021;15432.3
+Austria;2001;220525.1
+Austria;2002;226735.2
+Austria;2003;231862.5
+Austria;2004;242348.3
+Austria;2005;254075.0
+Austria;2006;267824.5
+Austria;2007;283978.0
+Austria;2008;293761.9
+Austria;2009;288044.0
+Austria;2010;295896.6
+Austria;2011;310128.7
+Austria;2012;318653.0
+Austria;2013;323910.2
+Austria;2014;333146.1
+Austria;2015;344269.2
+Austria;2016;357608.0
+Austria;2017;369361.9
+Austria;2018;385274.1
+Austria;2019;397169.5
+Austria;2020;381042.5
+Austria;2021;406148.7
+Bosnia and Herzegovina;2001;6482.2
+Bosnia and Herzegovina;2002;7149.1
+Bosnia and Herzegovina;2003;7530.3
+Bosnia and Herzegovina;2004;8179.7
+Bosnia and Herzegovina;2005;9024.5
+Bosnia and Herzegovina;2006;10255.1
+Bosnia and Herzegovina;2007;11528.5
+Bosnia and Herzegovina;2008;13047.8
+Bosnia and Herzegovina;2009;12679.3
+Bosnia and Herzegovina;2010;12968.9
+Bosnia and Herzegovina;2011;13411.8
+Bosnia and Herzegovina;2012;13407.5
+Bosnia and Herzegovina;2013;13691.8
+Bosnia and Herzegovina;2014;13988.3
+Bosnia and Herzegovina;2015;14791.1
+Bosnia and Herzegovina;2016;15474.3
+Bosnia and Herzegovina;2017;16260.5
+Bosnia and Herzegovina;2018;17354.2
+Bosnia and Herzegovina;2019;18296.5
+Bosnia and Herzegovina;2020;17755.9
+Bosnia and Herzegovina;2021;19995.1
+Belgium;2001;264334.9
+Belgium;2002;273255.9
+Belgium;2003;281200.2
+Belgium;2004;296819.7
+Belgium;2005;310037.6
+Belgium;2006;325151.5
+Belgium;2007;343618.9
+Belgium;2008;351743.1
+Belgium;2009;346472.8
+Belgium;2010;363140.1
+Belgium;2011;375967.8
+Belgium;2012;386174.7
+Belgium;2013;392880.0
+Belgium;2014;403003.3
+Belgium;2015;416701.4
+Belgium;2016;430085.3
+Belgium;2017;445050.1
+Belgium;2018;460050.8
+Belgium;2019;478645.0
+Belgium;2020;459826.3
+Belgium;2021;502311.6
+Bulgaria;2001;15905.3
+Bulgaria;2002;17478.3
+Bulgaria;2003;18798.3
+Bulgaria;2004;21093.2
+Bulgaria;2005;24039.9
+Bulgaria;2006;27410.0
+Bulgaria;2007;32464.7
+Bulgaria;2008;37246.7
+Bulgaria;2009;37417.7
+Bulgaria;2010;38284.9
+Bulgaria;2011;41478.9
+Bulgaria;2012;42256.8
+Bulgaria;2013;42050.2
+Bulgaria;2014;43026.0
+Bulgaria;2015;45812.3
+Bulgaria;2016;48773.1
+Bulgaria;2017;52531.3
+Bulgaria;2018;56224.8
+Bulgaria;2019;61558.5
+Bulgaria;2020;61638.9
+Bulgaria;2021;71077.0
+Switzerland;2001;320183.3
+Switzerland;2002;328614.3
+Switzerland;2003;320540.7
+Switzerland;2004;325343.7
+Switzerland;2005;336400.1
+Switzerland;2006;352038.6
+Switzerland;2007;358607.9
+Switzerland;2008;387052.9
+Switzerland;2009;399363.6
+Switzerland;2010;452470.6
+Switzerland;2011;515770.5
+Switzerland;2012;534012.8
+Switzerland;2013;531729.1
+Switzerland;2014;548014.5
+Switzerland;2015;625532.7
+Switzerland;2016;621765.1
+Switzerland;2017;615776.3
+Switzerland;2018;614304.4
+Switzerland;2019;644443.2
+Switzerland;2020;648913.3
+Switzerland;2021;676775.2
+Cyprus;2001;11602.9
+Cyprus;2002;12082.9
+Cyprus;2003;12871.3
+Cyprus;2004;13938.0
+Cyprus;2005;15039.3
+Cyprus;2006;16263.8
+Cyprus;2007;17591.0
+Cyprus;2008;19009.6
+Cyprus;2009;18675.5
+Cyprus;2010;19461.1
+Cyprus;2011;19858.1
+Cyprus;2012;19495.4
+Cyprus;2013;18040.3
+Cyprus;2014;17482.8
+Cyprus;2015;17944.2
+Cyprus;2016;19013.8
+Cyprus;2017;20312.4
+Cyprus;2018;21675.1
+Cyprus;2019;23176.2
+Cyprus;2020;21894.9
+Cyprus;2021;24018.9
+Czechia;2001;75705.2
+Czechia;2002;87358.2
+Czechia;2003;88659.5
+Czechia;2004;96554.1
+Czechia;2005;110321.7
+Czechia;2006;124581.2
+Czechia;2007;139002.1
+Czechia;2008;162064.5
+Czechia;2009;149586.5
+Czechia;2010;157920.8
+Czechia;2011;165202.2
+Czechia;2012;162587.5
+Czechia;2013;159461.5
+Czechia;2014;157821.3
+Czechia;2015;169558.2
+Czechia;2016;177438.5
+Czechia;2017;194132.9
+Czechia;2018;210970.5
+Czechia;2019;225613.5
+Czechia;2020;215805.4
+Czechia;2021;238249.5
+Germany (until 1990 former territory of the FRG);2001;2172540.0
+Germany (until 1990 former territory of the FRG);2002;2198120.0
+Germany (until 1990 former territory of the FRG);2003;2211570.0
+Germany (until 1990 former territory of the FRG);2004;2262520.0
+Germany (until 1990 former territory of the FRG);2005;2288310.0
+Germany (until 1990 former territory of the FRG);2006;2385080.0
+Germany (until 1990 former territory of the FRG);2007;2499550.0
+Germany (until 1990 former territory of the FRG);2008;2546490.0
+Germany (until 1990 former territory of the FRG);2009;2445730.0
+Germany (until 1990 former territory of the FRG);2010;2564400.0
+Germany (until 1990 former territory of the FRG);2011;2693560.0
+Germany (until 1990 former territory of the FRG);2012;2745310.0
+Germany (until 1990 former territory of the FRG);2013;2811350.0
+Germany (until 1990 former territory of the FRG);2014;2927430.0
+Germany (until 1990 former territory of the FRG);2015;3026180.0
+Germany (until 1990 former territory of the FRG);2016;3134740.0
+Germany (until 1990 former territory of the FRG);2017;3267160.0
+Germany (until 1990 former territory of the FRG);2018;3365450.0
+Germany (until 1990 former territory of the FRG);2019;3473260.0
+Germany (until 1990 former territory of the FRG);2020;3405430.0
+Germany (until 1990 former territory of the FRG);2021;3601750.0
+Denmark;2001;184045.6
+Denmark;2002;189794.9
+Denmark;2003;193353.4
+Denmark;2004;202422.2
+Denmark;2005;212832.4
+Denmark;2006;225531.3
+Denmark;2007;233383.3
+Denmark;2008;241613.5
+Denmark;2009;231278.0
+Denmark;2010;243165.4
+Denmark;2011;247879.9
+Denmark;2012;254578.0
+Denmark;2013;258742.7
+Denmark;2014;265757.0
+Denmark;2015;273017.6
+Denmark;2016;283109.7
+Denmark;2017;294808.2
+Denmark;2018;302328.7
+Denmark;2019;309526.4
+Denmark;2020;311759.7
+Denmark;2021;336718.8
+Estonia;2001;6987.1
+Estonia;2002;7822.6
+Estonia;2003;8744.4
+Estonia;2004;9777.5
+Estonia;2005;11343.3
+Estonia;2006;13568.9
+Estonia;2007;16401.3
+Estonia;2008;16618.1
+Estonia;2009;14131.9
+Estonia;2010;14741.1
+Estonia;2011;16677.3
+Estonia;2012;17916.7
+Estonia;2013;18910.8
+Estonia;2014;20048.2
+Estonia;2015;20631.4
+Estonia;2016;21747.9
+Estonia;2017;23833.6
+Estonia;2018;25932.2
+Estonia;2019;27764.7
+Estonia;2020;27465.0
+Estonia;2021;31444.9
+Greece;2001;152193.8
+Greece;2002;163460.8
+Greece;2003;178904.9
+Greece;2004;193715.8
+Greece;2005;199242.3
+Greece;2006;217861.6
+Greece;2007;232694.6
+Greece;2008;241990.4
+Greece;2009;237534.2
+Greece;2010;224124.0
+Greece;2011;203308.2
+Greece;2012;188380.6
+Greece;2013;179884.4
+Greece;2014;177236.0
+Greece;2015;176368.9
+Greece;2016;174494.2
+Greece;2017;176903.4
+Greece;2018;179557.7
+Greece;2019;183351.2
+Greece;2020;165405.9
+Greece;2021;181674.6
+Spain;2001;700993.0
+Spain;2002;749552.0
+Spain;2003;802266.0
+Spain;2004;859437.0
+Spain;2005;927357.0
+Spain;2006;1003823.0
+Spain;2007;1075539.0
+Spain;2008;1109541.0
+Spain;2009;1069323.0
+Spain;2010;1072709.0
+Spain;2011;1063763.0
+Spain;2012;1031104.0
+Spain;2013;1020677.0
+Spain;2014;1032608.0
+Spain;2015;1078092.0
+Spain;2016;1114420.0
+Spain;2017;1162492.0
+Spain;2018;1203859.0
+Spain;2019;1245513.0
+Spain;2020;1117989.0
+Spain;2021;1206842.0
+European Union - 27 countries (from 2020);2001;8241897.8
+European Union - 27 countries (from 2020);2002;8538773.3
+European Union - 27 countries (from 2020);2003;8767565.2
+European Union - 27 countries (from 2020);2004;9167938.8
+European Union - 27 countries (from 2020);2005;9560869.1
+European Union - 27 countries (from 2020);2006;10112450.9
+European Union - 27 countries (from 2020);2007;10738858.8
+European Union - 27 countries (from 2020);2008;11085411.7
+European Union - 27 countries (from 2020);2009;10587691.4
+European Union - 27 countries (from 2020);2010;10980484.9
+European Union - 27 countries (from 2020);2011;11328290.6
+European Union - 27 countries (from 2020);2012;11396449.5
+European Union - 27 countries (from 2020);2013;11516210.9
+European Union - 27 countries (from 2020);2014;11782085.3
+European Union - 27 countries (from 2020);2015;12215145.8
+European Union - 27 countries (from 2020);2016;12548705.7
+European Union - 27 countries (from 2020);2017;13074833.0
+European Union - 27 countries (from 2020);2018;13533330.2
+European Union - 27 countries (from 2020);2019;14018694.3
+European Union - 27 countries (from 2020);2020;13461563.4
+European Union - 27 countries (from 2020);2021;14530921.0
+Finland;2001;144628.0
+Finland;2002;148486.0
+Finland;2003;151749.0
+Finland;2004;158758.0
+Finland;2005;164687.0
+Finland;2006;172897.0
+Finland;2007;187072.0
+Finland;2008;194265.0
+Finland;2009;181747.0
+Finland;2010;188143.0
+Finland;2011;197998.0
+Finland;2012;201037.0
+Finland;2013;204321.0
+Finland;2014;206897.0
+Finland;2015;211385.0
+Finland;2016;217518.0
+Finland;2017;226301.0
+Finland;2018;233462.0
+Finland;2019;239858.0
+Finland;2020;238038.0
+Finland;2021;250594.0
+France;2001;1538200.0
+France;2002;1587829.0
+France;2003;1630666.0
+France;2004;1704019.0
+France;2005;1765905.0
+France;2006;1848151.0
+France;2007;1941360.0
+France;2008;1992380.0
+France;2009;1936422.0
+France;2010;1995289.0
+France;2011;2058369.0
+France;2012;2088804.0
+France;2013;2117189.0
+France;2014;2149765.0
+France;2015;2198432.0
+France;2016;2234129.0
+France;2017;2297242.0
+France;2018;2363306.0
+France;2019;2437635.0
+France;2020;2310469.0
+France;2021;2500870.0
+Croatia;2001;25931.7
+Croatia;2002;28761.2
+Croatia;2003;31025.7
+Croatia;2004;33818.0
+Croatia;2005;36845.2
+Croatia;2006;40579.3
+Croatia;2007;44335.5
+Croatia;2008;48465.2
+Croatia;2009;45586.2
+Croatia;2010;45763.6
+Croatia;2011;45549.9
+Croatia;2012;44621.2
+Croatia;2013;44437.1
+Croatia;2014;43989.1
+Croatia;2015;45257.9
+Croatia;2016;47338.7
+Croatia;2017;49985.9
+Croatia;2018;52747.2
+Croatia;2019;55644.4
+Croatia;2020;50424.9
+Croatia;2021;58254.1
+Hungary;2001;60012.9
+Hungary;2002;71756.1
+Hungary;2003;75427.8
+Hungary;2004;83883.3
+Hungary;2005;91090.4
+Hungary;2006;92126.7
+Hungary;2007;102414.6
+Hungary;2008;108345.4
+Hungary;2009;94605.6
+Hungary;2010;99771.6
+Hungary;2011;102152.0
+Hungary;2012;100247.6
+Hungary;2013;102239.7
+Hungary;2014;106263.8
+Hungary;2015;112791.0
+Hungary;2016;116255.7
+Hungary;2017;127024.7
+Hungary;2018;136054.6
+Hungary;2019;146526.1
+Hungary;2020;137826.5
+Hungary;2021;153758.7
+Ireland;2001;122089.2
+Ireland;2002;135997.6
+Ireland;2003;145576.4
+Ireland;2004;156260.3
+Ireland;2005;170306.8
+Ireland;2006;184916.2
+Ireland;2007;197069.4
+Ireland;2008;187283.0
+Ireland;2009;169519.7
+Ireland;2010;167391.4
+Ireland;2011;171703.2
+Ireland;2012;175615.4
+Ireland;2013;179457.6
+Ireland;2014;195085.2
+Ireland;2015;262975.9
+Ireland;2016;270205.3
+Ireland;2017;297763.2
+Ireland;2018;326631.3
+Ireland;2019;356704.6
+Ireland;2020;372836.4
+Ireland;2021;426283.4
+Iceland;2001;9177.3
+Iceland;2002;9911.1
+Iceland;2003;10118.1
+Iceland;2004;11136.3
+Iceland;2005;13568.0
+Iceland;2006;13966.7
+Iceland;2007;15827.4
+Iceland;2008;11052.1
+Iceland;2009;9419.1
+Iceland;2010;10383.4
+Iceland;2011;10934.3
+Iceland;2012;11479.9
+Iceland;2013;12132.9
+Iceland;2014;13472.6
+Iceland;2015;15795.3
+Iceland;2016;18804.2
+Iceland;2017;21917.7
+Iceland;2018;22238.3
+Iceland;2019;22027.5
+Iceland;2020;18880.6
+Iceland;2021;21611.1
+Italy;2001;1304136.8
+Italy;2002;1350258.9
+Italy;2003;1394693.2
+Italy;2004;1452319.0
+Italy;2005;1493635.3
+Italy;2006;1552686.8
+Italy;2007;1614839.8
+Italy;2008;1637699.4
+Italy;2009;1577255.9
+Italy;2010;1611279.4
+Italy;2011;1648755.8
+Italy;2012;1624358.7
+Italy;2013;1612751.3
+Italy;2014;1627405.6
+Italy;2015;1655355.0
+Italy;2016;1695786.8
+Italy;2017;1736592.8
+Italy;2018;1771391.2
+Italy;2019;1796648.5
+Italy;2020;1661019.9
+Italy;2021;1787675.4
+Liechtenstein;2013;4812.4
+Liechtenstein;2014;5021.7
+Liechtenstein;2015;5649.1
+Liechtenstein;2016;5637.7
+Liechtenstein;2017;5734.6
+Liechtenstein;2018;5666.3
+Liechtenstein;2019;5750.1
+Liechtenstein;2020;5617.9
+Lithuania;2001;13664.6
+Lithuania;2002;15153.3
+Lithuania;2003;16650.2
+Lithuania;2004;18219.4
+Lithuania;2005;20979.9
+Lithuania;2006;24053.3
+Lithuania;2007;29011.2
+Lithuania;2008;32660.1
+Lithuania;2009;26897.0
+Lithuania;2010;28033.8
+Lithuania;2011;31317.2
+Lithuania;2012;33410.2
+Lithuania;2013;35039.5
+Lithuania;2014;36581.3
+Lithuania;2015;37345.7
+Lithuania;2016;38889.9
+Lithuania;2017;42276.3
+Lithuania;2018;45515.2
+Lithuania;2019;48908.2
+Lithuania;2020;49769.6
+Lithuania;2021;56179.1
+Luxembourg;2001;23879.9
+Luxembourg;2002;25011.1
+Luxembourg;2003;26227.3
+Luxembourg;2004;28189.4
+Luxembourg;2005;30281.0
+Luxembourg;2006;34175.0
+Luxembourg;2007;37641.9
+Luxembourg;2008;40009.6
+Luxembourg;2009;39050.7
+Luxembourg;2010;42402.7
+Luxembourg;2011;44323.5
+Luxembourg;2012;46526.2
+Luxembourg;2013;49094.5
+Luxembourg;2014;51791.3
+Luxembourg;2015;54142.3
+Luxembourg;2016;56208.1
+Luxembourg;2017;58168.8
+Luxembourg;2018;60121.2
+Luxembourg;2019;62373.6
+Luxembourg;2020;64781.0
+Luxembourg;2021;72295.0
+Latvia;2001;9374.4
+Latvia;2002;10168.7
+Latvia;2003;10499.6
+Latvia;2004;11724.0
+Latvia;2005;13791.9
+Latvia;2006;17363.1
+Latvia;2007;22791.5
+Latvia;2008;24531.5
+Latvia;2009;18922.0
+Latvia;2010;17937.5
+Latvia;2011;19666.0
+Latvia;2012;22097.5
+Latvia;2013;22791.3
+Latvia;2014;23625.8
+Latvia;2015;24572.1
+Latvia;2016;25371.3
+Latvia;2017;26984.4
+Latvia;2018;29153.6
+Latvia;2019;30678.6
+Latvia;2020;30294.0
+Latvia;2021;33587.6
+Montenegro;2006;2169.6
+Montenegro;2007;2689.1
+Montenegro;2008;3103.3
+Montenegro;2009;2993.9
+Montenegro;2010;3125.1
+Montenegro;2011;3264.8
+Montenegro;2012;3181.5
+Montenegro;2013;3362.5
+Montenegro;2014;3457.9
+Montenegro;2015;3654.5
+Montenegro;2016;3954.2
+Montenegro;2017;4299.1
+Montenegro;2018;4663.1
+Montenegro;2019;4950.7
+Montenegro;2020;4185.6
+Montenegro;2021;4955.1
+North Macedonia;2001;4143.5
+North Macedonia;2002;4240.5
+North Macedonia;2003;4385.9
+North Macedonia;2004;4577.7
+North Macedonia;2005;5032.0
+North Macedonia;2006;5472.2
+North Macedonia;2007;6094.5
+North Macedonia;2008;6772.1
+North Macedonia;2009;6766.5
+North Macedonia;2010;7108.3
+North Macedonia;2011;7544.2
+North Macedonia;2012;7584.8
+North Macedonia;2013;8149.6
+North Macedonia;2014;8562.0
+North Macedonia;2015;9072.3
+North Macedonia;2016;9656.5
+North Macedonia;2017;10038.3
+North Macedonia;2018;10744.0
+North Macedonia;2019;11262.0
+North Macedonia;2020;10851.7
+North Macedonia;2021;11688.2
+Malta;2001;4565.5
+Malta;2002;4740.9
+Malta;2003;4823.5
+Malta;2004;4910.4
+Malta;2005;5152.1
+Malta;2006;5403.0
+Malta;2007;5790.3
+Malta;2008;6206.0
+Malta;2009;6259.6
+Malta;2010;6815.8
+Malta;2011;6924.6
+Malta;2012;7364.5
+Malta;2013;7944.3
+Malta;2014;8751.1
+Malta;2015;9996.7
+Malta;2016;10541.1
+Malta;2017;11936.6
+Malta;2018;12953.9
+Malta;2019;14186.4
+Malta;2020;13173.0
+Malta;2021;15001.9
+Netherlands;2001;481881.0
+Netherlands;2002;501137.0
+Netherlands;2003;512810.0
+Netherlands;2004;529286.0
+Netherlands;2005;550883.0
+Netherlands;2006;584546.0
+Netherlands;2007;619170.0
+Netherlands;2008;647198.0
+Netherlands;2009;624842.0
+Netherlands;2010;639187.0
+Netherlands;2011;650359.0
+Netherlands;2012;652966.0
+Netherlands;2013;660463.0
+Netherlands;2014;671560.0
+Netherlands;2015;690008.0
+Netherlands;2016;708337.0
+Netherlands;2017;738146.0
+Netherlands;2018;773987.0
+Netherlands;2019;813055.0
+Netherlands;2020;796530.0
+Netherlands;2021;856356.0
+Norway;2001;194660.8
+Norway;2002;208313.8
+Norway;2003;202928.2
+Norway;2004;213642.4
+Norway;2005;249342.9
+Norway;2006;276477.7
+Norway;2007;294414.5
+Norway;2008;318851.0
+Norway;2009;279533.4
+Norway;2010;325493.9
+Norway;2011;360552.4
+Norway;2012;399069.2
+Norway;2013;395856.8
+Norway;2014;378456.4
+Norway;2015;349756.7
+Norway;2016;335396.5
+Norway;2017;356288.5
+Norway;2018;372657.6
+Norway;2019;365130.5
+Norway;2020;322823.8
+Norway;2021;414394.9
+Poland;2001;212834.1
+Poland;2002;210560.0
+Poland;2003;192552.1
+Poland;2004;206126.0
+Poland;2005;246216.8
+Poland;2006;274501.7
+Poland;2007;313848.3
+Poland;2008;366040.5
+Poland;2009;317040.6
+Poland;2010;359067.8
+Poland;2011;377042.4
+Poland;2012;385389.4
+Poland;2013;388356.4
+Poland;2014;406412.5
+Poland;2015;429834.6
+Poland;2016;424735.3
+Poland;2017;465772.6
+Poland;2018;499004.1
+Poland;2019;532504.7
+Poland;2020;526147.2
+Poland;2021;574771.8
+Portugal;2001;135775.0
+Portugal;2002;142554.3
+Portugal;2003;146067.9
+Portugal;2004;152248.4
+Portugal;2005;158552.7
+Portugal;2006;166260.5
+Portugal;2007;175483.4
+Portugal;2008;179102.8
+Portugal;2009;175416.4
+Portugal;2010;179610.8
+Portugal;2011;176096.2
+Portugal;2012;168295.6
+Portugal;2013;170492.3
+Portugal;2014;173053.7
+Portugal;2015;179713.2
+Portugal;2016;186489.8
+Portugal;2017;195947.2
+Portugal;2018;205184.1
+Portugal;2019;214374.6
+Portugal;2020;200518.9
+Portugal;2021;214741.0
+Romania;2001;45143.6
+Romania;2002;48695.7
+Romania;2003;51108.5
+Romania;2004;60402.0
+Romania;2005;79223.9
+Romania;2006;97215.6
+Romania;2007;127632.0
+Romania;2008;146590.6
+Romania;2009;125213.9
+Romania;2010;128278.9
+Romania;2011;138520.7
+Romania;2012;139319.8
+Romania;2013;142928.9
+Romania;2014;150522.4
+Romania;2015;160287.8
+Romania;2016;167494.3
+Romania;2017;186399.0
+Romania;2018;206071.9
+Romania;2019;224178.6
+Romania;2020;220486.6
+Romania;2021;241268.4
+Serbia;2001;14584.5
+Serbia;2002;18165.8
+Serbia;2003;19882.0
+Serbia;2004;20995.0
+Serbia;2005;22253.8
+Serbia;2006;25930.7
+Serbia;2007;31557.9
+Serbia;2008;35712.5
+Serbia;2009;32486.2
+Serbia;2010;31545.8
+Serbia;2011;35431.7
+Serbia;2012;33679.3
+Serbia;2013;36426.7
+Serbia;2014;35467.5
+Serbia;2015;35740.2
+Serbia;2016;36779.3
+Serbia;2017;39235.3
+Serbia;2018;42892.2
+Serbia;2019;46005.4
+Serbia;2020;46815.3
+Serbia;2021;53329.3
+Sweden;2001;270524.5
+Sweden;2002;283627.1
+Sweden;2003;296305.5
+Sweden;2004;310182.0
+Sweden;2005;315774.8
+Sweden;2006;337317.2
+Sweden;2007;358945.1
+Sweden;2008;354881.1
+Sweden;2009;314637.5
+Sweden;2010;374695.2
+Sweden;2011;412844.7
+Sweden;2012;430037.1
+Sweden;2013;441850.7
+Sweden;2014;438833.9
+Sweden;2015;455494.7
+Sweden;2016;466266.5
+Sweden;2017;480025.5
+Sweden;2018;470673.1
+Sweden;2019;476869.5
+Sweden;2020;480556.4
+Sweden;2021;538317.6
+Slovenia;2001;23249.1
+Slovenia;2002;24972.4
+Slovenia;2003;26247.5
+Slovenia;2004;27692.0
+Slovenia;2005;29122.3
+Slovenia;2006;31476.1
+Slovenia;2007;35073.5
+Slovenia;2008;37925.7
+Slovenia;2009;36254.9
+Slovenia;2010;36363.9
+Slovenia;2011;37058.6
+Slovenia;2012;36253.3
+Slovenia;2013;36454.3
+Slovenia;2014;37634.3
+Slovenia;2015;38852.6
+Slovenia;2016;40443.2
+Slovenia;2017;43011.3
+Slovenia;2018;45876.3
+Slovenia;2019;48533.1
+Slovenia;2020;47020.6
+Slovenia;2021;52208.1
+Slovakia;2001;23909.8
+Slovakia;2002;26340.7
+Slovakia;2003;30119.1
+Slovakia;2004;34757.7
+Slovakia;2005;39403.4
+Slovakia;2006;45602.0
+Slovakia;2007;56339.3
+Slovakia;2008;66098.1
+Slovakia;2009;64095.5
+Slovakia;2010;68764.9
+Slovakia;2011;71785.8
+Slovakia;2012;73649.3
+Slovakia;2013;74492.8
+Slovakia;2014;76354.5
+Slovakia;2015;80126.0
+Slovakia;2016;81265.2
+Slovakia;2017;84669.9
+Slovakia;2018;89874.7
+Slovakia;2019;94437.5
+Slovakia;2020;93413.8
+Slovakia;2021;98523.0
+Total general government revenue;2001;224298.1
+Total general government revenue;2002;251517.4
+Total general government revenue;2003;278583.9
+Total general government revenue;2004;327979.7
+Total general government revenue;2005;405626.3
+Total general government revenue;2006;439887.8
+Total general government revenue;2007;496901.4
+Total general government revenue;2008;525994.8
+Total general government revenue;2009;465245.5
+Total general government revenue;2010;584855.7
+Total general government revenue;2011;600961.4
+Total general government revenue;2012;683587.3
+Total general government revenue;2013;719726.6
+Total general government revenue;2014;707000.8
+Total general government revenue;2015;777042.3
+Total general government revenue;2016;785618.9
+Total general government revenue;2017;760497.1
+Total general government revenue;2018;658544.4
+Total general government revenue;2019;678180.0
+Total general government revenue;2020;626742.2
+Total general government revenue;2021;689546.5
+United Kingdom;2001;1830567.5
+United Kingdom;2002;1888699.6
+United Kingdom;2003;1815326.8
+United Kingdom;2004;1941265.1
+United Kingdom;2005;2037200.9
+United Kingdom;2006;2157333.5
+United Kingdom;2007;2259235.2
+United Kingdom;2008;1995854.5
+United Kingdom;2009;1738066.5
+United Kingdom;2010;1872175.5
+United Kingdom;2011;1912869.3
+United Kingdom;2012;2111028.9
+United Kingdom;2013;2096338.0
+United Kingdom;2014;2311080.2
+United Kingdom;2015;2644716.5
+United Kingdom;2016;2434119.2
+United Kingdom;2017;2359789.9
+United Kingdom;2018;2420897.2
+United Kingdom;2019;2526615.2
+Kosovo (under United Nations Security Council Resolution 1244/99);2008;3537.6
+Kosovo (under United Nations Security Council Resolution 1244/99);2009;3610.4
+Kosovo (under United Nations Security Council Resolution 1244/99);2010;4031.0
+Kosovo (under United Nations Security Council Resolution 1244/99);2011;4555.9
+Kosovo (under United Nations Security Council Resolution 1244/99);2012;4797.3
+Kosovo (under United Nations Security Council Resolution 1244/99);2013;5071.3
+Kosovo (under United Nations Security Council Resolution 1244/99);2014;5325.1
+Kosovo (under United Nations Security Council Resolution 1244/99);2015;5674.4
+Kosovo (under United Nations Security Council Resolution 1244/99);2016;6037.3
+Kosovo (under United Nations Security Council Resolution 1244/99);2017;6356.5
+Kosovo (under United Nations Security Council Resolution 1244/99);2018;6671.5
+Kosovo (under United Nations Security Council Resolution 1244/99);2019;7056.2
+Kosovo (under United Nations Security Council Resolution 1244/99);2020;6771.6
+Kosovo (under United Nations Security Council Resolution 1244/99);2021;7957.9
