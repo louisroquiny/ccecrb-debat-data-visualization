@@ -5,10 +5,11 @@ Created on Thu Mar 16 16:31:10 2023
 @author: loro
 """
 import pandas as pd
+from datetime import datetime as dt
 
 fullvariable = "1.1.0.0.OVGD,1.2.0.0.OVGD"
-country = "AUT,BEL,BGR,CYP,CZE,DEU,DNK,EA19,EA20,ESP,EST,EU27,FIN,FRA,GRC,HRV,HUN,IRL,ITA,LTU,LUX,LVA,MLT,NLD,POL,PRT,ROM,SVK,SVN,SWE"
-years = ",".join(str(i) for i in range(2001, 2025))
+country = "ALB,AUT,BEL,BIH,BGR,HRV,CYP,CZE,DNK,EST,EU27,FIN,FRA,DEU,GRC,HUN,ISL,IRL,ITA,XKX,LVA,LIE,LTU,LUX,MLT,MNE,NLD,MKD,NOR,POL,PRT,ROU,SRB,SVK,SVN,ESP,SWE,CHE,GBR"
+years = ",".join(str(i) for i in range(2001, dt.now().year + 4)
 
 url = "https://ec.europa.eu/economy_finance/ameco/wq/series?fullVariable={}&countries={}&years={}&lastYear=0&yearOrder=DESC".format(fullvariable, country, years)
 
