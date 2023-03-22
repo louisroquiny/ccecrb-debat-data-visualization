@@ -14,13 +14,13 @@ import json
 def map_my_dataframe(data, mapping): 
     for col in data.columns : 
         if col not in ['TIME_PERIOD', 'OBS_VALUE'] :
-            data[col] = data[col].map(mapping)
+            data[col] = data[col].map(mapping, inplace=True)
     return data
 
 # Chargement du dictionnaire à partir du fichier JSON
 with open("codelist.json", "r") as file:
     codelist = json.load(file)    
-
+    
 # Date scope
 StartPeriod = 2001
 EndPeriod = 2021
@@ -30,6 +30,7 @@ url_expenditure = 'https://ec.europa.eu/eurostat/api/dissemination/sdmx/2.1/data
 url_deficit_debt = 'https://ec.europa.eu/eurostat/api/dissemination/sdmx/2.1/data/GOV_10DD_EDPT1/A.MIO_EUR+PC_GDP.S13.B9+GD.EU27_2020+EA19+BE+BG+CZ+DK+DE+EE+IE+EL+ES+FR+HR+IT+CY+LV+LT+LU+HU+MT+NL+AT+PL+PT+RO+SI+SK+FI+SE/?format=SDMX-CSV&startPeriod={start}&endPeriod={end}'
 url_revenue = 'https://ec.europa.eu/eurostat/api/dissemination/sdmx/2.1/data/GOV_10A_MAIN/A.MIO_EUR+PC_GDP.S13.B9+TE+TR.EU27_2020+EA20+EA19+BE+BG+CZ+DK+DE+EE+IE+EL+ES+FR+HR+IT+CY+LV+LT+LU+HU+MT+NL+AT+PL+PT+RO+SI+SK+FI+SE+IS+NO+CH/?format=SDMX-CSV&startPeriod={start}&endPeriod={end}'
 url_gdp = 'https://ec.europa.eu/eurostat/api/dissemination/sdmx/2.1/data/NAMA_10_GDP/A.CP_MEUR.B1GQ.DE+NO+RS+BE+FI+PT+BG+DK+LT+LU+HR+LV+FR+HU+SE+SI+UK+SK+ME+EU27_2020+IE+MK+EE+CH+EL+MT+IS+IT+AL+ES+AT+XK+CY+CZ+PL+RO+LI+NL+TR+BA/?format=SDMX-CSV&startPeriod={start}&endPeriod={end}'
+
 
 def dataframed(url) :
     url_formated = url.format(start = StartPeriod, end = EndPeriod)
@@ -43,10 +44,7 @@ revenue = dataframed(url_revenue)
 gdp = dataframed(url_gdp)
 
 # Sectorisation
-sector = []
-for s in expenditure.cofog99.unique():
-    if len(s) == 4 : 
-        sector.append(s) 
+sector = [s for s in expenditure.cofog99.unique() if len(s) == 4]
 
 # Nettoyage
 expenditure = expenditure[['unit', 'sector', 'cofog99','geo', 'TIME_PERIOD', 'OBS_VALUE']]
@@ -59,16 +57,16 @@ for s in sector :
     filt = expenditure.cofog99.str.contains(s)
     expenditure.sector = np.where(filt, s, expenditure.sector)
 
-map_my_dataframe(expenditure, codelist)
-map_my_dataframe(deficit_debt, codelist)
-map_my_dataframe(revenue, codelist)
-map_my_dataframe(gdp, codelist)
+dfs = [expenditure, deficit_debt, revenue, gdp]
+for df in dfs:
+    map_my_dataframe(df, codelist)
 
 # Save new file in cache
-expenditure.to_csv('data/expenditure.csv', sep = ';', index = False)
-deficit_debt.to_csv('data/deficit_debt.csv', sep = ';', index = False)
-revenue.to_csv('data/revenue.csv', sep = ';', index = False)
-gdp.to_csv('data/gdp.csv', sep = ';', index = False)
+dfs = [expenditure, deficit_debt, revenue, gdp]
+filenames = ['expenditure', 'deficit_debt', 'revenue', 'gdp']
+for df, name in zip(dfs, filenames):
+    df.to_csv(f'data/{name}.csv', sep=';', index=False)
+
 
 # new_file = io.StringIO(file_content)
 
