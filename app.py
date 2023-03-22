@@ -32,7 +32,7 @@ app_treemap.config.suppress_callback_exceptions = False
 load_figure_template('LITERA')
 
 # Chargement des données à partir d'une url
-git = 'https://raw.githubusercontent.com/louisroquiny/treemap-ccecrb-debat/main/data/'
+git = 'https://raw.githubusercontent.com/louisroquiny/ccecrb-debat-data-visualization/main/data/'
 expenditure_url = git + 'expenditure.csv'
 deficit_debt_url = git + 'deficit_debt.csv'
 gdp_url = git + 'gdp.csv'
