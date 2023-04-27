@@ -38,6 +38,10 @@ deficit_debt_url = git + 'deficit_debt.csv'
 gdp_url = git + 'gdp.csv'
 revenue_url = git + 'revenue.csv'
 
+# expenditure_url = 'C:/Users/loro.CCECRB/Documents/GitHub/treemap-ccecrb-debat/data/expenditure.csv'
+# deficit_debt_url = 'C:/Users/loro.CCECRB/Documents/GitHub/treemap-ccecrb-debat/data/deficit_debt.csv'
+# gdp_url = 'C:/Users/loro.CCECRB/Documents/GitHub/treemap-ccecrb-debat/data/gdp.csv'
+
 # Sourcing du projet
 data_sources = '''
 #### Data sources : Eurostat
